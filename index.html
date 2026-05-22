@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kana — Learn Japanese from Zero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0e0e0f;
+  --bg2: #161618;
+  --bg3: #1e1e21;
+  --bg4: #27272b;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text: #f0ede8;
+  --text2: #9e9b96;
+  --text3: #5c5a56;
+  --red: #e5534b;
+  --red-light: rgba(229,83,75,0.12);
+  --red-glow: rgba(229,83,75,0.25);
+  --green: #3fb950;
+  --green-bg: rgba(63,185,80,0.12);
+  --yellow: #d29922;
+  --yellow-bg: rgba(210,153,34,0.12);
+  --serif: 'Noto Serif JP', serif;
+  --sans: 'Inter', system-ui, sans-serif;
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+/* ─── LAYOUT ─── */
+.app { display: flex; min-height: 100vh; }
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: 220px; flex-shrink: 0;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  padding: 0;
+  position: fixed; top: 0; left: 0; bottom: 0;
+  display: flex; flex-direction: column;
+  z-index: 50;
+}
+.logo {
+  padding: 1.5rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.logo-jp {
+  font-family: var(--serif);
+  font-size: 26px; font-weight: 300;
+  color: var(--red); line-height: 1;
+}
+.logo-en {
+  font-size: 11px; color: var(--text3);
+  letter-spacing: 0.12em; margin-top: 5px;
+}
+
+.progress-mini {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.prog-label {
+  display: flex; justify-content: space-between;
+  font-size: 11px; color: var(--text3); margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+.prog-track {
+  height: 3px; background: var(--bg4); border-radius: 2px; overflow: hidden;
+}
+.prog-fill {
+  height: 100%; background: var(--red); border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.nav { padding: 0.75rem 0; flex: 1; overflow-y: auto; }
+.nav-section-title {
+  font-size: 10px; color: var(--text3); letter-spacing: 0.12em;
+  padding: 0.75rem 1.25rem 0.35rem; text-transform: uppercase;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 1.25rem; cursor: pointer;
+  color: var(--text2); font-size: 13px; font-weight: 400;
+  transition: all 0.15s; border-left: 2px solid transparent;
+  user-select: none;
+}
+.nav-item:hover { color: var(--text); background: var(--bg3); }
+.nav-item.active {
+  color: var(--text); background: var(--red-light);
+  border-left-color: var(--red);
+}
+.nav-item .icon { font-size: 15px; width: 18px; text-align: center; }
+.nav-badge {
+  margin-left: auto; font-size: 10px; padding: 2px 7px;
+  border-radius: 999px; background: var(--bg4);
+  color: var(--text3); font-weight: 500;
+}
+.nav-badge.done { background: var(--green-bg); color: var(--green); }
+
+.sidebar-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--text3);
+}
+
+/* ─── MAIN ─── */
+.main {
+  margin-left: 220px; flex: 1;
+  min-height: 100vh;
+}
+
+/* ─── TOP BAR ─── */
+.topbar {
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg);
+  position: sticky; top: 0; z-index: 40;
+}
+.topbar-title { font-size: 17px; font-weight: 500; }
+.topbar-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.script-toggle {
+  display: flex; border: 1px solid var(--border2); border-radius: var(--radius);
+  overflow: hidden;
+}
+.script-btn {
+  padding: 7px 18px; font-size: 13px; font-weight: 500;
+  background: transparent; border: none; cursor: pointer;
+  color: var(--text2); transition: all 0.15s; font-family: var(--sans);
+}
+.script-btn.active { background: var(--red); color: #fff; }
+.script-btn:hover:not(.active) { background: var(--bg3); color: var(--text); }
+
+/* ─── PAGE CONTENT ─── */
+.page { display: none; padding: 2rem; }
+.page.active { display: block; }
+
+/* ─── LESSON PAGE ─── */
+.lesson-intro {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+  margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.lesson-intro-icon {
+  font-family: var(--serif); font-size: 52px;
+  color: var(--red); line-height: 1; flex-shrink: 0;
+}
+.lesson-intro h2 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+.lesson-intro p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+.row-group { margin-bottom: 2.5rem; }
+.row-title {
+  font-size: 11px; color: var(--text3); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.row-title::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+.kana-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+}
+.kana-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  cursor: pointer; transition: all 0.18s; user-select: none;
+  position: relative; min-height: 90px; justify-content: center;
+}
+.kana-card:hover { border-color: var(--border2); background: var(--bg3); transform: translateY(-2px); }
+.kana-card.learned { border-color: rgba(229,83,75,0.35); background: var(--red-light); }
+.kana-card.selected { border: 1.5px solid var(--red); background: var(--red-light); }
+.kana-card.empty { visibility: hidden; pointer-events: none; }
+.kana-char { font-family: var(--serif); font-size: 30px; line-height: 1; color: var(--text); }
+.kana-card.learned .kana-char { color: #ff7b75; }
+.kana-rom { font-size: 11px; color: var(--text3); font-weight: 500; letter-spacing: 0.06em; }
+.kana-dot {
+  position: absolute; top: 6px; right: 6px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); display: none;
+}
+.kana-card.learned .kana-dot { display: block; }
+
+/* ─── DETAIL PANEL ─── */
+.detail-panel {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 0;
+  margin-bottom: 2rem; overflow: hidden;
+  display: none; animation: slideDown 0.2s ease;
+}
+.detail-panel.open { display: block; }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.detail-inner {
+  display: grid; grid-template-columns: 180px 1fr 1fr;
+  gap: 0;
+}
+.detail-char-col {
+  background: var(--red-light); border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 2rem 1rem; gap: 8px;
+}
+.detail-big { font-family: var(--serif); font-size: 80px; color: var(--red); line-height: 1; }
+.detail-rom {
+  font-size: 22px; font-weight: 300; color: var(--text2); letter-spacing: 0.04em;
+}
+.detail-info-col {
+  padding: 1.5rem 1.25rem; border-right: 1px solid var(--border);
+}
+.detail-section-title {
+  font-size: 10px; color: var(--text3); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 0.75rem;
+}
+.pronunciation-note {
+  font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 1.25rem;
+}
+.example-word {
+  background: var(--bg3); border-radius: var(--radius);
+  padding: 10px 14px; margin-bottom: 8px;
+}
+.ex-jp { font-family: var(--serif); font-size: 20px; color: var(--text); }
+.ex-rom { font-size: 12px; color: var(--text3); margin-top: 3px; }
+.ex-mean { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.detail-stroke-col { padding: 1.5rem 1.25rem; }
+.stroke-tip {
+  font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 1rem;
+}
+.mark-btn {
+  padding: 8px 18px; border-radius: var(--radius); font-family: var(--sans);
+  font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid var(--border2);
+  color: var(--text2); background: var(--bg3); transition: all 0.15s; letter-spacing: 0.04em;
+}
+.mark-btn:hover { background: var(--bg4); color: var(--text); }
+.mark-btn.marked { background: var(--red); color: #fff; border-color: var(--red); }
+.close-detail {
+  display: block; text-align: right; padding: 8px 12px;
+  border-top: 1px solid var(--border); cursor: pointer;
+  font-size: 11px; color: var(--text3); transition: color 0.15s;
+}
+.close-detail:hover { color: var(--text); }
+
+/* ─── QUIZ PAGE ─── */
+.quiz-container { max-width: 560px; margin: 0 auto; }
+.quiz-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 2rem;
+}
+.quiz-stat {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 10px 16px; text-align: center;
+}
+.quiz-stat-num { font-size: 22px; font-weight: 600; }
+.quiz-stat-num.green { color: var(--green); }
+.quiz-stat-num.red { color: var(--red); }
+.quiz-stat-num.yellow { color: var(--yellow); }
+.quiz-stat-label { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+.quiz-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2.5rem;
+  text-align: center; margin-bottom: 1.5rem;
+}
+.quiz-prompt-label {
+  font-size: 11px; color: var(--text3); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 1rem;
+}
+.quiz-char {
+  font-family: var(--serif); font-size: 100px; line-height: 1;
+  color: var(--text); margin-bottom: 0.5rem;
+  display: block;
+}
+.quiz-char.romaji-mode { font-family: var(--sans); font-size: 52px; font-weight: 300; }
+
+.quiz-mode-switch {
+  display: flex; gap: 8px; justify-content: center; margin-bottom: 1.5rem;
+}
+.mode-btn {
+  padding: 6px 14px; font-size: 12px; font-weight: 500;
+  border: 1px solid var(--border2); border-radius: 999px;
+  background: transparent; cursor: pointer; color: var(--text2);
+  font-family: var(--sans); transition: all 0.15s;
+}
+.mode-btn.active { background: var(--bg3); color: var(--text); border-color: var(--border2); }
+
+.choices-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin-bottom: 1rem;
+}
+.choice-btn {
+  padding: 16px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg2); cursor: pointer; color: var(--text);
+  font-size: 15px; font-weight: 400; font-family: var(--sans);
+  transition: all 0.15s;
+}
+.choice-btn.jp-choice { font-family: var(--serif); font-size: 28px; }
+.choice-btn:hover:not(:disabled):not(.correct):not(.wrong) {
+  border-color: var(--border2); background: var(--bg3);
+}
+.choice-btn.correct { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.choice-btn.wrong { background: rgba(229,83,75,0.12); border-color: var(--red); color: var(--red); }
+
+.quiz-feedback {
+  text-align: center; min-height: 22px; font-size: 14px;
+  margin-bottom: 1rem; color: var(--text2);
+}
+.quiz-next {
+  width: 100%; padding: 13px; background: var(--red); color: #fff;
+  border: none; border-radius: var(--radius); font-family: var(--sans);
+  font-size: 14px; font-weight: 500; cursor: pointer; display: none;
+  transition: opacity 0.15s;
+}
+.quiz-next:hover { opacity: 0.88; }
+
+.streak-bar {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 8px; font-size: 13px; color: var(--text3);
+  margin-bottom: 1.5rem;
+}
+.streak-flame {
+  font-size: 18px; transition: transform 0.3s;
+}
+.streak-bar.hot .streak-flame { transform: scale(1.3); }
+.streak-bar.hot { color: var(--yellow); }
+
+/* ─── FLASHCARD PAGE ─── */
+.flashcard-container { max-width: 480px; margin: 0 auto; text-align: center; }
+.flashcard-wrap {
+  perspective: 1200px; margin: 2rem auto;
+  width: 320px; height: 220px;
+}
+.flashcard {
+  width: 100%; height: 100%;
+  position: relative; transform-style: preserve-3d;
+  transition: transform 0.5s ease; cursor: pointer;
+}
+.flashcard.flipped { transform: rotateY(180deg); }
+.flashcard-face {
+  position: absolute; width: 100%; height: 100%;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); backface-visibility: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+}
+.flashcard-front .fc-char {
+  font-family: var(--serif); font-size: 72px; color: var(--text); line-height: 1;
+}
+.flashcard-back { transform: rotateY(180deg); }
+.flashcard-back .fc-rom {
+  font-size: 32px; font-weight: 300; color: var(--red); letter-spacing: 0.06em;
+}
+.flashcard-back .fc-word { font-family: var(--serif); font-size: 22px; color: var(--text2); }
+.flashcard-back .fc-mean { font-size: 13px; color: var(--text3); }
+.fc-hint { font-size: 11px; color: var(--text3); }
+.flashcard-nav { display: flex; gap: 10px; justify-content: center; margin-top: 1rem; }
+.fc-btn {
+  padding: 10px 24px; border: 1px solid var(--border2); border-radius: var(--radius);
+  background: var(--bg2); color: var(--text2); cursor: pointer;
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  transition: all 0.15s;
+}
+.fc-btn:hover { background: var(--bg3); color: var(--text); }
+.fc-btn.good { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.fc-btn.skip { background: rgba(229,83,75,0.1); border-color: var(--red); color: var(--red); }
+.fc-counter { font-size: 13px; color: var(--text3); margin-top: 1.5rem; }
+.fc-progress { margin-top: 1rem; }
+
+/* ─── DAKUTEN PAGE ─── */
+.dakuten-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+}
+.dk-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 8px;
+  text-align: center; cursor: pointer; transition: all 0.15s;
+}
+.dk-card:hover { border-color: var(--border2); background: var(--bg3); }
+.dk-pair { display: flex; justify-content: center; align-items: baseline; gap: 6px; }
+.dk-orig { font-family: var(--serif); font-size: 20px; color: var(--text3); }
+.dk-arrow { font-size: 12px; color: var(--text3); }
+.dk-new { font-family: var(--serif); font-size: 28px; color: var(--text); }
+.dk-rom { font-size: 11px; color: var(--text3); margin-top: 4px; letter-spacing: 0.04em; }
+
+/* ─── COMBO PAGE ─── */
+.combo-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+}
+.combo-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 10px;
+  text-align: center; cursor: pointer; transition: all 0.15s;
+}
+.combo-card:hover { border-color: var(--border2); background: var(--bg3); }
+.combo-chars { font-family: var(--serif); font-size: 22px; color: var(--text); }
+.combo-chars span { font-size: 14px; vertical-align: super; color: var(--text3); }
+.combo-rom { font-size: 11px; color: var(--text3); margin-top: 5px; }
+
+/* ─── CHART PAGE ─── */
+.chart-table {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  border-collapse: collapse; width: 100%;
+}
+.chart-table th, .chart-table td {
+  border: 1px solid var(--border); padding: 0; text-align: center;
+  min-width: 70px;
+}
+.chart-table th {
+  background: var(--bg3); font-size: 10px; color: var(--text3);
+  letter-spacing: 0.08em; padding: 8px 6px; text-transform: uppercase;
+}
+.chart-cell {
+  padding: 10px 6px; cursor: pointer; transition: background 0.15s;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+.chart-cell:hover { background: var(--bg4); }
+.chart-cell.learned { background: var(--red-light); }
+.chart-cell .cc { font-family: var(--serif); font-size: 22px; color: var(--text); }
+.chart-cell.learned .cc { color: #ff7b75; }
+.chart-cell .cr { font-size: 10px; color: var(--text3); }
+
+/* ─── COMMON ─── */
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.section-head h2 { font-size: 20px; font-weight: 500; }
+.section-head .sub { font-size: 12px; color: var(--text3); }
+
+.tip-box {
+  background: var(--yellow-bg); border: 1px solid rgba(210,153,34,0.3);
+  border-radius: var(--radius); padding: 12px 16px;
+  font-size: 13px; color: var(--yellow); margin-bottom: 1.5rem;
+}
+
+.info-chips {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem;
+}
+.chip {
+  padding: 5px 12px; border-radius: 999px; font-size: 12px;
+  border: 1px solid var(--border); color: var(--text2); background: var(--bg2);
+}
+
+/* ─── MOBILE ─── */
+.hamburger {
+  display: none; position: fixed; top: 14px; left: 14px; z-index: 200;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; cursor: pointer;
+  font-size: 18px; color: var(--text); line-height: 1;
+}
+.sidebar-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 49;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .hamburger { display: block; }
+  .sidebar-overlay.show { display: block; }
+  .topbar { padding: 1rem 1rem 1rem 3.5rem; }
+  .page { padding: 1.25rem; }
+  .detail-inner { grid-template-columns: 1fr; }
+  .detail-char-col { padding: 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+  .kana-grid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .kana-card { min-height: 72px; padding: 10px 4px; }
+  .kana-char { font-size: 24px; }
+  .choices-grid { grid-template-columns: 1fr 1fr; }
+  .quiz-header { flex-wrap: wrap; gap: 8px; }
+  .combo-grid { grid-template-columns: repeat(3, 1fr); }
+  .dakuten-grid { grid-template-columns: repeat(4, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<button class="hamburger" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<div class="app">
+<!-- ─── SIDEBAR ─── -->
+<aside class="sidebar" id="sidebar">
+  <div class="logo">
+    <div class="logo-jp">かな</div>
+    <div class="logo-en">LEARN JAPANESE</div>
+  </div>
+
+  <div class="progress-mini">
+    <div class="prog-label">
+      <span>OVERALL PROGRESS</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="prog-track">
+      <div class="prog-fill" id="prog-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-section-title">Learn</div>
+    <div class="nav-item active" onclick="goTo('hiragana')">
+      <span class="icon">あ</span> Hiragana
+      <span class="nav-badge" id="badge-hira">0/46</span>
+    </div>
+    <div class="nav-item" onclick="goTo('katakana')">
+      <span class="icon">ア</span> Katakana
+      <span class="nav-badge" id="badge-kata">0/46</span>
+    </div>
+    <div class="nav-item" onclick="goTo('dakuten')">
+      <span class="icon">が</span> Dakuten ゛゜
+    </div>
+    <div class="nav-item" onclick="goTo('combos')">
+      <span class="icon">き</span> Combos きゃ
+    </div>
+
+    <div class="nav-section-title">Practice</div>
+    <div class="nav-item" onclick="goTo('flashcards')">
+      <span class="icon">🃏</span> Flashcards
+    </div>
+    <div class="nav-item" onclick="goTo('quiz')">
+      <span class="icon">✏️</span> Quiz
+    </div>
+    <div class="nav-item" onclick="goTo('chart')">
+      <span class="icon">📊</span> Full Chart
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    Made with ❤️ for Japanese learners
+  </div>
+</aside>
+
+<!-- ─── MAIN ─── -->
+<main class="main">
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div>
+    <div class="topbar-title" id="page-title">Hiragana 五十音</div>
+    <div class="topbar-sub" id="page-sub">Learn the 46 basic hiragana characters</div>
+  </div>
+  <div class="script-toggle" id="script-toggle" style="display:flex">
+    <button class="script-btn active" onclick="setScript('hiragana')">Hiragana ひ</button>
+    <button class="script-btn" onclick="setScript('katakana')">Katakana カ</button>
+  </div>
+</div>
+
+<!-- ─── PAGE: HIRAGANA / KATAKANA ─── -->
+<div class="page active" id="page-hiragana">
+  <div class="lesson-intro">
+    <div class="lesson-intro-icon">あ</div>
+    <div>
+      <h2>Hiragana — the foundation of Japanese</h2>
+      <p>Hiragana is the first script you'll learn. It has 46 basic characters, each representing a sound (syllable). Once you know hiragana, you can read most Japanese texts with furigana and many beginner materials. Click any character to learn it.</p>
+    </div>
+  </div>
+  <div class="info-chips">
+    <span class="chip">46 characters</span>
+    <span class="chip">Curved, flowing strokes</span>
+    <span class="chip">Used for native Japanese words</span>
+    <span class="chip">Verb endings · Particles</span>
+  </div>
+  <div id="detail-panel-h" class="detail-panel"></div>
+  <div id="kana-rows-h"></div>
+</div>
+
+<div class="page" id="page-katakana">
+  <div class="lesson-intro">
+    <div class="lesson-intro-icon">ア</div>
+    <div>
+      <h2>Katakana — for foreign words &amp; emphasis</h2>
+      <p>Katakana has the same 46 sounds as hiragana but with angular, sharper strokes. It's mainly used for loanwords (コーヒー = coffee, テレビ = TV), foreign names, and scientific terms. Click any character to learn it.</p>
+    </div>
+  </div>
+  <div class="info-chips">
+    <span class="chip">46 characters</span>
+    <span class="chip">Angular, sharp strokes</span>
+    <span class="chip">Loanwords · Foreign names</span>
+    <span class="chip">Sound effects · Emphasis</span>
+  </div>
+  <div id="detail-panel-k" class="detail-panel"></div>
+  <div id="kana-rows-k"></div>
+</div>
+
+<!-- ─── PAGE: DAKUTEN ─── -->
+<div class="page" id="page-dakuten">
+  <div class="section-head">
+    <h2>Dakuten &amp; Handakuten</h2>
+    <span class="sub">+25 voiced sounds</span>
+  </div>
+  <div class="tip-box">
+    💡 <strong>Dakuten</strong> (゛) adds a voiced sound — か (ka) → が (ga). <strong>Handakuten</strong> (゜) turns H-row into P-row — は (ha) → ぱ (pa).
+  </div>
+  <div id="dakuten-content"></div>
+</div>
+
+<!-- ─── PAGE: COMBOS ─── -->
+<div class="page" id="page-combos">
+  <div class="section-head">
+    <h2>Combination Kana</h2>
+    <span class="sub">33 new sounds</span>
+  </div>
+  <div class="tip-box">
+    💡 Combine an I-row character with small や・ゆ・よ to create compound sounds. The small kana is written smaller and the two characters together make one sound: きゃ = "kya".
+  </div>
+  <div id="combos-content"></div>
+</div>
+
+<!-- ─── PAGE: FLASHCARDS ─── -->
+<div class="page" id="page-flashcards">
+  <div class="flashcard-container">
+    <div class="section-head">
+      <h2>Flashcard Practice</h2>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:1.5rem;justify-content:center">
+      <button class="mode-btn active" onclick="setFcScript('hiragana',this)">Hiragana</button>
+      <button class="mode-btn" onclick="setFcScript('katakana',this)">Katakana</button>
+      <button class="mode-btn" onclick="setFcScript('both',this)">Both</button>
+    </div>
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-face flashcard-front">
+          <div class="fc-char" id="fc-front">あ</div>
+          <div class="fc-hint">tap to reveal</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="fc-rom" id="fc-back-rom">a</div>
+          <div class="fc-word" id="fc-back-word">あおい</div>
+          <div class="fc-mean" id="fc-back-mean">blue</div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-nav">
+      <button class="fc-btn skip" onclick="fcAnswer(false)">✕ Again</button>
+      <button class="fc-btn good" onclick="fcAnswer(true)">✓ Got it</button>
+    </div>
+    <div class="fc-counter" id="fc-counter">Card 1 of 46</div>
+    <div class="fc-progress prog-track" style="margin-top:12px">
+      <div class="prog-fill" id="fc-prog" style="width:0%"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PAGE: QUIZ ─── -->
+<div class="page" id="page-quiz">
+  <div class="quiz-container">
+    <div class="quiz-mode-switch">
+      <button class="mode-btn active" onclick="setQuizMode('kana-to-rom',this)">Kana → Romaji</button>
+      <button class="mode-btn" onclick="setQuizMode('rom-to-kana',this)">Romaji → Kana</button>
+      <button class="mode-btn" onclick="setQuizMode('both-scripts',this)">Mixed</button>
+    </div>
+    <div class="quiz-header">
+      <div class="quiz-stat">
+        <div class="quiz-stat-num green" id="qs-correct">0</div>
+        <div class="quiz-stat-label">Correct</div>
+      </div>
+      <div class="quiz-stat">
+        <div class="quiz-stat-num red" id="qs-wrong">0</div>
+        <div class="quiz-stat-label">Wrong</div>
+      </div>
+      <div class="quiz-stat">
+        <div class="quiz-stat-num yellow" id="qs-pct">—</div>
+        <div class="quiz-stat-label">Accuracy</div>
+      </div>
+    </div>
+    <div class="streak-bar" id="streak-bar">
+      <span class="streak-flame">🔥</span>
+      <span id="streak-count">0</span> streak
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-prompt-label" id="q-label">What is the romaji?</div>
+      <span class="quiz-char" id="q-char">あ</span>
+    </div>
+    <div class="choices-grid" id="choices"></div>
+    <div class="quiz-feedback" id="q-feedback"></div>
+    <button class="quiz-next" id="quiz-next" onclick="nextQ()">Next →</button>
+  </div>
+</div>
+
+<!-- ─── PAGE: CHART ─── -->
+<div class="page" id="page-chart">
+  <div class="section-head">
+    <h2>Complete Reference Chart</h2>
+    <span class="sub">All 92 kana at a glance</span>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="chart-table" id="chart-table"></table>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────
+const ROWS = [
+  {label:'Vowels',     h:['あ','い','う','え','お'], k:['ア','イ','ウ','エ','オ'], r:['a','i','u','e','o']},
+  {label:'K row',      h:['か','き','く','け','こ'], k:['カ','キ','ク','ケ','コ'], r:['ka','ki','ku','ke','ko']},
+  {label:'S row',      h:['さ','し','す','せ','そ'], k:['サ','シ','ス','セ','ソ'], r:['sa','shi','su','se','so']},
+  {label:'T row',      h:['た','ち','つ','て','と'], k:['タ','チ','ツ','テ','ト'], r:['ta','chi','tsu','te','to']},
+  {label:'N row',      h:['な','に','ぬ','ね','の'], k:['ナ','ニ','ヌ','ネ','ノ'], r:['na','ni','nu','ne','no']},
+  {label:'H row',      h:['は','ひ','ふ','へ','ほ'], k:['ハ','ヒ','フ','ヘ','ホ'], r:['ha','hi','fu','he','ho']},
+  {label:'M row',      h:['ま','み','む','め','も'], k:['マ','ミ','ム','メ','モ'], r:['ma','mi','mu','me','mo']},
+  {label:'Y row',      h:['や', '', 'ゆ', '', 'よ'], k:['ヤ','','ユ','','ヨ'],    r:['ya','','yu','','yo']},
+  {label:'R row',      h:['ら','り','る','れ','ろ'], k:['ラ','リ','ル','レ','ロ'], r:['ra','ri','ru','re','ro']},
+  {label:'W row + N',  h:['わ', '', '', '', 'を'],  k:['ワ','','','','ヲ'],      r:['wa','','','','wo']},
+  {label:'',           h:['ん', '', '', '', ''],    k:['ン','','','',''],        r:['n','','','','']},
+];
+
+const EXAMPLES = {
+  'あ':{w:'あおい',r:'aoi',m:'blue/young'},'い':{w:'いぬ',r:'inu',m:'dog'},'う':{w:'うみ',r:'umi',m:'sea'},'え':{w:'えき',r:'eki',m:'station'},'お':{w:'おにぎり',r:'onigiri',m:'rice ball'},
+  'か':{w:'かさ',r:'kasa',m:'umbrella'},'き':{w:'きつね',r:'kitsune',m:'fox'},'く':{w:'くも',r:'kumo',m:'cloud'},'け':{w:'けいたい',r:'keitai',m:'mobile phone'},'こ':{w:'こえ',r:'koe',m:'voice'},
+  'さ':{w:'さくら',r:'sakura',m:'cherry blossom'},'し':{w:'しろ',r:'shiro',m:'castle'},'す':{w:'すし',r:'sushi',m:'sushi'},'せ':{w:'せんせい',r:'sensei',m:'teacher'},'そ':{w:'そら',r:'sora',m:'sky'},
+  'た':{w:'たべる',r:'taberu',m:'to eat'},'ち':{w:'ちず',r:'chizu',m:'map'},'つ':{w:'つき',r:'tsuki',m:'moon'},'て':{w:'てがみ',r:'tegami',m:'letter'},'と':{w:'とり',r:'tori',m:'bird'},
+  'な':{w:'なつ',r:'natsu',m:'summer'},'に':{w:'にわ',r:'niwa',m:'garden'},'ぬ':{w:'ぬの',r:'nuno',m:'cloth'},'ね':{w:'ねこ',r:'neko',m:'cat'},'の':{w:'のり',r:'nori',m:'seaweed'},
+  'は':{w:'はな',r:'hana',m:'flower'},'ひ':{w:'ひと',r:'hito',m:'person'},'ふ':{w:'ふじさん',r:'fujisan',m:'Mt. Fuji'},'へ':{w:'へや',r:'heya',m:'room'},'ほ':{w:'ほし',r:'hoshi',m:'star'},
+  'ま':{w:'まち',r:'machi',m:'town'},'み':{w:'みず',r:'mizu',m:'water'},'む':{w:'むし',r:'mushi',m:'insect'},'め':{w:'めがね',r:'megane',m:'glasses'},'も':{w:'もり',r:'mori',m:'forest'},
+  'や':{w:'やま',r:'yama',m:'mountain'},'ゆ':{w:'ゆき',r:'yuki',m:'snow'},'よ':{w:'よる',r:'yoru',m:'night'},
+  'ら':{w:'らーめん',r:'ramen',m:'ramen'},'り':{w:'りんご',r:'ringo',m:'apple'},'る':{w:'るす',r:'rusu',m:'away from home'},'れ':{w:'れんしゅう',r:'renshuu',m:'practice'},'ろ':{w:'ろうそく',r:'rousoku',m:'candle'},
+  'わ':{w:'わらう',r:'warau',m:'to laugh'},'を':{w:'(particle)',r:'wo',m:'object marker'},'ん':{w:'えんぴつ',r:'enpitsu',m:'pencil'},
+};
+
+const STROKE_TIPS = {
+  'あ':'3 strokes. Horizontal → curved left stroke → dot+loop.',
+  'い':'2 strokes. Left curve downward, then right downward stroke.',
+  'う':'2 strokes. Short top horizontal, then the main curved body.',
+  'え':'2 strokes. Horizontal bar, then vertical with circular loop.',
+  'お':'3 strokes. Horizontal, then vertical+curve, then the dot.',
+  'か':'3 strokes. Vertical line first, then two angled strokes.',
+  'き':'4 strokes. Two horizontals, a vertical through the center, short right stroke.',
+  'く':'1 stroke. A simple rightward angle — like a check ✓.',
+  'け':'3 strokes. Vertical, cross stroke, then the angled leg.',
+  'こ':'2 strokes. Two short parallel horizontal strokes.',
+  'さ':'3 strokes. Top horizontal, a cross-stroke, then the body.',
+  'し':'1 stroke. One smooth fishhook curve.',
+  'す':'2 strokes. The circle with a cross, then the bottom tail.',
+  'せ':'3 strokes. Cross shape with a loop curling at the bottom.',
+  'そ':'2 strokes. Like the number 3, mirrored.',
+  'た':'4 strokes. Cross shape, then two extra strokes below.',
+  'ち':'2 strokes. Top arc, then the lower loop.',
+  'つ':'1 stroke. Tight U-curve going left to right.',
+  'て':'1 stroke. Horizontal bar hooking downward at the end.',
+  'と':'2 strokes. Vertical, then a sweeping curved stroke.',
+  'な':'4 strokes. Two strokes cross, then a curve, then a loop.',
+  'に':'3 strokes. Two verticals connected by a horizontal bar.',
+  'ぬ':'2 strokes. Rounded body ending in a loop twist.',
+  'ね':'2 strokes. Like ぬ but with a straight tail instead of loop.',
+  'の':'1 stroke. A smooth open loop — like the letter O.',
+  'は':'3 strokes. Vertical bar, short middle stroke, curved right half.',
+  'ひ':'1 stroke. A rectangular loop with a spur.',
+  'ふ':'4 strokes. Top dot, then three curved parts below.',
+  'へ':'1 stroke. A simple inverted V / caret shape.',
+  'ほ':'4 strokes. Similar to は but with a cross at the top.',
+  'ま':'3 strokes. Two horizontals crossed, then a downward loop.',
+  'み':'2 strokes. Curved stroke, then a smaller circular loop.',
+  'む':'3 strokes. Short horizontal, vertical, then the loop with a tail.',
+  'め':'2 strokes. Like ぬ but more compact and tighter.',
+  'も':'3 strokes. Two horizontals, then a vertical with a curve.',
+  'や':'3 strokes. Left diagonal, horizontal bar, then the right sweep.',
+  'ゆ':'2 strokes. Left curved stroke, then right stroke ending in a loop.',
+  'よ':'2 strokes. Short horizontal, then the vertical body with loop.',
+  'ら':'2 strokes. Short top curve, then the longer loop body.',
+  'り':'2 strokes. Left short vertical, right longer vertical.',
+  'る':'1 stroke. Starts like ら then loops at the bottom.',
+  'れ':'2 strokes. Left vertical, then a longer stroke ending in a clockwise loop.',
+  'ろ':'1 stroke. Like る but without the bottom loop.',
+  'わ':'2 strokes. Left curve then right curve with a small loop.',
+  'を':'3 strokes. Horizontal, then top curve+bottom curve.',
+  'ん':'1 stroke. Upward sweep with a looping tail.',
+};
+
+const PRON = {
+  'a':'Open vowel, like "a" in "father"',
+  'i':'Like "ee" in "feet" but short',
+  'u':'Like "oo" but lips not rounded — closer to "uh"',
+  'e':'Like "e" in "bed"',
+  'o':'Like "o" in "go"',
+  'ka':'K + A, crisp unaspirated K','ki':'K + I','ku':'K + U','ke':'K + E','ko':'K + O',
+  'sa':'S + A','shi':'Like "she" — SHI not SI','su':'S + U, the U is subtle','se':'S + E','so':'S + O',
+  'ta':'T + A, unaspirated T','chi':'Like "chee" — CHI not TI','tsu':'Like the end of "cats" + U','te':'T + E','to':'T + O',
+  'na':'N + A','ni':'N + I','nu':'N + U','ne':'N + E','no':'N + O',
+  'ha':'H + A','hi':'H + I','fu':'Soft bilabial F, almost HU','he':'H + E','ho':'H + O',
+  'ma':'M + A','mi':'M + I','mu':'M + U','me':'M + E','mo':'M + O',
+  'ya':'Y + A','yu':'Y + U','yo':'Y + O',
+  'ra':'Tongue flap — between L and R, not rolled','ri':'R + I','ru':'R + U','re':'R + E','ro':'R + O',
+  'wa':'W + A, W is very light','wo':'Particle only, pronounced O in modern Japanese',
+  'n':'Syllabic N — "ng" before K/G, "m" before M/B/P, "n" elsewhere',
+};
+
+const DAKUTEN = [
+  {orig:'か',new:'が',r:'ga'},{orig:'き',new:'ぎ',r:'gi'},{orig:'く',new:'ぐ',r:'gu'},{orig:'け',new:'げ',r:'ge'},{orig:'こ',new:'ご',r:'go'},
+  {orig:'さ',new:'ざ',r:'za'},{orig:'し',new:'じ',r:'ji'},{orig:'す',new:'ず',r:'zu'},{orig:'せ',new:'ぜ',r:'ze'},{orig:'そ',new:'ぞ',r:'zo'},
+  {orig:'た',new:'だ',r:'da'},{orig:'ち',new:'ぢ',r:'ji*'},{orig:'つ',new:'づ',r:'zu*'},{orig:'て',new:'で',r:'de'},{orig:'と',new:'ど',r:'do'},
+  {orig:'は',new:'ば',r:'ba'},{orig:'ひ',new:'び',r:'bi'},{orig:'ふ',new:'ぶ',r:'bu'},{orig:'へ',new:'べ',r:'be'},{orig:'ほ',new:'ぼ',r:'bo'},
+  {orig:'は',new:'ぱ',r:'pa'},{orig:'ひ',new:'ぴ',r:'pi'},{orig:'ふ',new:'ぷ',r:'pu'},{orig:'へ',new:'ぺ',r:'pe'},{orig:'ほ',new:'ぽ',r:'po'},
+];
+
+const COMBOS = [
+  {c:'きゃ',r:'kya'},{c:'きゅ',r:'kyu'},{c:'きょ',r:'kyo'},
+  {c:'しゃ',r:'sha'},{c:'しゅ',r:'shu'},{c:'しょ',r:'sho'},
+  {c:'ちゃ',r:'cha'},{c:'ちゅ',r:'chu'},{c:'ちょ',r:'cho'},
+  {c:'にゃ',r:'nya'},{c:'にゅ',r:'nyu'},{c:'にょ',r:'nyo'},
+  {c:'ひゃ',r:'hya'},{c:'ひゅ',r:'hyu'},{c:'ひょ',r:'hyo'},
+  {c:'みゃ',r:'mya'},{c:'みゅ',r:'myu'},{c:'みょ',r:'myo'},
+  {c:'りゃ',r:'rya'},{c:'りゅ',r:'ryu'},{c:'りょ',r:'ryo'},
+  {c:'ぎゃ',r:'gya'},{c:'ぎゅ',r:'gyu'},{c:'ぎょ',r:'gyo'},
+  {c:'じゃ',r:'ja'},{c:'じゅ',r:'ju'},{c:'じょ',r:'jo'},
+  {c:'びゃ',r:'bya'},{c:'びゅ',r:'byu'},{c:'びょ',r:'byo'},
+  {c:'ぴゃ',r:'pya'},{c:'ぴゅ',r:'pyu'},{c:'ぴょ',r:'pyo'},
+];
+
+// ─── STATE ────────────────────────────────────────
+let learned = {};
+try { learned = JSON.parse(localStorage.getItem('kana_learned') || '{}'); } catch(e){}
+
+let currentPage = 'hiragana';
+let currentScript = 'hiragana';
+let selectedChar = null;
+
+let quizMode = 'kana-to-rom';
+let quizScript = 'both';
+let qCorrect = 0, qWrong = 0, qStreak = 0;
+let qCurrent = null, qAnswered = false;
+
+let fcScript = 'hiragana';
+let fcDeck = [];
+let fcIndex = 0;
+let fcFlipped = false;
+
+// ─── SAVE ─────────────────────────────────────────
+function save() {
+  localStorage.setItem('kana_learned', JSON.stringify(learned));
+  updateProgress();
+}
+
+function getLKey(c) { return c; }
+
+function markLearned(c, val) {
+  if (val) learned[c] = true;
+  else delete learned[c];
+  save();
+}
+
+// ─── PROGRESS ─────────────────────────────────────
+function getAllChars(script) {
+  const key = script === 'hiragana' ? 'h' : 'k';
+  return ROWS.flatMap(r => r[key].filter(c => c));
+}
+
+function updateProgress() {
+  const allH = getAllChars('hiragana');
+  const allK = getAllChars('katakana');
+  const lH = allH.filter(c => learned[c]).length;
+  const lK = allK.filter(c => learned[c]).length;
+  const total = allH.length + allK.length;
+  const totalLearned = lH + lK;
+  const pct = Math.round(totalLearned / total * 100);
+
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('badge-hira').textContent = lH + '/' + allH.length;
+  document.getElementById('badge-kata').textContent = lK + '/' + allK.length;
+  document.getElementById('badge-hira').className = 'nav-badge' + (lH === allH.length ? ' done' : '');
+  document.getElementById('badge-kata').className = 'nav-badge' + (lK === allK.length ? ' done' : '');
+
+  // Re-render grid dots if visible
+  document.querySelectorAll('.kana-card').forEach(card => {
+    const ch = card.dataset.char;
+    if (!ch) return;
+    const isLearned = !!learned[ch];
+    card.classList.toggle('learned', isLearned);
+  });
+}
+
+// ─── RENDER GRID ──────────────────────────────────
+function renderKanaRows(script) {
+  const key = script === 'hiragana' ? 'h' : 'k';
+  const suffix = script === 'hiragana' ? 'h' : 'k';
+  const container = document.getElementById('kana-rows-' + suffix);
+  container.innerHTML = '';
+
+  ROWS.forEach(row => {
+    const group = document.createElement('div');
+    group.className = 'row-group';
+
+    const labelDiv = document.createElement('div');
+    labelDiv.className = 'row-title';
+    labelDiv.textContent = row.label;
+    group.appendChild(labelDiv);
+
+    const grid = document.createElement('div');
+    grid.className = 'kana-grid';
+
+    row[key].forEach((ch, i) => {
+      const card = document.createElement('div');
+      if (!ch) {
+        card.className = 'kana-card empty';
+      } else {
+        card.className = 'kana-card' + (learned[ch] ? ' learned' : '');
+        card.dataset.char = ch;
+        card.dataset.rom = row.r[i];
+        card.dataset.script = script;
+        card.innerHTML = `<span class="kana-dot"></span><span class="kana-char">${ch}</span><span class="kana-rom">${row.r[i]}</span>`;
+        card.onclick = () => selectKana(ch, row.r[i], script, card);
+      }
+      grid.appendChild(card);
+    });
+    group.appendChild(grid);
+    container.appendChild(group);
+  });
+}
+
+// ─── DETAIL PANEL ─────────────────────────────────
+function selectKana(c, r, script, cardEl) {
+  const suffix = script === 'hiragana' ? 'h' : 'k';
+  const panel = document.getElementById('detail-panel-' + suffix);
+
+  // Deselect all
+  document.querySelectorAll('.kana-card.selected').forEach(e => e.classList.remove('selected'));
+
+  if (selectedChar === c) {
+    selectedChar = null;
+    panel.classList.remove('open');
+    return;
+  }
+  selectedChar = c;
+  cardEl.classList.add('selected');
+
+  const ex = EXAMPLES[c] || {};
+  const strokeTip = STROKE_TIPS[c] || STROKE_TIPS[toHiragana(c)] || 'Practice tracing the character carefully.';
+  const pronNote = PRON[r] || ('Pronounced "' + r + '"');
+  const isLearned = !!learned[c];
+
+  panel.innerHTML = `
+    <div class="detail-inner">
+      <div class="detail-char-col">
+        <div class="detail-big">${c}</div>
+        <div class="detail-rom">${r}</div>
+      </div>
+      <div class="detail-info-col">
+        <div class="detail-section-title">Pronunciation</div>
+        <div class="pronunciation-note">${pronNote}</div>
+        ${ex.w ? `<div class="detail-section-title">Example word</div>
+        <div class="example-word">
+          <div class="ex-jp">${ex.w}</div>
+          <div class="ex-rom">${ex.r}</div>
+          <div class="ex-mean">${ex.m}</div>
+        </div>` : ''}
+        <button class="mark-btn ${isLearned ? 'marked' : ''}" onclick="toggleMark('${c}','${r}','${script}')">
+          ${isLearned ? '✓ Learned' : 'Mark as learned'}
+        </button>
+      </div>
+      <div class="detail-stroke-col">
+        <div class="detail-section-title">Stroke tips</div>
+        <div class="stroke-tip">${strokeTip}</div>
+        <div class="detail-section-title" style="margin-top:1rem">Memory hint</div>
+        <div class="stroke-tip" style="color:var(--text3)">${getMemHint(c, r)}</div>
+      </div>
+    </div>
+    <span class="close-detail" onclick="closeDetail('${suffix}')">Close ↑</span>
+  `;
+  panel.classList.add('open');
+
+  // Scroll to panel smoothly
+  setTimeout(() => panel.scrollIntoView({behavior:'smooth', block:'nearest'}), 50);
+}
+
+function closeDetail(suffix) {
+  document.getElementById('detail-panel-' + suffix).classList.remove('open');
+  document.querySelectorAll('.kana-card.selected').forEach(e => e.classList.remove('selected'));
+  selectedChar = null;
+}
+
+function toggleMark(c, r, script) {
+  markLearned(c, !learned[c]);
+  selectKana(c, r, script, document.querySelector(`.kana-card[data-char="${c}"]`) || {classList:{add:()=>{}}});
+  const panel = document.getElementById('detail-panel-' + (script === 'hiragana' ? 'h' : 'k'));
+  panel.classList.add('open');
+}
+
+function toHiragana(c) {
+  const map = {'ア':'あ','イ':'い','ウ':'う','エ':'え','オ':'お','カ':'か','キ':'き','ク':'く','ケ':'け','コ':'こ','サ':'さ','シ':'し','ス':'す','セ':'せ','ソ':'そ','タ':'た','チ':'ち','ツ':'つ','テ':'て','ト':'と','ナ':'な','ニ':'に','ヌ':'ぬ','ネ':'ね','ノ':'の','ハ':'は','ヒ':'ひ','フ':'ふ','ヘ':'へ','ホ':'ほ','マ':'ま','ミ':'み','ム':'む','メ':'め','モ':'も','ヤ':'や','ユ':'ゆ','ヨ':'よ','ラ':'ら','リ':'り','ル':'る','レ':'れ','ロ':'ろ','ワ':'わ','ヲ':'を','ン':'ん'};
+  return map[c] || c;
+}
+
+function getMemHint(c, r) {
+  const hints = {
+    'あ':'Looks like an "A" — the arms cross like the letter','い':'Two strokes like "ii" standing together',
+    'う':'A face looking up — open mouth saying "U"','え':'Looks like a person with arms spread',
+    'お':'Like an "oh" with extra flair','か':'A person kicking — KA!','き':'A tree with branches',
+    'く':'A beak of a bird saying KU','け':'Like a tall person standing','こ':'Two lines = KO (two sounds merged)',
+    'さ':'Like SA written in one move','し':'A fishhook — SHI! it stings','す':'Like a nest — SUnny nest',
+    'せ':'Like SE, a plant growing','そ':'Like a backwards S or the number 3','た':'A cross with legs',
+    'ち':'Like a CHIcken running','つ':'Like a tsunami wave — TSU','て':'A hand reaching — TE (hand in Japanese)',
+    'と':'A snake coiling — TO','な':'Like "na" written quickly','に':'Like the letter N + i',
+    'ぬ':'NOOdles curling — NU','ね':'A cat sleeping (neko = cat)','の':'Like the English word "no"',
+    'は':'Like a person on a path — HA!','ひ':'Like a smiling face — HEE hee',
+    'ふ':'Like Mount Fuji — FU!','へ':'Like a mountain peak — HE','ほ':'Like a cross with curls',
+    'ま':'Like a fish on a hook — MA','み':'Like 3 fish swimming — MI','む':'Like a cow face — MU (cow sound!)',
+    'め':'Like an eye (me = eye in Japanese)','も':'Like tangled seaweed — MO',
+    'や':'Like a hand waving "YA!"','ゆ':'Like a U-turn — YU','よ':'Like a branch — YO',
+    'ら':'Like a hook and tail — RA','り':'Two reeds — RI','る':'Like a loop — RU',
+    'れ':'Like a river bend — RE','ろ':'Like a simplified ろ — RO','わ':'Like a WAlrus shape',
+    'を':'Complex character, used only as particle','ん':'The final nasalized N',
+  };
+  return hints[toHiragana(c)] || 'Practice writing it repeatedly to build muscle memory.';
+}
+
+// ─── DAKUTEN RENDER ──────────────────────────────
+function renderDakuten() {
+  const c = document.getElementById('dakuten-content');
+  c.innerHTML = '<div class="row-title" style="margin-bottom:1rem">Voiced (゛) — 20 characters</div>';
+  const g1 = document.createElement('div');
+  g1.className = 'dakuten-grid';
+  DAKUTEN.slice(0,20).forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'dk-card';
+    card.innerHTML = `<div class="dk-pair"><span class="dk-orig">${d.orig}</span><span class="dk-arrow">→</span><span class="dk-new">${d.new}</span></div><div class="dk-rom">${d.r}</div>`;
+    g1.appendChild(card);
+  });
+  c.appendChild(g1);
+
+  const lbl2 = document.createElement('div');
+  lbl2.className = 'row-title';
+  lbl2.style.marginTop = '2rem';
+  lbl2.style.marginBottom = '1rem';
+  lbl2.textContent = 'Semi-voiced P-sounds (゜) — 5 characters';
+  c.appendChild(lbl2);
+
+  const g2 = document.createElement('div');
+  g2.className = 'dakuten-grid';
+  DAKUTEN.slice(20).forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'dk-card';
+    card.innerHTML = `<div class="dk-pair"><span class="dk-orig">${d.orig}</span><span class="dk-arrow">→</span><span class="dk-new">${d.new}</span></div><div class="dk-rom">${d.r}</div>`;
+    g2.appendChild(card);
+  });
+  c.appendChild(g2);
+
+  const note = document.createElement('div');
+  note.style.marginTop = '1.5rem';
+  note.style.fontSize = '12px';
+  note.style.color = 'var(--text3)';
+  note.textContent = '* ぢ and づ are rare; じ (ji) and ず (zu) from the S-row are used in most cases.';
+  c.appendChild(note);
+}
+
+// ─── COMBOS RENDER ──────────────────────────────
+function renderCombos() {
+  const c = document.getElementById('combos-content');
+  const groups = [
+    {title:'Clean combinations (K, N, H, M, R rows)', items: COMBOS.slice(0,21)},
+    {title:'Voiced combinations (G, J, B, P rows)', items: COMBOS.slice(21)},
+  ];
+  groups.forEach(grp => {
+    const lbl = document.createElement('div');
+    lbl.className = 'row-title';
+    lbl.style.marginBottom = '1rem';
+    lbl.textContent = grp.title;
+    c.appendChild(lbl);
+    const grid = document.createElement('div');
+    grid.className = 'combo-grid';
+    grp.items.forEach(co => {
+      const card = document.createElement('div');
+      card.className = 'combo-card';
+      const parts = co.c.split('');
+      card.innerHTML = `<div class="combo-chars">${parts[0]}<span>${parts[1]||''}</span></div><div class="combo-rom">${co.r}</div>`;
+      grid.appendChild(card);
+    });
+    c.appendChild(grid);
+    c.appendChild(document.createElement('br'));
+  });
+}
+
+// ─── CHART RENDER ────────────────────────────────
+function renderChart() {
+  const t = document.getElementById('chart-table');
+  const cols = ['a','i','u','e','o'];
+  let html = '<thead><tr><th>Row</th>';
+  cols.forEach(c => html += `<th>${c.toUpperCase()}</th>`);
+  html += '</tr></thead><tbody>';
+  ROWS.forEach(row => {
+    if (!row.label) return;
+    html += `<tr><td style="font-size:11px;color:var(--text3);padding:8px;background:var(--bg3)">${row.label}</td>`;
+    ['h','k'].forEach(() => {});
+    // Hiragana + katakana side by side in each cell
+    row.h.forEach((hc, i) => {
+      const kc = row.k[i];
+      const r = row.r[i];
+      if (!hc && !kc) {
+        html += '<td></td>';
+      } else {
+        html += `<td><div class="chart-cell ${learned[hc]||learned[kc]?'learned':''}" onclick="void(0)">
+          <span class="cc">${hc||'—'}</span>
+          <span style="font-size:10px;color:var(--text3)">${kc||'—'}</span>
+          <span class="cr">${r||''}</span>
+        </div></td>`;
+      }
+    });
+    html += '</tr>';
+  });
+  html += '</tbody>';
+  t.innerHTML = html;
+}
+
+// ─── FLASHCARDS ──────────────────────────────────
+function buildFcDeck(script) {
+  let chars = [];
+  if (script === 'hiragana' || script === 'both') {
+    ROWS.forEach((row, ri) => row.h.forEach((c, i) => { if (c) chars.push({c, r:row.r[i], script:'hiragana'}); }));
+  }
+  if (script === 'katakana' || script === 'both') {
+    ROWS.forEach((row, ri) => row.k.forEach((c, i) => { if (c) chars.push({c, r:row.r[i], script:'katakana'}); }));
+  }
+  return chars.sort(() => Math.random() - 0.5);
+}
+
+function setFcScript(s, btn) {
+  document.querySelectorAll('#page-flashcards .mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  fcScript = s;
+  fcDeck = buildFcDeck(s);
+  fcIndex = 0;
+  fcFlipped = false;
+  showFcCard();
+}
+
+function showFcCard() {
+  if (!fcDeck.length) return;
+  const card = fcDeck[fcIndex % fcDeck.length];
+  const ex = EXAMPLES[card.c] || EXAMPLES[toHiragana(card.c)] || {};
+  document.getElementById('fc-front').textContent = card.c;
+  document.getElementById('fc-front').style.fontFamily = 'var(--serif)';
+  document.getElementById('fc-back-rom').textContent = card.r;
+  document.getElementById('fc-back-word').textContent = ex.w || '';
+  document.getElementById('fc-back-mean').textContent = ex.m ? '— ' + ex.m : '';
+  document.getElementById('fc-counter').textContent = 'Card ' + (fcIndex+1) + ' of ' + fcDeck.length;
+  document.getElementById('fc-prog').style.width = Math.round(fcIndex / fcDeck.length * 100) + '%';
+  document.getElementById('flashcard').classList.remove('flipped');
+  fcFlipped = false;
+}
+
+function flipCard() {
+  document.getElementById('flashcard').classList.toggle('flipped');
+  fcFlipped = !fcFlipped;
+}
+
+function fcAnswer(good) {
+  if (!fcFlipped) { flipCard(); return; }
+  const card = fcDeck[fcIndex % fcDeck.length];
+  if (good) markLearned(card.c, true);
+  fcIndex++;
+  if (fcIndex >= fcDeck.length) { fcIndex = 0; }
+  showFcCard();
+}
+
+// ─── QUIZ ─────────────────────────────────────────
+function getAllKana() {
+  const arr = [];
+  ROWS.forEach(row => {
+    row.h.forEach((c, i) => { if (c) arr.push({c, r:row.r[i], script:'h'}); });
+    row.k.forEach((c, i) => { if (c) arr.push({c, r:row.r[i], script:'k'}); });
+  });
+  return arr;
+}
+
+function setQuizMode(mode, btn) {
+  quizMode = mode;
+  document.querySelectorAll('#page-quiz .mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  qCorrect = 0; qWrong = 0; qStreak = 0;
+  updateQuizStats();
+  nextQ();
+}
+
+function nextQ() {
+  qAnswered = false;
+  document.getElementById('quiz-next').style.display = 'none';
+  document.getElementById('q-feedback').textContent = '';
+
+  const all = getAllKana();
+  // Filter by mode
+  let pool;
+  if (quizMode === 'both-scripts') pool = all;
+  else pool = all.filter(x => x.script === 'h'); // default hiragana
+
+  qCurrent = pool[Math.floor(Math.random() * pool.length)];
+
+  const isKanaToRom = quizMode !== 'rom-to-kana';
+  document.getElementById('q-label').textContent = isKanaToRom ? 'What is the romaji reading?' : 'Which kana matches?';
+
+  const qCharEl = document.getElementById('q-char');
+  if (isKanaToRom) {
+    qCharEl.textContent = qCurrent.c;
+    qCharEl.className = 'quiz-char';
+  } else {
+    qCharEl.textContent = qCurrent.r;
+    qCharEl.className = 'quiz-char romaji-mode';
+  }
+
+  // Build choices
+  const wrong = pool.filter(x => x.r !== qCurrent.r);
+  const picks = wrong.sort(() => Math.random() - 0.5).slice(0, 3);
+  const choices = [...picks, qCurrent].sort(() => Math.random() - 0.5);
+
+  const box = document.getElementById('choices');
+  box.innerHTML = '';
+  choices.forEach(ch => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn' + (isKanaToRom ? '' : ' jp-choice');
+    btn.textContent = isKanaToRom ? ch.r : ch.c;
+    btn.onclick = () => checkQ(isKanaToRom ? ch.r : ch.c, isKanaToRom ? qCurrent.r : qCurrent.c, btn, isKanaToRom);
+    box.appendChild(btn);
+  });
+}
+
+function checkQ(chosen, correct, btn, isKanaToRom) {
+  if (qAnswered) return;
+  qAnswered = true;
+  const ok = chosen === correct;
+
+  if (ok) {
+    btn.classList.add('correct');
+    qCorrect++; qStreak++;
+    document.getElementById('q-feedback').textContent = '✓ Correct!';
+    document.getElementById('q-feedback').style.color = 'var(--green)';
+    markLearned(qCurrent.c, true);
+  } else {
+    btn.classList.add('wrong');
+    qWrong++; qStreak = 0;
+    document.getElementById('q-feedback').textContent = '✗ It was "' + correct + '"';
+    document.getElementById('q-feedback').style.color = 'var(--red)';
+    // Highlight correct
+    document.querySelectorAll('.choice-btn').forEach(b => {
+      if (b.textContent === correct) b.classList.add('correct');
+    });
+  }
+
+  document.querySelectorAll('.choice-btn').forEach(b => b.disabled = true);
+  document.getElementById('quiz-next').style.display = 'block';
+
+  const sb = document.getElementById('streak-bar');
+  document.getElementById('streak-count').textContent = qStreak;
+  sb.className = 'streak-bar' + (qStreak >= 3 ? ' hot' : '');
+
+  updateQuizStats();
+}
+
+function updateQuizStats() {
+  document.getElementById('qs-correct').textContent = qCorrect;
+  document.getElementById('qs-wrong').textContent = qWrong;
+  const total = qCorrect + qWrong;
+  document.getElementById('qs-pct').textContent = total ? Math.round(qCorrect/total*100) + '%' : '—';
+}
+
+// ─── NAVIGATION ───────────────────────────────────
+const PAGE_META = {
+  hiragana: {title:'Hiragana 五十音', sub:'46 characters — the foundation of Japanese reading', toggle:true},
+  katakana: {title:'Katakana 五十音', sub:'46 characters — for foreign words & emphasis', toggle:false},
+  dakuten:  {title:'Dakuten & Handakuten', sub:'Voiced and semi-voiced sounds: が、ざ、だ、ば、ぱ', toggle:false},
+  combos:   {title:'Combination Kana', sub:'Compound sounds: きゃ、しゅ、ちょ and more', toggle:false},
+  flashcards:{title:'Flashcard Drill', sub:'Flip through every character until you know them all', toggle:false},
+  quiz:     {title:'Quiz Mode', sub:'Test your reading speed and accuracy', toggle:false},
+  chart:    {title:'Full Reference Chart', sub:'All hiragana and katakana at a glance', toggle:false},
+};
+
+function goTo(page) {
+  currentPage = page;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  const pageEl = document.getElementById('page-' + page);
+  if (pageEl) pageEl.classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') === `goTo('${page}')`) n.classList.add('active');
+  });
+
+  const meta = PAGE_META[page] || {};
+  document.getElementById('page-title').textContent = meta.title || page;
+  document.getElementById('page-sub').textContent = meta.sub || '';
+  document.getElementById('script-toggle').style.display = meta.toggle ? 'flex' : 'none';
+
+  if (page === 'quiz') { qCorrect=0; qWrong=0; qStreak=0; updateQuizStats(); nextQ(); }
+  if (page === 'flashcards') { fcDeck = buildFcDeck(fcScript); fcIndex = 0; showFcCard(); }
+  if (page === 'chart') renderChart();
+
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+function setScript(s) {
+  currentScript = s;
+  document.querySelectorAll('.script-btn').forEach((b, i) => {
+    b.classList.toggle('active', ['hiragana','katakana'][i] === s);
+  });
+  if (s === 'hiragana' && currentPage !== 'hiragana') goTo('hiragana');
+  if (s === 'katakana' && currentPage !== 'katakana') goTo('katakana');
+}
+
+// ─── SIDEBAR MOBILE ───────────────────────────────
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+// ─── INIT ─────────────────────────────────────────
+renderKanaRows('hiragana');
+renderKanaRows('katakana');
+renderDakuten();
+renderCombos();
+fcDeck = buildFcDeck('hiragana');
+updateProgress();
+</script>
+</body>
+</html>
