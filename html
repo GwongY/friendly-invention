@@ -1,0 +1,1514 @@
+html
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>かな — Learn Japanese from Zero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root, [data-theme="dark"] {
+  --bg: #0e0e0f; --bg2: #161618; --bg3: #1e1e21; --bg4: #27272b;
+  --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.13);
+  --text: #f0ede8; --text2: #9e9b96; --text3: #5c5a56;
+  --red: #e5534b; --red-light: rgba(229,83,75,0.12); --red-glow: rgba(229,83,75,0.25);
+  --green: #3fb950; --green-bg: rgba(63,185,80,0.12);
+  --yellow: #d29922; --yellow-bg: rgba(210,153,34,0.12);
+  --blue: #4a90e2; --blue-bg: rgba(74,144,226,0.1);
+}
+[data-theme="light"] {
+  --bg: #fafaf8; --bg2: #ffffff; --bg3: #f1f0ed; --bg4: #e5e4e0;
+  --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.15);
+  --text: #1a1a1d; --text2: #5a5a5a; --text3: #9a9a9a;
+  --red: #c0392b; --red-light: rgba(192,57,43,0.08); --red-glow: rgba(192,57,43,0.18);
+  --green: #2d7a3e; --green-bg: rgba(45,122,62,0.1);
+  --yellow: #a87413; --yellow-bg: rgba(168,116,19,0.1);
+  --blue: #2c6cb0; --blue-bg: rgba(44,108,176,0.1);
+}
+
+:root {
+  --serif: 'Noto Serif JP', 'Noto Sans TC', serif;
+  --sans: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--sans); font-size: 15px; line-height: 1.6;
+  min-height: 100vh; -webkit-font-smoothing: antialiased;
+  transition: background 0.25s, color 0.25s;
+}
+[lang="zh"] body, body[data-lang="zh"] { font-family: 'Noto Sans TC', 'Inter', system-ui, sans-serif; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+.app { display: flex; min-height: 100vh; }
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: 230px; flex-shrink: 0;
+  background: var(--bg2); border-right: 1px solid var(--border);
+  position: fixed; top: 0; left: 0; bottom: 0;
+  display: flex; flex-direction: column; z-index: 50;
+  transition: background 0.25s, border-color 0.25s;
+}
+.logo { padding: 1.5rem 1.25rem 1rem; border-bottom: 1px solid var(--border); }
+.logo-jp { font-family: var(--serif); font-size: 26px; font-weight: 300; color: var(--red); line-height: 1; }
+.logo-en { font-size: 11px; color: var(--text3); letter-spacing: 0.12em; margin-top: 5px; }
+
+.progress-mini { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
+.prog-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); margin-bottom: 6px; letter-spacing: 0.04em; }
+.prog-track { height: 3px; background: var(--bg4); border-radius: 2px; overflow: hidden; }
+.prog-fill { height: 100%; background: var(--red); border-radius: 2px; transition: width 0.5s ease; }
+
+.nav { padding: 0.75rem 0; flex: 1; overflow-y: auto; }
+.nav-section-title { font-size: 10px; color: var(--text3); letter-spacing: 0.12em; padding: 0.75rem 1.25rem 0.35rem; text-transform: uppercase; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 1.25rem; cursor: pointer;
+  color: var(--text2); font-size: 13px; font-weight: 400;
+  transition: all 0.15s; border-left: 2px solid transparent;
+  user-select: none;
+}
+.nav-item:hover { color: var(--text); background: var(--bg3); }
+.nav-item.active { color: var(--text); background: var(--red-light); border-left-color: var(--red); }
+.nav-item .icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
+.nav-badge {
+  margin-left: auto; font-size: 10px; padding: 2px 7px;
+  border-radius: 999px; background: var(--bg4);
+  color: var(--text3); font-weight: 500;
+}
+.nav-badge.done { background: var(--green-bg); color: var(--green); }
+
+.sidebar-footer { padding: 1rem 1.25rem; border-top: 1px solid var(--border); font-size: 11px; color: var(--text3); }
+
+/* ─── MAIN ─── */
+.main { margin-left: 230px; flex: 1; min-height: 100vh; }
+
+/* ─── TOP BAR ─── */
+.topbar {
+  padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg); position: sticky; top: 0; z-index: 40;
+  gap: 1rem; flex-wrap: wrap;
+  transition: background 0.25s, border-color 0.25s;
+}
+.topbar-title { font-size: 17px; font-weight: 500; }
+.topbar-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+.topbar-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.script-toggle, .lang-toggle {
+  display: flex; border: 1px solid var(--border2); border-radius: var(--radius);
+  overflow: hidden; background: var(--bg2);
+}
+.script-btn, .lang-btn {
+  padding: 6px 14px; font-size: 12px; font-weight: 500;
+  background: transparent; border: none; cursor: pointer;
+  color: var(--text2); transition: all 0.15s; font-family: inherit;
+}
+.script-btn.active, .lang-btn.active { background: var(--red); color: #fff; }
+.script-btn:hover:not(.active), .lang-btn:hover:not(.active) { background: var(--bg3); color: var(--text); }
+
+.icon-btn {
+  width: 34px; height: 34px;
+  border: 1px solid var(--border2); border-radius: var(--radius);
+  background: var(--bg2); cursor: pointer; color: var(--text2);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; font-size: 15px;
+}
+.icon-btn:hover { background: var(--bg3); color: var(--text); }
+
+/* ─── PAGE CONTENT ─── */
+.page { display: none; padding: 1.75rem; max-width: 1200px; }
+.page.active { display: block; }
+
+/* ─── LESSON INTRO ─── */
+.lesson-intro {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.lesson-intro-icon {
+  font-family: var(--serif); font-size: 52px;
+  color: var(--red); line-height: 1; flex-shrink: 0;
+}
+.lesson-intro h2 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+.lesson-intro p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* ─── KANA GRID ─── */
+.row-group { margin-bottom: 2rem; }
+.row-title {
+  font-size: 11px; color: var(--text3); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 0.9rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.row-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.kana-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.kana-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  cursor: pointer; transition: all 0.18s; user-select: none;
+  position: relative; min-height: 90px; justify-content: center;
+}
+.kana-card:hover { border-color: var(--border2); background: var(--bg3); transform: translateY(-2px); }
+.kana-card.learned { border-color: rgba(229,83,75,0.35); background: var(--red-light); }
+.kana-card.selected { border: 1.5px solid var(--red); background: var(--red-light); }
+.kana-card.empty { visibility: hidden; pointer-events: none; }
+.kana-char { font-family: var(--serif); font-size: 30px; line-height: 1; color: var(--text); }
+.kana-card.learned .kana-char { color: var(--red); }
+.kana-rom { font-size: 11px; color: var(--text3); font-weight: 500; letter-spacing: 0.06em; }
+.kana-dot {
+  position: absolute; top: 6px; right: 6px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); display: none;
+}
+.kana-card.learned .kana-dot { display: block; }
+.kana-audio {
+  position: absolute; top: 4px; left: 4px;
+  width: 22px; height: 22px;
+  border: 1px solid var(--border2); border-radius: 50%;
+  background: var(--bg2); cursor: pointer;
+  color: var(--red); font-size: 9px;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.15s, background 0.15s;
+}
+.kana-card:hover .kana-audio { opacity: 1; }
+.kana-audio:hover { background: var(--red); color: #fff; }
+
+/* ─── DETAIL PANEL ─── */
+.detail-panel {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 0;
+  margin-bottom: 1.5rem; overflow: hidden;
+  display: none; animation: slideDown 0.2s ease;
+}
+.detail-panel.open { display: block; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.detail-inner { display: grid; grid-template-columns: 180px 1fr 1fr; gap: 0; }
+.detail-char-col {
+  background: var(--red-light); border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 1.5rem 1rem; gap: 8px;
+}
+.detail-big { font-family: var(--serif); font-size: 72px; color: var(--red); line-height: 1; }
+.detail-rom { font-size: 20px; font-weight: 300; color: var(--text2); letter-spacing: 0.04em; }
+.detail-info-col, .detail-stroke-col { padding: 1.25rem 1.25rem; }
+.detail-info-col { border-right: 1px solid var(--border); }
+.detail-section-title {
+  font-size: 10px; color: var(--text3); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 0.75rem;
+}
+.pronunciation-note { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 1rem; }
+.example-word {
+  background: var(--bg3); border-radius: var(--radius);
+  padding: 10px 14px; margin-bottom: 8px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.example-word-text { flex: 1; }
+.ex-jp { font-family: var(--serif); font-size: 18px; color: var(--text); }
+.ex-rom { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.ex-mean { font-size: 11px; color: var(--text2); margin-top: 2px; }
+.stroke-tip { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 0.75rem; }
+.mark-btn {
+  padding: 7px 16px; border-radius: var(--radius); font-family: inherit;
+  font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid var(--border2);
+  color: var(--text2); background: var(--bg3); transition: all 0.15s; letter-spacing: 0.04em;
+}
+.mark-btn:hover { background: var(--bg4); color: var(--text); }
+.mark-btn.marked { background: var(--red); color: #fff; border-color: var(--red); }
+.close-detail {
+  display: block; text-align: right; padding: 8px 12px;
+  border-top: 1px solid var(--border); cursor: pointer;
+  font-size: 11px; color: var(--text3); transition: color 0.15s;
+}
+.close-detail:hover { color: var(--text); }
+
+/* ─── AUDIO + PITCH ─── */
+.audio-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px;
+  border: 1px solid var(--border2); border-radius: 50%;
+  background: var(--bg2); cursor: pointer;
+  color: var(--red); font-size: 9px;
+  transition: all 0.15s; flex-shrink: 0;
+  font-family: inherit;
+}
+.audio-btn:hover { background: var(--red); color: #fff; }
+.audio-btn.lg { width: 30px; height: 30px; font-size: 11px; }
+
+.pitch-viz {
+  display: inline-flex; gap: 3px; align-items: flex-end;
+  height: 36px; padding: 2px 4px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg);
+}
+.pitch-mora {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 2px; padding: 2px 1px;
+}
+.pitch-bar { width: 16px; border-radius: 2px; transition: height 0.2s; }
+.pitch-bar.h { background: var(--red); height: 18px; }
+.pitch-bar.l { background: var(--bg4); height: 7px; }
+.pitch-kana { font-size: 10px; color: var(--text2); font-family: var(--serif); }
+.pitch-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 22px; height: 22px; padding: 0 6px;
+  background: var(--red); color: #fff;
+  border-radius: 999px; font-size: 11px; font-weight: 600;
+}
+.pitch-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+/* ─── DAKUTEN PAGE ─── */
+.dakuten-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.dk-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 8px; text-align: center; cursor: pointer; transition: all 0.15s; }
+.dk-card:hover { border-color: var(--border2); background: var(--bg3); }
+.dk-pair { display: flex; justify-content: center; align-items: baseline; gap: 6px; }
+.dk-orig { font-family: var(--serif); font-size: 20px; color: var(--text3); }
+.dk-arrow { font-size: 12px; color: var(--text3); }
+.dk-new { font-family: var(--serif); font-size: 28px; color: var(--text); }
+.dk-rom { font-size: 11px; color: var(--text3); margin-top: 4px; letter-spacing: 0.04em; }
+
+/* ─── COMBO PAGE ─── */
+.combo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.combo-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 10px; text-align: center; cursor: pointer; transition: all 0.15s; }
+.combo-card:hover { border-color: var(--border2); background: var(--bg3); }
+.combo-chars { font-family: var(--serif); font-size: 22px; color: var(--text); }
+.combo-chars span { font-size: 14px; vertical-align: super; color: var(--text3); }
+.combo-rom { font-size: 11px; color: var(--text3); margin-top: 5px; }
+
+/* ─── CHART PAGE ─── */
+.chart-table { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; border-collapse: collapse; width: 100%; }
+.chart-table th, .chart-table td { border: 1px solid var(--border); padding: 0; text-align: center; min-width: 70px; }
+.chart-table th { background: var(--bg3); font-size: 10px; color: var(--text3); letter-spacing: 0.08em; padding: 8px 6px; text-transform: uppercase; }
+.chart-cell { padding: 10px 6px; cursor: pointer; transition: background 0.15s; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.chart-cell:hover { background: var(--bg4); }
+.chart-cell.learned { background: var(--red-light); }
+.chart-cell .cc { font-family: var(--serif); font-size: 22px; color: var(--text); }
+.chart-cell.learned .cc { color: var(--red); }
+.chart-cell .cr { font-size: 10px; color: var(--text3); }
+
+/* ─── QUIZ + FLASHCARDS (existing) ─── */
+.quiz-container { max-width: 560px; margin: 0 auto; }
+.quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.quiz-stat { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 16px; text-align: center; }
+.quiz-stat-num { font-size: 22px; font-weight: 600; }
+.quiz-stat-num.green { color: var(--green); }
+.quiz-stat-num.red { color: var(--red); }
+.quiz-stat-num.yellow { color: var(--yellow); }
+.quiz-stat-label { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+.quiz-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; text-align: center; margin-bottom: 1.5rem; }
+.quiz-prompt-label { font-size: 11px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+.quiz-char { font-family: var(--serif); font-size: 100px; line-height: 1; color: var(--text); margin-bottom: 0.5rem; display: block; }
+.quiz-char.romaji-mode { font-family: var(--sans); font-size: 52px; font-weight: 300; }
+.quiz-mode-switch { display: flex; gap: 8px; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.mode-btn { padding: 6px 14px; font-size: 12px; font-weight: 500; border: 1px solid var(--border2); border-radius: 999px; background: transparent; cursor: pointer; color: var(--text2); font-family: inherit; transition: all 0.15s; }
+.mode-btn.active { background: var(--bg3); color: var(--text); border-color: var(--border2); }
+.choices-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+.choice-btn { padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg2); cursor: pointer; color: var(--text); font-size: 15px; font-weight: 400; font-family: inherit; transition: all 0.15s; }
+.choice-btn.jp-choice { font-family: var(--serif); font-size: 28px; }
+.choice-btn:hover:not(:disabled):not(.correct):not(.wrong) { border-color: var(--border2); background: var(--bg3); }
+.choice-btn.correct { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.choice-btn.wrong { background: rgba(229,83,75,0.12); border-color: var(--red); color: var(--red); }
+.quiz-feedback { text-align: center; min-height: 22px; font-size: 14px; margin-bottom: 1rem; color: var(--text2); }
+.quiz-next { width: 100%; padding: 13px; background: var(--red); color: #fff; border: none; border-radius: var(--radius); font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; display: none; transition: opacity 0.15s; }
+.quiz-next:hover { opacity: 0.88; }
+.streak-bar { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; font-size: 13px; color: var(--text3); margin-bottom: 1.5rem; }
+.streak-flame { font-size: 18px; transition: transform 0.3s; }
+.streak-bar.hot .streak-flame { transform: scale(1.3); }
+.streak-bar.hot { color: var(--yellow); }
+
+.flashcard-container { max-width: 480px; margin: 0 auto; text-align: center; }
+.flashcard-wrap { perspective: 1200px; margin: 2rem auto; width: 320px; height: 220px; }
+.flashcard { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s ease; cursor: pointer; }
+.flashcard.flipped { transform: rotateY(180deg); }
+.flashcard-face { position: absolute; width: 100%; height: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+.flashcard-front .fc-char { font-family: var(--serif); font-size: 72px; color: var(--text); line-height: 1; }
+.flashcard-back { transform: rotateY(180deg); }
+.flashcard-back .fc-rom { font-size: 32px; font-weight: 300; color: var(--red); letter-spacing: 0.06em; }
+.flashcard-back .fc-word { font-family: var(--serif); font-size: 22px; color: var(--text2); }
+.flashcard-back .fc-mean { font-size: 13px; color: var(--text3); }
+.fc-hint { font-size: 11px; color: var(--text3); }
+.flashcard-nav { display: flex; gap: 10px; justify-content: center; margin-top: 1rem; }
+.fc-btn { padding: 10px 24px; border: 1px solid var(--border2); border-radius: var(--radius); background: var(--bg2); color: var(--text2); cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 500; transition: all 0.15s; }
+.fc-btn:hover { background: var(--bg3); color: var(--text); }
+.fc-btn.good { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.fc-btn.skip { background: rgba(229,83,75,0.1); border-color: var(--red); color: var(--red); }
+.fc-counter { font-size: 13px; color: var(--text3); margin-top: 1.5rem; }
+.fc-progress { margin-top: 1rem; }
+
+/* ─── PITCH PAGE ─── */
+.pitch-section { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; }
+.pitch-section h3 { font-size: 15px; font-weight: 500; margin-bottom: 10px; color: var(--text); }
+.pitch-section p { font-size: 13px; color: var(--text2); line-height: 1.8; margin-bottom: 12px; }
+.pitch-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+.pitch-type-card { background: var(--bg3); border-radius: var(--radius); padding: 14px; }
+.pitch-type-name { font-size: 12px; font-weight: 600; color: var(--red); margin-bottom: 6px; }
+.pitch-type-desc { font-size: 12px; color: var(--text2); margin-bottom: 10px; line-height: 1.6; }
+.pitch-example-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-top: 1px solid var(--border); }
+.pitch-example-row:first-of-type { border-top: none; }
+.pitch-example-word { font-family: var(--serif); font-size: 17px; color: var(--text); min-width: 70px; }
+.pitch-example-meaning { font-size: 11px; color: var(--text3); margin-left: auto; }
+
+/* ─── KANJI PAGE ─── */
+.kanji-hero {
+  background: linear-gradient(135deg, var(--red-light) 0%, var(--bg2) 100%);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem; margin-bottom: 1.5rem; text-align: center;
+}
+.kanji-hero-char { font-family: var(--serif); font-size: 96px; color: var(--red); line-height: 1; }
+.kanji-hero-sub { font-size: 13px; color: var(--text2); margin-top: 10px; }
+.kanji-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; }
+.kanji-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 10px; }
+.kanji-card p { font-size: 13px; color: var(--text2); line-height: 1.8; margin-bottom: 10px; }
+.kanji-examples { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.kanji-ex {
+  background: var(--bg3); border-radius: var(--radius); padding: 10px 14px;
+  display: flex; flex-direction: column; align-items: center; min-width: 70px;
+}
+.kanji-ex-char { font-family: var(--serif); font-size: 28px; color: var(--red); line-height: 1; }
+.kanji-ex-read { font-size: 10px; color: var(--text2); margin-top: 6px; font-family: var(--serif); }
+.kanji-ex-mean { font-size: 10px; color: var(--text3); }
+.kanji-hl-cn {
+  background: var(--blue-bg); border-left: 3px solid var(--blue);
+  padding: 12px 14px; border-radius: 6px; margin: 12px 0;
+  font-size: 13px; color: var(--text2);
+}
+
+/* ─── VOCAB PAGE ─── */
+.vocab-cats { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.vocab-cat-btn { padding: 6px 12px; font-size: 12px; font-weight: 500; border: 1px solid var(--border2); border-radius: 999px; background: var(--bg2); cursor: pointer; color: var(--text2); transition: all 0.15s; font-family: inherit; }
+.vocab-cat-btn.active { background: var(--red); color: #fff; border-color: var(--red); }
+.vocab-cat-btn:hover:not(.active) { background: var(--bg3); color: var(--text); }
+
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
+.vocab-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; transition: border-color 0.15s; }
+.vocab-card:hover { border-color: var(--border2); }
+.vocab-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.vocab-card-word { flex: 1; }
+.vocab-kanji { font-family: var(--serif); font-size: 26px; color: var(--text); line-height: 1.1; }
+.vocab-hira { font-size: 13px; color: var(--text2); margin-top: 5px; font-family: var(--serif); }
+.vocab-hira-paren { color: var(--text3); }
+.vocab-meaning { font-size: 13px; color: var(--text2); margin-top: 10px; line-height: 1.5; padding-top: 10px; border-top: 1px solid var(--border); }
+.vocab-pitch-area { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+/* ─── GRAMMAR PAGE ─── */
+.grammar-tabs { display: flex; gap: 4px; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+.grammar-tab { padding: 10px 16px; font-size: 13px; font-weight: 500; background: transparent; border: none; cursor: pointer; color: var(--text2); border-bottom: 2px solid transparent; transition: all 0.15s; font-family: inherit; }
+.grammar-tab.active { color: var(--text); border-bottom-color: var(--red); }
+.grammar-tab:hover:not(.active) { color: var(--text); }
+
+.grammar-item { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; transition: border-color 0.15s; }
+.grammar-item.open { border-color: var(--border2); }
+.grammar-header { padding: 14px 18px; cursor: pointer; display: flex; align-items: center; gap: 14px; transition: background 0.15s; }
+.grammar-header:hover { background: var(--bg3); }
+.grammar-pattern { font-family: var(--serif); font-size: 22px; color: var(--red); font-weight: 400; min-width: 80px; flex-shrink: 0; }
+.grammar-title-area { flex: 1; }
+.grammar-title { font-size: 14px; font-weight: 500; color: var(--text); }
+.grammar-toggle { color: var(--text3); transition: transform 0.2s; font-size: 12px; flex-shrink: 0; }
+.grammar-item.open .grammar-toggle { transform: rotate(180deg); }
+.grammar-body { display: none; padding: 0 18px 18px 18px; border-top: 1px solid var(--border); }
+.grammar-item.open .grammar-body { display: block; }
+.grammar-desc { font-size: 13px; color: var(--text2); line-height: 1.75; padding: 14px 0 14px 0; }
+.grammar-examples { display: flex; flex-direction: column; gap: 8px; }
+.grammar-ex { background: var(--bg3); border-radius: var(--radius); padding: 12px 14px; }
+.grammar-ex-jp { font-family: var(--serif); font-size: 16px; color: var(--text); display: flex; align-items: center; gap: 10px; }
+.grammar-ex-rom { font-size: 11px; color: var(--text3); margin-top: 4px; letter-spacing: 0.04em; }
+.grammar-ex-trans { font-size: 13px; color: var(--text2); margin-top: 5px; }
+
+.sov-card { background: linear-gradient(135deg, var(--red-light) 0%, var(--bg2) 100%); border: 1px solid rgba(229,83,75,0.25); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem; }
+.sov-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+.sov-card > p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+.sov-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+.sov-lang { background: var(--bg2); padding: 14px; border-radius: var(--radius); border: 1px solid var(--border); }
+.sov-lang-name { font-size: 10px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+.sov-sentence { font-size: 15px; color: var(--text); font-weight: 500; line-height: 1.5; min-height: 44px; }
+.sov-sentence.jp { font-family: var(--serif); }
+.sov-breakdown { font-size: 11px; color: var(--text3); margin-top: 8px; line-height: 1.7; }
+.sov-tag { display: inline-block; padding: 1px 5px; background: var(--bg3); border-radius: 3px; margin: 0 1px; font-size: 9px; font-weight: 600; letter-spacing: 0.05em; }
+.sov-tag.s { color: var(--blue); }
+.sov-tag.v { color: var(--red); }
+.sov-tag.o { color: var(--green); }
+
+/* ─── PASSAGES PAGE ─── */
+.passage-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; }
+.passage-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; gap: 12px; }
+.passage-title { font-size: 16px; font-weight: 500; }
+.passage-subtitle { font-size: 12px; color: var(--text3); margin-bottom: 14px; }
+.passage-toggle-all { font-size: 11px; color: var(--text3); cursor: pointer; border: 1px solid var(--border2); border-radius: 999px; padding: 5px 12px; background: var(--bg3); transition: all 0.15s; font-family: inherit; }
+.passage-toggle-all:hover { color: var(--text); background: var(--bg4); }
+.passage-sentence { padding: 12px 14px; border-radius: var(--radius); cursor: pointer; margin-bottom: 6px; transition: background 0.15s; border: 1px solid transparent; }
+.passage-sentence:hover { background: var(--bg3); border-color: var(--border); }
+.passage-sentence.revealed { background: var(--red-light); border-color: rgba(229,83,75,0.2); }
+.psent-jp { font-family: var(--serif); font-size: 17px; color: var(--text); display: flex; align-items: center; gap: 10px; line-height: 1.6; }
+.psent-jp-text { flex: 1; }
+.psent-trans { display: none; margin-top: 8px; padding-top: 10px; border-top: 1px solid var(--border); }
+.passage-sentence.revealed .psent-trans { display: block; }
+.psent-rom { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; margin-bottom: 4px; font-style: italic; }
+.psent-translation { font-size: 14px; color: var(--text2); line-height: 1.6; }
+.passage-tip { font-size: 11px; color: var(--text3); margin-top: 10px; }
+
+/* ─── COMMON ─── */
+.section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 8px; }
+.section-head h2 { font-size: 20px; font-weight: 500; }
+.section-head .sub { font-size: 12px; color: var(--text3); }
+.tip-box { background: var(--yellow-bg); border: 1px solid rgba(210,153,34,0.3); border-radius: var(--radius); padding: 12px 16px; font-size: 13px; color: var(--yellow); margin-bottom: 1.25rem; line-height: 1.6; }
+.info-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.chip { padding: 5px 12px; border-radius: 999px; font-size: 12px; border: 1px solid var(--border); color: var(--text2); background: var(--bg2); }
+
+/* ─── MOBILE ─── */
+.hamburger { display: none; position: fixed; top: 12px; left: 12px; z-index: 200; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 18px; color: var(--text); line-height: 1; }
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 49; }
+
+@media (max-width: 820px) {
+  .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .hamburger { display: block; }
+  .sidebar-overlay.show { display: block; }
+  .topbar { padding: 0.85rem 1rem 0.85rem 3.4rem; }
+  .topbar-controls { gap: 8px; }
+  .topbar-title { font-size: 15px; }
+  .topbar-sub { font-size: 11px; }
+  .page { padding: 1rem; }
+  .detail-inner { grid-template-columns: 1fr; }
+  .detail-char-col { padding: 1.25rem; border-right: none; border-bottom: 1px solid var(--border); }
+  .kana-grid { gap: 6px; }
+  .kana-card { min-height: 72px; padding: 10px 4px; }
+  .kana-char { font-size: 22px; }
+  .vocab-grid { grid-template-columns: 1fr; }
+  .sov-grid { grid-template-columns: 1fr; }
+  .combo-grid { grid-template-columns: repeat(3, 1fr); }
+  .dakuten-grid { grid-template-columns: repeat(4, 1fr); }
+  .pitch-type-grid { grid-template-columns: 1fr; }
+  .lesson-intro { flex-direction: column; text-align: center; gap: 1rem; padding: 1.25rem; }
+  .lesson-intro-icon { font-size: 42px; }
+  .choices-grid { grid-template-columns: 1fr 1fr; }
+  .grammar-pattern { min-width: 60px; font-size: 19px; }
+}
+</style>
+</head>
+<body>
+
+<button class="hamburger" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<div class="app">
+<!-- ─── SIDEBAR ─── -->
+<aside class="sidebar" id="sidebar">
+  <div class="logo">
+    <div class="logo-jp">かな</div>
+    <div class="logo-en" data-i18n="learn_japanese">LEARN JAPANESE</div>
+  </div>
+
+  <div class="progress-mini">
+    <div class="prog-label">
+      <span data-i18n="overall_progress">OVERALL PROGRESS</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-section-title" data-i18n="nav_learn">Learn</div>
+    <div class="nav-item active" onclick="goTo('hiragana')">
+      <span class="icon">あ</span><span data-i18n="nav_hiragana">Hiragana</span>
+      <span class="nav-badge" id="badge-hira">0/46</span>
+    </div>
+    <div class="nav-item" onclick="goTo('katakana')">
+      <span class="icon">ア</span><span data-i18n="nav_katakana">Katakana</span>
+      <span class="nav-badge" id="badge-kata">0/46</span>
+    </div>
+    <div class="nav-item" onclick="goTo('dakuten')">
+      <span class="icon">が</span><span data-i18n="nav_dakuten">Dakuten ゛゜</span>
+    </div>
+    <div class="nav-item" onclick="goTo('combos')">
+      <span class="icon">き</span><span data-i18n="nav_combos">Combos きゃ</span>
+    </div>
+    <div class="nav-item" onclick="goTo('pitch')">
+      <span class="icon">♪</span><span data-i18n="nav_pitch">Pitch Accent</span>
+    </div>
+    <div class="nav-item" onclick="goTo('kanji')">
+      <span class="icon">漢</span><span data-i18n="nav_kanji">Kanji Intro</span>
+    </div>
+
+    <div class="nav-section-title">JLPT N5</div>
+    <div class="nav-item" onclick="goTo('vocab')">
+      <span class="icon">📚</span><span data-i18n="nav_vocab">Vocabulary</span>
+    </div>
+    <div class="nav-item" onclick="goTo('grammar')">
+      <span class="icon">✍️</span><span data-i18n="nav_grammar">Grammar</span>
+    </div>
+    <div class="nav-item" onclick="goTo('passages')">
+      <span class="icon">📖</span><span data-i18n="nav_passages">Passages</span>
+    </div>
+
+    <div class="nav-section-title" data-i18n="nav_practice">Practice</div>
+    <div class="nav-item" onclick="goTo('flashcards')">
+      <span class="icon">🃏</span><span data-i18n="nav_flashcards">Flashcards</span>
+    </div>
+    <div class="nav-item" onclick="goTo('quiz')">
+      <span class="icon">✏️</span><span data-i18n="nav_quiz">Quiz</span>
+    </div>
+    <div class="nav-item" onclick="goTo('chart')">
+      <span class="icon">📊</span><span data-i18n="nav_chart">Full Chart</span>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer" data-i18n="footer_made">Made with ❤️ for Japanese learners</div>
+</aside>
+
+<!-- ─── MAIN ─── -->
+<main class="main">
+<div class="topbar">
+  <div>
+    <div class="topbar-title" id="page-title">Hiragana 五十音</div>
+    <div class="topbar-sub" id="page-sub">Learn the 46 basic hiragana characters</div>
+  </div>
+  <div class="topbar-controls">
+    <div class="script-toggle" id="script-toggle">
+      <button class="script-btn active" onclick="setScript('hiragana')" data-i18n="hiragana_btn">Hiragana ひ</button>
+      <button class="script-btn" onclick="setScript('katakana')" data-i18n="katakana_btn">Katakana カ</button>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">繁中</button>
+    </div>
+    <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+  </div>
+</div>
+
+<!-- HIRAGANA / KATAKANA PAGES -->
+<div class="page active" id="page-hiragana">
+  <div class="lesson-intro">
+    <div class="lesson-intro-icon">あ</div>
+    <div>
+      <h2 data-i18n="hira_title">Hiragana — the foundation of Japanese</h2>
+      <p data-i18n="hira_desc">Hiragana is the first script you'll learn. It has 46 basic characters, each representing one sound (syllable). Once you know hiragana, you can read most Japanese texts with furigana. Click any character to learn it.</p>
+    </div>
+  </div>
+  <div class="info-chips">
+    <span class="chip" data-i18n="chip_46">46 characters</span>
+    <span class="chip" data-i18n="chip_curved">Curved, flowing strokes</span>
+    <span class="chip" data-i18n="chip_native">Used for native Japanese words</span>
+  </div>
+  <div id="detail-panel-h" class="detail-panel"></div>
+  <div id="kana-rows-h"></div>
+</div>
+
+<div class="page" id="page-katakana">
+  <div class="lesson-intro">
+    <div class="lesson-intro-icon">ア</div>
+    <div>
+      <h2 data-i18n="kata_title">Katakana — for foreign words &amp; emphasis</h2>
+      <p data-i18n="kata_desc">Katakana has the same 46 sounds as hiragana, but with angular, sharper strokes. It's mainly used for loanwords (コーヒー = coffee), foreign names, and scientific terms. Click any character to learn it.</p>
+    </div>
+  </div>
+  <div class="info-chips">
+    <span class="chip" data-i18n="chip_46">46 characters</span>
+    <span class="chip" data-i18n="chip_angular">Angular, sharp strokes</span>
+    <span class="chip" data-i18n="chip_loan">Loanwords · Foreign names</span>
+  </div>
+  <div id="detail-panel-k" class="detail-panel"></div>
+  <div id="kana-rows-k"></div>
+</div>
+
+<!-- DAKUTEN -->
+<div class="page" id="page-dakuten">
+  <div class="section-head">
+    <h2 data-i18n="dakuten_h">Dakuten &amp; Handakuten</h2>
+    <span class="sub" data-i18n="dakuten_sub">+25 voiced sounds</span>
+  </div>
+  <div class="tip-box" data-i18n="dakuten_tip">💡 <strong>Dakuten</strong> (゛) adds voicing — か (ka) → が (ga). <strong>Handakuten</strong> (゜) turns H-row into P-row — は (ha) → ぱ (pa).</div>
+  <div id="dakuten-content"></div>
+</div>
+
+<!-- COMBOS -->
+<div class="page" id="page-combos">
+  <div class="section-head">
+    <h2 data-i18n="combos_h">Combination Kana</h2>
+    <span class="sub" data-i18n="combos_sub">33 compound sounds</span>
+  </div>
+  <div class="tip-box" data-i18n="combos_tip">💡 Combine an I-row character with small や・ゆ・よ to create compound sounds. The small kana is written smaller, and the two characters together make one syllable: きゃ = "kya".</div>
+  <div id="combos-content"></div>
+</div>
+
+<!-- PITCH ACCENT GUIDE -->
+<div class="page" id="page-pitch">
+  <div id="pitch-content"></div>
+</div>
+
+<!-- KANJI INTRO -->
+<div class="page" id="page-kanji">
+  <div id="kanji-content"></div>
+</div>
+
+<!-- N5 VOCAB -->
+<div class="page" id="page-vocab">
+  <div class="section-head">
+    <h2 data-i18n="vocab_h">JLPT N5 Vocabulary</h2>
+    <span class="sub" data-i18n="vocab_sub">~70 essential words with pitch accent</span>
+  </div>
+  <div class="tip-box" id="vocab-tip"></div>
+  <div class="vocab-cats" id="vocab-cats"></div>
+  <div class="vocab-grid" id="vocab-grid"></div>
+</div>
+
+<!-- N5 GRAMMAR -->
+<div class="page" id="page-grammar">
+  <div class="section-head">
+    <h2 data-i18n="grammar_h">JLPT N5 Grammar</h2>
+    <span class="sub" data-i18n="grammar_sub">Sentence structure &amp; functional vocab</span>
+  </div>
+  <div id="sov-intro-card"></div>
+  <div class="grammar-tabs" id="grammar-tabs">
+    <button class="grammar-tab active" onclick="setGrammarTab('struct')" data-i18n="grammar_tab_struct">📐 Sentence Structure</button>
+    <button class="grammar-tab" onclick="setGrammarTab('func')" data-i18n="grammar_tab_func">🔤 Functional Vocab</button>
+  </div>
+  <div id="grammar-list"></div>
+</div>
+
+<!-- PASSAGES -->
+<div class="page" id="page-passages">
+  <div class="section-head">
+    <h2 data-i18n="passages_h">N5 Reading Passages</h2>
+    <span class="sub" data-i18n="passages_sub">Click any sentence to reveal its translation</span>
+  </div>
+  <div class="tip-box" data-i18n="passages_tip">💡 Read the Japanese first, try to understand it, then click each sentence to check. This active recall builds your reading skill fastest!</div>
+  <div id="passages-content"></div>
+</div>
+
+<!-- FLASHCARDS -->
+<div class="page" id="page-flashcards">
+  <div class="flashcard-container">
+    <div class="section-head"><h2 data-i18n="fc_h">Flashcard Practice</h2></div>
+    <div style="display:flex;gap:8px;margin-bottom:1.5rem;justify-content:center;flex-wrap:wrap">
+      <button class="mode-btn active" onclick="setFcScript('hiragana',this)" data-i18n="hiragana_btn">Hiragana</button>
+      <button class="mode-btn" onclick="setFcScript('katakana',this)" data-i18n="katakana_btn">Katakana</button>
+      <button class="mode-btn" onclick="setFcScript('both',this)" data-i18n="both_btn">Both</button>
+    </div>
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-face flashcard-front">
+          <div class="fc-char" id="fc-front">あ</div>
+          <div class="fc-hint" data-i18n="fc_tap">tap to reveal</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="fc-rom" id="fc-back-rom">a</div>
+          <div class="fc-word" id="fc-back-word">あおい</div>
+          <div class="fc-mean" id="fc-back-mean">blue</div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-nav">
+      <button class="fc-btn skip" onclick="fcAnswer(false)"><span data-i18n="fc_again">✕ Again</span></button>
+      <button class="fc-btn good" onclick="fcAnswer(true)"><span data-i18n="fc_good">✓ Got it</span></button>
+    </div>
+    <div class="fc-counter" id="fc-counter">Card 1 of 46</div>
+    <div class="fc-progress prog-track" style="margin-top:12px"><div class="prog-fill" id="fc-prog" style="width:0%"></div></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="page" id="page-quiz">
+  <div class="quiz-container">
+    <div class="quiz-mode-switch">
+      <button class="mode-btn active" onclick="setQuizMode('kana-to-rom',this)" data-i18n="qm_k2r">Kana → Romaji</button>
+      <button class="mode-btn" onclick="setQuizMode('rom-to-kana',this)" data-i18n="qm_r2k">Romaji → Kana</button>
+      <button class="mode-btn" onclick="setQuizMode('both-scripts',this)" data-i18n="qm_mixed">Mixed</button>
+    </div>
+    <div class="quiz-header">
+      <div class="quiz-stat"><div class="quiz-stat-num green" id="qs-correct">0</div><div class="quiz-stat-label" data-i18n="quiz_correct">Correct</div></div>
+      <div class="quiz-stat"><div class="quiz-stat-num red" id="qs-wrong">0</div><div class="quiz-stat-label" data-i18n="quiz_wrong">Wrong</div></div>
+      <div class="quiz-stat"><div class="quiz-stat-num yellow" id="qs-pct">—</div><div class="quiz-stat-label" data-i18n="quiz_acc">Accuracy</div></div>
+    </div>
+    <div class="streak-bar" id="streak-bar"><span class="streak-flame">🔥</span><span id="streak-count">0</span> <span data-i18n="quiz_streak">streak</span></div>
+    <div class="quiz-card">
+      <div class="quiz-prompt-label" id="q-label">What is the romaji?</div>
+      <span class="quiz-char" id="q-char">あ</span>
+    </div>
+    <div class="choices-grid" id="choices"></div>
+    <div class="quiz-feedback" id="q-feedback"></div>
+    <button class="quiz-next" id="quiz-next" onclick="nextQ()" data-i18n="quiz_next">Next →</button>
+  </div>
+</div>
+
+<!-- CHART -->
+<div class="page" id="page-chart">
+  <div class="section-head">
+    <h2 data-i18n="chart_h">Complete Reference Chart</h2>
+    <span class="sub" data-i18n="chart_sub">All 92 kana at a glance</span>
+  </div>
+  <div style="overflow-x:auto"><table class="chart-table" id="chart-table"></table></div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// ─── TRANSLATIONS ─────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+const T = {
+  en: {
+    learn_japanese: 'LEARN JAPANESE',
+    overall_progress: 'OVERALL PROGRESS',
+    nav_learn: 'Learn',
+    nav_hiragana: 'Hiragana',
+    nav_katakana: 'Katakana',
+    nav_dakuten: 'Dakuten ゛゜',
+    nav_combos: 'Combos きゃ',
+    nav_pitch: 'Pitch Accent',
+    nav_kanji: 'Kanji Intro',
+    nav_vocab: 'Vocabulary',
+    nav_grammar: 'Grammar',
+    nav_passages: 'Passages',
+    nav_practice: 'Practice',
+    nav_flashcards: 'Flashcards',
+    nav_quiz: 'Quiz',
+    nav_chart: 'Full Chart',
+    footer_made: 'Made with ❤️ for Japanese learners',
+    hiragana_btn: 'Hiragana ひ', katakana_btn: 'Katakana カ', both_btn: 'Both',
+    chip_46: '46 characters', chip_curved: 'Curved, flowing strokes',
+    chip_native: 'Used for native Japanese words', chip_angular: 'Angular, sharp strokes',
+    chip_loan: 'Loanwords · Foreign names',
+    hira_title: 'Hiragana — the foundation of Japanese',
+    hira_desc: 'Hiragana is the first script you\'ll learn. It has 46 basic characters, each representing one sound (syllable). Once you know hiragana, you can read most Japanese texts with furigana. Click any character to learn it.',
+    kata_title: 'Katakana — for foreign words & emphasis',
+    kata_desc: 'Katakana has the same 46 sounds as hiragana, but with angular, sharper strokes. It\'s mainly used for loanwords (コーヒー = coffee), foreign names, and scientific terms. Click any character to learn it.',
+    dakuten_h: 'Dakuten & Handakuten', dakuten_sub: '+25 voiced sounds',
+    dakuten_tip: '💡 <strong>Dakuten</strong> (゛) adds voicing — か (ka) → が (ga). <strong>Handakuten</strong> (゜) turns H-row into P-row — は (ha) → ぱ (pa).',
+    combos_h: 'Combination Kana', combos_sub: '33 compound sounds',
+    combos_tip: '💡 Combine an I-row character with small や・ゆ・よ to create compound sounds. The small kana is written smaller, and the two characters together make one syllable: きゃ = "kya".',
+    vocab_h: 'JLPT N5 Vocabulary', vocab_sub: '~70 essential words with pitch accent',
+    vocab_tip: '⚠️ <strong>Note about pitch accent:</strong> The number next to each word [0, 1, 2…] is the standard Japanese pitch accent notation. <strong>Pitch accent is NOT tested in the JLPT exam</strong> — but you should familiarize yourself with it early, because it\'s essential for sounding natural. Don\'t stress over memorizing every number — just notice the patterns as you learn each word.',
+    grammar_h: 'JLPT N5 Grammar', grammar_sub: 'Sentence structure & functional vocab',
+    grammar_tab_struct: '📐 Sentence Structure', grammar_tab_func: '🔤 Functional Vocab',
+    passages_h: 'N5 Reading Passages', passages_sub: 'Click any sentence to reveal its translation',
+    passages_tip: '💡 Read the Japanese first, try to understand it, then click each sentence to check. This active recall builds your reading skill fastest!',
+    fc_h: 'Flashcard Practice', fc_tap: 'tap to reveal',
+    fc_again: '✕ Again', fc_good: '✓ Got it',
+    qm_k2r: 'Kana → Romaji', qm_r2k: 'Romaji → Kana', qm_mixed: 'Mixed',
+    quiz_correct: 'Correct', quiz_wrong: 'Wrong', quiz_acc: 'Accuracy',
+    quiz_streak: 'streak', quiz_next: 'Next →',
+    chart_h: 'Complete Reference Chart', chart_sub: 'All 92 kana at a glance',
+    // Pages
+    pitch_title: 'Pitch Accent', pitch_sub: 'Japanese pitch accent numbering system',
+    kanji_title: 'Kanji Intro', kanji_sub: 'Understanding Japanese characters',
+    // Misc UI
+    mark_learned: 'Mark as learned', learned_tag: '✓ Learned',
+    close_tag: 'Close ↑', pron_label: 'Pronunciation', example_label: 'Example word',
+    stroke_label: 'Stroke tips', mem_label: 'Memory hint',
+    reveal_all: 'Reveal all', hide_all: 'Hide all',
+    fc_card: 'Card', fc_of: 'of',
+    correct_msg: '✓ Correct!', wrong_was: '✗ It was',
+    q_prompt_k2r: 'What is the romaji reading?',
+    q_prompt_r2k: 'Which kana matches?',
+  },
+  zh: {
+    learn_japanese: '學日語',
+    overall_progress: '整體進度',
+    nav_learn: '學習',
+    nav_hiragana: '平假名',
+    nav_katakana: '片假名',
+    nav_dakuten: '濁音 ゛゜',
+    nav_combos: '拗音 きゃ',
+    nav_pitch: '音調標記',
+    nav_kanji: '漢字入門',
+    nav_vocab: '單字',
+    nav_grammar: '文法',
+    nav_passages: '閱讀',
+    nav_practice: '練習',
+    nav_flashcards: '單字卡',
+    nav_quiz: '測驗',
+    nav_chart: '完整表',
+    footer_made: '為日語學習者用心打造 ❤️',
+    hiragana_btn: '平假名 ひ', katakana_btn: '片假名 カ', both_btn: '全部',
+    chip_46: '46個字符', chip_curved: '圓潤、流暢的筆畫',
+    chip_native: '用於日語固有詞', chip_angular: '稜角、銳利的筆畫',
+    chip_loan: '外來語、外國名字',
+    hira_title: '平假名——日語的基礎',
+    hira_desc: '平假名是你最先學習的文字系統，共有46個基本字符，每個代表一個音（音節）。學會平假名後，就能閱讀大部分附有振假名的日語文本。點擊任何字符以開始學習。',
+    kata_title: '片假名——用於外來語和強調',
+    kata_desc: '片假名與平假名擁有相同的46個音，但筆畫更加銳利、有稜有角。主要用於外來語（コーヒー = 咖啡）、外國名字和科學術語。點擊任何字符以開始學習。',
+    dakuten_h: '濁音與半濁音', dakuten_sub: '額外25個有聲音',
+    dakuten_tip: '💡 <strong>濁音</strong> (゛) 加上濁音符號變成有聲音 — か (ka) → が (ga)。<strong>半濁音</strong> (゜) 把H行變成P行 — は (ha) → ぱ (pa)。',
+    combos_h: '拗音', combos_sub: '33個複合音',
+    combos_tip: '💡 把I段字符與小寫的 や・ゆ・よ 結合，形成複合音。小寫假名要寫小一點，兩個字符合在一起發一個音：きゃ = "kya"。',
+    vocab_h: 'JLPT N5 單字', vocab_sub: '約70個必備單字，附音調標記',
+    vocab_tip: '⚠️ <strong>關於音調標記：</strong>每個單字旁邊的數字 [0, 1, 2…] 是標準日語音調標記法。<strong>音調不在JLPT考試範圍內</strong>——但建議盡早熟悉，因為這是發音自然的關鍵。不必死記每個數字，只要在學習單字時留意音調規律即可。',
+    grammar_h: 'JLPT N5 文法', grammar_sub: '句型結構與功能性詞彙',
+    grammar_tab_struct: '📐 句型結構', grammar_tab_func: '🔤 功能性詞彙',
+    passages_h: 'N5 閱讀練習', passages_sub: '點擊任何句子顯示翻譯',
+    passages_tip: '💡 先試著讀懂日語原文，再點擊句子確認翻譯。這種主動回憶的方式能最快提升閱讀能力！',
+    fc_h: '單字卡練習', fc_tap: '點擊翻面',
+    fc_again: '✕ 再來', fc_good: '✓ 答對',
+    qm_k2r: '假名 → 羅馬字', qm_r2k: '羅馬字 → 假名', qm_mixed: '混合',
+    quiz_correct: '答對', quiz_wrong: '答錯', quiz_acc: '正確率',
+    quiz_streak: '連勝', quiz_next: '下一題 →',
+    chart_h: '完整參考表', chart_sub: '所有92個假名一目了然',
+    pitch_title: '音調標記', pitch_sub: '日語音調數字標記系統',
+    kanji_title: '漢字入門', kanji_sub: '認識日語漢字',
+    mark_learned: '標記已學', learned_tag: '✓ 已學會',
+    close_tag: '關閉 ↑', pron_label: '發音', example_label: '例詞',
+    stroke_label: '筆順提示', mem_label: '記憶訣竅',
+    reveal_all: '全部顯示', hide_all: '全部隱藏',
+    fc_card: '第', fc_of: '張，共',
+    correct_msg: '✓ 答對了！', wrong_was: '✗ 答案是',
+    q_prompt_k2r: '羅馬字怎麼讀？',
+    q_prompt_r2k: '對應的假名是？',
+  }
+};
+
+// ══════════════════════════════════════════════════════════════
+// ─── KANA DATA ────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+const ROWS = [
+  {label:'Vowels',     h:['あ','い','う','え','お'], k:['ア','イ','ウ','エ','オ'], r:['a','i','u','e','o']},
+  {label:'K row',      h:['か','き','く','け','こ'], k:['カ','キ','ク','ケ','コ'], r:['ka','ki','ku','ke','ko']},
+  {label:'S row',      h:['さ','し','す','せ','そ'], k:['サ','シ','ス','セ','ソ'], r:['sa','shi','su','se','so']},
+  {label:'T row',      h:['た','ち','つ','て','と'], k:['タ','チ','ツ','テ','ト'], r:['ta','chi','tsu','te','to']},
+  {label:'N row',      h:['な','に','ぬ','ね','の'], k:['ナ','ニ','ヌ','ネ','ノ'], r:['na','ni','nu','ne','no']},
+  {label:'H row',      h:['は','ひ','ふ','へ','ほ'], k:['ハ','ヒ','フ','ヘ','ホ'], r:['ha','hi','fu','he','ho']},
+  {label:'M row',      h:['ま','み','む','め','も'], k:['マ','ミ','ム','メ','モ'], r:['ma','mi','mu','me','mo']},
+  {label:'Y row',      h:['や','','ゆ','','よ'],  k:['ヤ','','ユ','','ヨ'],    r:['ya','','yu','','yo']},
+  {label:'R row',      h:['ら','り','る','れ','ろ'], k:['ラ','リ','ル','レ','ロ'], r:['ra','ri','ru','re','ro']},
+  {label:'W row + N',  h:['わ','','','','を'],  k:['ワ','','','','ヲ'],    r:['wa','','','','wo']},
+  {label:'',           h:['ん','','','',''],    k:['ン','','','',''],      r:['n','','','','']},
+];
+
+const EXAMPLES = {
+  'あ':{w:'あおい',r:'aoi',m:'blue/young',mz:'藍色／年輕'},'い':{w:'いぬ',r:'inu',m:'dog',mz:'狗'},'う':{w:'うみ',r:'umi',m:'sea',mz:'海'},'え':{w:'えき',r:'eki',m:'station',mz:'車站'},'お':{w:'おにぎり',r:'onigiri',m:'rice ball',mz:'飯糰'},
+  'か':{w:'かさ',r:'kasa',m:'umbrella',mz:'雨傘'},'き':{w:'きつね',r:'kitsune',m:'fox',mz:'狐狸'},'く':{w:'くも',r:'kumo',m:'cloud',mz:'雲'},'け':{w:'けいたい',r:'keitai',m:'mobile phone',mz:'手機'},'こ':{w:'こえ',r:'koe',m:'voice',mz:'聲音'},
+  'さ':{w:'さくら',r:'sakura',m:'cherry blossom',mz:'櫻花'},'し':{w:'しろ',r:'shiro',m:'castle/white',mz:'城堡／白色'},'す':{w:'すし',r:'sushi',m:'sushi',mz:'壽司'},'せ':{w:'せんせい',r:'sensei',m:'teacher',mz:'老師'},'そ':{w:'そら',r:'sora',m:'sky',mz:'天空'},
+  'た':{w:'たべる',r:'taberu',m:'to eat',mz:'吃'},'ち':{w:'ちず',r:'chizu',m:'map',mz:'地圖'},'つ':{w:'つき',r:'tsuki',m:'moon',mz:'月亮'},'て':{w:'てがみ',r:'tegami',m:'letter',mz:'信件'},'と':{w:'とり',r:'tori',m:'bird',mz:'鳥'},
+  'な':{w:'なつ',r:'natsu',m:'summer',mz:'夏天'},'に':{w:'にわ',r:'niwa',m:'garden',mz:'庭園'},'ぬ':{w:'ぬの',r:'nuno',m:'cloth',mz:'布'},'ね':{w:'ねこ',r:'neko',m:'cat',mz:'貓'},'の':{w:'のり',r:'nori',m:'seaweed',mz:'海苔'},
+  'は':{w:'はな',r:'hana',m:'flower',mz:'花'},'ひ':{w:'ひと',r:'hito',m:'person',mz:'人'},'ふ':{w:'ふじさん',r:'fujisan',m:'Mt. Fuji',mz:'富士山'},'へ':{w:'へや',r:'heya',m:'room',mz:'房間'},'ほ':{w:'ほし',r:'hoshi',m:'star',mz:'星星'},
+  'ま':{w:'まち',r:'machi',m:'town',mz:'城鎮'},'み':{w:'みず',r:'mizu',m:'water',mz:'水'},'む':{w:'むし',r:'mushi',m:'insect',mz:'昆蟲'},'め':{w:'めがね',r:'megane',m:'glasses',mz:'眼鏡'},'も':{w:'もり',r:'mori',m:'forest',mz:'森林'},
+  'や':{w:'やま',r:'yama',m:'mountain',mz:'山'},'ゆ':{w:'ゆき',r:'yuki',m:'snow',mz:'雪'},'よ':{w:'よる',r:'yoru',m:'night',mz:'夜晚'},
+  'ら':{w:'らーめん',r:'ramen',m:'ramen',mz:'拉麵'},'り':{w:'りんご',r:'ringo',m:'apple',mz:'蘋果'},'る':{w:'るす',r:'rusu',m:'away from home',mz:'外出'},'れ':{w:'れんしゅう',r:'renshuu',m:'practice',mz:'練習'},'ろ':{w:'ろうそく',r:'rousoku',m:'candle',mz:'蠟燭'},
+  'わ':{w:'わらう',r:'warau',m:'to laugh',mz:'笑'},'を':{w:'(particle)',r:'wo',m:'object marker',mz:'受詞助詞'},'ん':{w:'えんぴつ',r:'enpitsu',m:'pencil',mz:'鉛筆'},
+};
+
+const STROKE_TIPS = {
+  'あ':'3 strokes. Horizontal → curved left stroke → dot+loop.','い':'2 strokes. Left curve down, then right curve down.',
+  'う':'2 strokes. Short top horizontal, then the curved body.','え':'2 strokes. Horizontal, then vertical with loop.',
+  'お':'3 strokes. Horizontal, then vertical+curve, then dot.','か':'3 strokes. Vertical, then angled strokes.',
+  'き':'4 strokes. Two horizontals, vertical through middle, short right stroke.','く':'1 stroke. A simple rightward angle.',
+  'け':'3 strokes. Vertical, cross stroke, then angled leg.','こ':'2 strokes. Two parallel horizontals.',
+  'さ':'3 strokes. Top horizontal, cross-stroke, then body.','し':'1 stroke. One smooth fishhook curve.',
+  'す':'2 strokes. The circle with cross, then bottom tail.','せ':'3 strokes. Cross with loop curling at bottom.',
+  'そ':'2 strokes. Like the number 3, mirrored.','た':'4 strokes. Cross then two strokes below.',
+  'ち':'2 strokes. Top arc, then lower loop.','つ':'1 stroke. Tight U-curve left to right.',
+  'て':'1 stroke. Horizontal bar hooking down.','と':'2 strokes. Vertical, then sweeping curve.',
+  'な':'4 strokes. Two crossed strokes, curve, then loop.','に':'3 strokes. Two verticals connected by horizontal.',
+  'ぬ':'2 strokes. Rounded body ending in loop twist.','ね':'2 strokes. Like ぬ but with straight tail.',
+  'の':'1 stroke. Smooth open loop — like O.','は':'3 strokes. Vertical, middle stroke, curved right.',
+  'ひ':'1 stroke. Rectangular loop with a spur.','ふ':'4 strokes. Top dot, then three curved parts.',
+  'へ':'1 stroke. A simple inverted V shape.','ほ':'4 strokes. Like は but with a cross at top.',
+  'ま':'3 strokes. Two horizontals crossed, then downward loop.','み':'2 strokes. Curved stroke, then circular loop.',
+  'む':'3 strokes. Short horizontal, vertical, then loop with tail.','め':'2 strokes. Like ぬ but more compact.',
+  'も':'3 strokes. Two horizontals, then vertical with curve.','や':'3 strokes. Left diagonal, horizontal, right sweep.',
+  'ゆ':'2 strokes. Left curve, then right stroke with loop.','よ':'2 strokes. Short horizontal, then vertical with loop.',
+  'ら':'2 strokes. Short top curve, then longer loop.','り':'2 strokes. Left short vertical, right longer vertical.',
+  'る':'1 stroke. Starts like ら then loops at bottom.','れ':'2 strokes. Left vertical, then long stroke with loop.',
+  'ろ':'1 stroke. Like る without bottom loop.','わ':'2 strokes. Left curve then right curve with loop.',
+  'を':'3 strokes. Horizontal, then top+bottom curves.','ん':'1 stroke. Upward sweep with looping tail.',
+};
+
+const STROKE_TIPS_ZH = {
+  'あ':'3筆。橫→左彎→點加圈。','い':'2筆。左彎下、右彎下。','う':'2筆。短橫，然後彎曲的主體。',
+  'え':'2筆。橫畫，再寫帶圈的豎畫。','お':'3筆。橫、豎+彎、最後一點。','か':'3筆。先豎，再兩個斜筆。',
+  'き':'4筆。兩橫、中間一豎、最後短筆。','く':'1筆。一個簡單的向右角度。','け':'3筆。豎、橫、斜腳。',
+  'こ':'2筆。兩條平行橫筆。','さ':'3筆。頂橫、交叉筆、主體。','し':'1筆。一個流暢的魚鉤曲線。',
+  'す':'2筆。圓圈帶交叉，再寫底部尾巴。','せ':'3筆。交叉形狀，底部捲圈。','そ':'2筆。像反向的3字。',
+  'た':'4筆。交叉，下方再兩筆。','ち':'2筆。頂部弧線，下方圈。','つ':'1筆。從左到右的U形曲線。',
+  'て':'1筆。橫畫鉤下。','と':'2筆。豎、彎弧。','な':'4筆。兩筆相交、曲線、圈。',
+  'に':'3筆。兩豎相連橫筆。','ぬ':'2筆。圓潤主體尾部捲圈。','ね':'2筆。像ぬ但尾巴是直的。',
+  'の':'1筆。一個圓圈——像字母O。','は':'3筆。豎、中筆、右側彎曲。',
+  'ひ':'1筆。帶突起的矩形圈。','ふ':'4筆。頂點，再三個曲線部分。',
+  'へ':'1筆。簡單的倒V形。','ほ':'4筆。像は但頂部多一橫。',
+  'ま':'3筆。兩橫相交，再寫向下的圈。','み':'2筆。彎筆，再寫小圈。',
+  'む':'3筆。短橫、豎、帶尾的圈。','め':'2筆。像ぬ但更緊湊。',
+  'も':'3筆。兩橫，再寫豎帶彎。','や':'3筆。左斜、橫、右掃。',
+  'ゆ':'2筆。左彎、右筆帶圈。','よ':'2筆。短橫、帶圈的豎。',
+  'ら':'2筆。短頂彎、長底圈。','り':'2筆。左短豎、右長豎。',
+  'る':'1筆。像ら但底部有圈。','れ':'2筆。左豎、長筆帶順時針圈。',
+  'ろ':'1筆。像る但無底圈。','わ':'2筆。左彎、右彎帶小圈。',
+  'を':'3筆。橫、頂彎+底彎。','ん':'1筆。向上掃帶捲尾。',
+};
+
+const PRON = {
+  'a':'Open vowel, like "a" in "father"','i':'Like "ee" in "feet" but short',
+  'u':'Like "oo" but lips not rounded — closer to "uh"','e':'Like "e" in "bed"',
+  'o':'Like "o" in "go"','ka':'K + A, crisp unaspirated K','ki':'K + I','ku':'K + U','ke':'K + E','ko':'K + O',
+  'sa':'S + A','shi':'Like "she" — SHI not SI','su':'S + U, the U is subtle','se':'S + E','so':'S + O',
+  'ta':'T + A, unaspirated T','chi':'Like "chee" — CHI not TI','tsu':'Like end of "cats" + U','te':'T + E','to':'T + O',
+  'na':'N + A','ni':'N + I','nu':'N + U','ne':'N + E','no':'N + O',
+  'ha':'H + A','hi':'H + I','fu':'Soft bilabial F, almost HU','he':'H + E','ho':'H + O',
+  'ma':'M + A','mi':'M + I','mu':'M + U','me':'M + E','mo':'M + O',
+  'ya':'Y + A','yu':'Y + U','yo':'Y + O',
+  'ra':'Tongue flap — between L and R, not rolled','ri':'R + I','ru':'R + U','re':'R + E','ro':'R + O',
+  'wa':'W + A, very light W','wo':'Particle only, pronounced O in modern Japanese',
+  'n':'Syllabic N — "ng" before K/G, "m" before M/B/P, "n" elsewhere',
+};
+
+const PRON_ZH = {
+  'a':'開口元音，像中文「啊」','i':'像中文「衣」但短促','u':'像中文「烏」但嘴唇不圓——接近輕聲「呃」',
+  'e':'像中文「ㄝ」','o':'像中文「哦」','ka':'K加A，清脆無氣音','ki':'K加I','ku':'K加U','ke':'K加E','ko':'K加O',
+  'sa':'S加A','shi':'像中文「西」——SHI而非SI','su':'S加U，U音很輕','se':'S加E','so':'S加O',
+  'ta':'T加A，無氣音','chi':'像中文「七」——CHI而非TI','tsu':'像「次」加U音','te':'T加E','to':'T加O',
+  'na':'N加A','ni':'N加I','nu':'N加U','ne':'N加E','no':'N加O',
+  'ha':'H加A','hi':'H加I','fu':'柔軟雙唇F音，接近HU','he':'H加E','ho':'H加O',
+  'ma':'M加A','mi':'M加I','mu':'M加U','me':'M加E','mo':'M加O',
+  'ya':'Y加A','yu':'Y加U','yo':'Y加O',
+  'ra':'舌尖輕彈——介於L和R之間，不捲舌','ri':'R加I','ru':'R加U','re':'R加E','ro':'R加O',
+  'wa':'W加A，W音很輕','wo':'僅作助詞，現代日語讀作O',
+  'n':'音節鼻音——K/G前發「ng」，M/B/P前發「m」，其他發「n」',
+};
+
+const DAKUTEN = [
+  {orig:'か',new:'が',r:'ga'},{orig:'き',new:'ぎ',r:'gi'},{orig:'く',new:'ぐ',r:'gu'},{orig:'け',new:'げ',r:'ge'},{orig:'こ',new:'ご',r:'go'},
+  {orig:'さ',new:'ざ',r:'za'},{orig:'し',new:'じ',r:'ji'},{orig:'す',new:'ず',r:'zu'},{orig:'せ',new:'ぜ',r:'ze'},{orig:'そ',new:'ぞ',r:'zo'},
+  {orig:'た',new:'だ',r:'da'},{orig:'ち',new:'ぢ',r:'ji*'},{orig:'つ',new:'づ',r:'zu*'},{orig:'て',new:'で',r:'de'},{orig:'と',new:'ど',r:'do'},
+  {orig:'は',new:'ば',r:'ba'},{orig:'ひ',new:'び',r:'bi'},{orig:'ふ',new:'ぶ',r:'bu'},{orig:'へ',new:'べ',r:'be'},{orig:'ほ',new:'ぼ',r:'bo'},
+  {orig:'は',new:'ぱ',r:'pa'},{orig:'ひ',new:'ぴ',r:'pi'},{orig:'ふ',new:'ぷ',r:'pu'},{orig:'へ',new:'ぺ',r:'pe'},{orig:'ほ',new:'ぽ',r:'po'},
+];
+
+const COMBOS = [
+  {c:'きゃ',r:'kya'},{c:'きゅ',r:'kyu'},{c:'きょ',r:'kyo'},
+  {c:'しゃ',r:'sha'},{c:'しゅ',r:'shu'},{c:'しょ',r:'sho'},
+  {c:'ちゃ',r:'cha'},{c:'ちゅ',r:'chu'},{c:'ちょ',r:'cho'},
+  {c:'にゃ',r:'nya'},{c:'にゅ',r:'nyu'},{c:'にょ',r:'nyo'},
+  {c:'ひゃ',r:'hya'},{c:'ひゅ',r:'hyu'},{c:'ひょ',r:'hyo'},
+  {c:'みゃ',r:'mya'},{c:'みゅ',r:'myu'},{c:'みょ',r:'myo'},
+  {c:'りゃ',r:'rya'},{c:'りゅ',r:'ryu'},{c:'りょ',r:'ryo'},
+  {c:'ぎゃ',r:'gya'},{c:'ぎゅ',r:'gyu'},{c:'ぎょ',r:'gyo'},
+  {c:'じゃ',r:'ja'},{c:'じゅ',r:'ju'},{c:'じょ',r:'jo'},
+  {c:'びゃ',r:'bya'},{c:'びゅ',r:'byu'},{c:'びょ',r:'byo'},
+  {c:'ぴゃ',r:'pya'},{c:'ぴゅ',r:'pyu'},{c:'ぴょ',r:'pyo'},
+];
+
+// ══════════════════════════════════════════════════════════════
+// ─── N5 VOCABULARY ────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+// Format: {k:kanji, h:hiragana, p:pitch_number, en:meaning, zh:意義}
+const N5_VOCAB = [
+  {cat_en:'People & Pronouns', cat_zh:'人物與代名詞', words:[
+    {k:'私', h:'わたし', p:3, en:'I, me', zh:'我'},
+    {k:'あなた', h:'あなた', p:2, en:'you', zh:'你'},
+    {k:'彼', h:'かれ', p:1, en:'he', zh:'他'},
+    {k:'彼女', h:'かのじょ', p:1, en:'she, girlfriend', zh:'她、女朋友'},
+    {k:'先生', h:'せんせい', p:3, en:'teacher', zh:'老師'},
+    {k:'学生', h:'がくせい', p:0, en:'student', zh:'學生'},
+    {k:'友達', h:'ともだち', p:0, en:'friend', zh:'朋友'},
+    {k:'家族', h:'かぞく', p:1, en:'family', zh:'家人'},
+  ]},
+  {cat_en:'Nature', cat_zh:'自然', words:[
+    {k:'水', h:'みず', p:0, en:'water', zh:'水'},
+    {k:'山', h:'やま', p:2, en:'mountain', zh:'山'},
+    {k:'川', h:'かわ', p:2, en:'river', zh:'河流'},
+    {k:'空', h:'そら', p:1, en:'sky', zh:'天空'},
+    {k:'花', h:'はな', p:2, en:'flower', zh:'花'},
+    {k:'木', h:'き', p:1, en:'tree, wood', zh:'樹、木頭'},
+    {k:'海', h:'うみ', p:1, en:'sea, ocean', zh:'海'},
+  ]},
+  {cat_en:'Animals', cat_zh:'動物', words:[
+    {k:'犬', h:'いぬ', p:2, en:'dog', zh:'狗'},
+    {k:'猫', h:'ねこ', p:1, en:'cat', zh:'貓'},
+    {k:'魚', h:'さかな', p:0, en:'fish', zh:'魚'},
+    {k:'鳥', h:'とり', p:0, en:'bird', zh:'鳥'},
+  ]},
+  {cat_en:'Food & Drink', cat_zh:'飲食', words:[
+    {k:'ご飯', h:'ごはん', p:1, en:'rice, meal', zh:'飯、餐'},
+    {k:'パン', h:'パン', p:1, en:'bread', zh:'麵包'},
+    {k:'肉', h:'にく', p:2, en:'meat', zh:'肉'},
+    {k:'野菜', h:'やさい', p:0, en:'vegetables', zh:'蔬菜'},
+    {k:'果物', h:'くだもの', p:2, en:'fruit', zh:'水果'},
+    {k:'お茶', h:'おちゃ', p:0, en:'tea', zh:'茶'},
+    {k:'牛乳', h:'ぎゅうにゅう', p:0, en:'milk', zh:'牛奶'},
+    {k:'卵', h:'たまご', p:2, en:'egg', zh:'蛋'},
+  ]},
+  {cat_en:'Places & Transport', cat_zh:'地點與交通', words:[
+    {k:'学校', h:'がっこう', p:0, en:'school', zh:'學校'},
+    {k:'家', h:'いえ', p:2, en:'house, home', zh:'家、房子'},
+    {k:'駅', h:'えき', p:1, en:'station', zh:'車站'},
+    {k:'店', h:'みせ', p:2, en:'shop, store', zh:'商店'},
+    {k:'電車', h:'でんしゃ', p:0, en:'train', zh:'電車'},
+    {k:'車', h:'くるま', p:0, en:'car', zh:'汽車'},
+    {k:'バス', h:'バス', p:1, en:'bus', zh:'公車'},
+    {k:'飛行機', h:'ひこうき', p:2, en:'airplane', zh:'飛機'},
+    {k:'病院', h:'びょういん', p:0, en:'hospital', zh:'醫院'},
+  ]},
+  {cat_en:'Time', cat_zh:'時間', words:[
+    {k:'今日', h:'きょう', p:1, en:'today', zh:'今天'},
+    {k:'明日', h:'あした', p:3, en:'tomorrow', zh:'明天'},
+    {k:'昨日', h:'きのう', p:2, en:'yesterday', zh:'昨天'},
+    {k:'今', h:'いま', p:1, en:'now', zh:'現在'},
+    {k:'朝', h:'あさ', p:1, en:'morning', zh:'早上'},
+    {k:'昼', h:'ひる', p:2, en:'noon, daytime', zh:'中午、白天'},
+    {k:'夜', h:'よる', p:1, en:'night', zh:'夜晚'},
+  ]},
+  {cat_en:'い-Adjectives', cat_zh:'い形容詞', words:[
+    {k:'大きい', h:'おおきい', p:3, en:'big, large', zh:'大的'},
+    {k:'小さい', h:'ちいさい', p:3, en:'small', zh:'小的'},
+    {k:'新しい', h:'あたらしい', p:4, en:'new', zh:'新的'},
+    {k:'古い', h:'ふるい', p:2, en:'old (not for people)', zh:'舊的（不用於人）'},
+    {k:'高い', h:'たかい', p:2, en:'tall, expensive', zh:'高的、貴的'},
+    {k:'安い', h:'やすい', p:2, en:'cheap', zh:'便宜的'},
+    {k:'良い', h:'いい', p:1, en:'good', zh:'好的'},
+    {k:'暑い', h:'あつい', p:2, en:'hot (weather)', zh:'熱的'},
+    {k:'寒い', h:'さむい', p:2, en:'cold', zh:'冷的'},
+    {k:'美味しい', h:'おいしい', p:0, en:'delicious', zh:'好吃的'},
+    {k:'楽しい', h:'たのしい', p:3, en:'fun, enjoyable', zh:'有趣的'},
+  ]},
+  {cat_en:'な-Adjectives', cat_zh:'な形容詞', words:[
+    {k:'好き', h:'すき', p:2, en:'liked, fond of', zh:'喜歡的'},
+    {k:'嫌い', h:'きらい', p:0, en:'disliked, hated', zh:'討厭的'},
+    {k:'上手', h:'じょうず', p:3, en:'skillful, good at', zh:'擅長的'},
+    {k:'下手', h:'へた', p:2, en:'unskilled, bad at', zh:'不擅長的'},
+    {k:'元気', h:'げんき', p:1, en:'energetic, healthy', zh:'有精神、健康'},
+    {k:'綺麗', h:'きれい', p:1, en:'pretty, clean', zh:'漂亮、乾淨'},
+    {k:'静か', h:'しずか', p:1, en:'quiet', zh:'安靜的'},
+    {k:'便利', h:'べんり', p:1, en:'convenient', zh:'方便的'},
+  ]},
+  {cat_en:'Common Verbs', cat_zh:'常用動詞', words:[
+    {k:'食べる', h:'たべる', p:2, en:'to eat', zh:'吃'},
+    {k:'飲む', h:'のむ', p:1, en:'to drink', zh:'喝'},
+    {k:'見る', h:'みる', p:1, en:'to see, watch', zh:'看'},
+    {k:'聞く', h:'きく', p:0, en:'to listen, ask', zh:'聽、問'},
+    {k:'話す', h:'はなす', p:2, en:'to speak', zh:'說話'},
+    {k:'行く', h:'いく', p:0, en:'to go', zh:'去'},
+    {k:'来る', h:'くる', p:1, en:'to come', zh:'來'},
+    {k:'帰る', h:'かえる', p:1, en:'to return home', zh:'回家'},
+    {k:'買う', h:'かう', p:0, en:'to buy', zh:'買'},
+    {k:'読む', h:'よむ', p:1, en:'to read', zh:'讀'},
+    {k:'書く', h:'かく', p:1, en:'to write', zh:'寫'},
+    {k:'起きる', h:'おきる', p:2, en:'to wake up', zh:'起床'},
+    {k:'寝る', h:'ねる', p:0, en:'to sleep', zh:'睡覺'},
+    {k:'勉強する', h:'べんきょうする', p:0, en:'to study', zh:'學習、讀書'},
+    {k:'分かる', h:'わかる', p:2, en:'to understand', zh:'懂、明白'},
+  ]},
+  {cat_en:'Daily Objects', cat_zh:'日常物品', words:[
+    {k:'本', h:'ほん', p:1, en:'book', zh:'書'},
+    {k:'鉛筆', h:'えんぴつ', p:0, en:'pencil', zh:'鉛筆'},
+    {k:'机', h:'つくえ', p:0, en:'desk', zh:'桌子'},
+    {k:'椅子', h:'いす', p:0, en:'chair', zh:'椅子'},
+    {k:'時計', h:'とけい', p:0, en:'clock, watch', zh:'時鐘、手錶'},
+    {k:'傘', h:'かさ', p:1, en:'umbrella', zh:'雨傘'},
+    {k:'携帯', h:'けいたい', p:0, en:'mobile phone', zh:'手機'},
+  ]},
+];
+
+// ══════════════════════════════════════════════════════════════
+// ─── N5 GRAMMAR ───────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+const GRAMMAR_STRUCT = [
+  {p:'は (wa)', en_t:'Topic Marker は', zh_t:'主題助詞 は',
+   en_d:'は marks the topic of a sentence — what the sentence is about. It\'s often translated as "as for ~". Note: although written は (ha), it\'s pronounced "wa" when used as a particle. The topic isn\'t always the grammatical subject — it can be a contrast or emphasis marker.',
+   zh_d:'は 標記句子的主題——句子在說什麼。常翻譯為「關於~」。注意：雖然寫作 は (ha)，但作為助詞時讀作「wa」。主題不一定是文法主語，也可以用來對比或強調。',
+   ex:[
+     {jp:'私は学生です。', rom:'Watashi wa gakusei desu.', en:'I am a student.', zh:'我是學生。'},
+     {jp:'これは本です。', rom:'Kore wa hon desu.', en:'This is a book.', zh:'這是書。'},
+     {jp:'今日は寒いです。', rom:'Kyō wa samui desu.', en:'Today is cold.', zh:'今天很冷。'},
+   ]},
+  {p:'が (ga)', en_t:'Subject Marker が', zh_t:'主語助詞 が',
+   en_d:'が marks the grammatical subject. Used especially with verbs of existence (います/あります), perception/emotion (好き/分かる), and when introducing new information. The difference between は and が is subtle but important.',
+   zh_d:'が 標記文法主語。特別用於存在動詞 (います/あります)、感知/情感動詞 (好き/分かる)，以及引入新資訊時。は 和 が 的差別微妙但重要。',
+   ex:[
+     {jp:'猫がいます。', rom:'Neko ga imasu.', en:'There is a cat.', zh:'有一隻貓。'},
+     {jp:'私は寿司が好きです。', rom:'Watashi wa sushi ga suki desu.', en:'I like sushi.', zh:'我喜歡壽司。'},
+     {jp:'雨が降っています。', rom:'Ame ga futte imasu.', en:'It is raining.', zh:'正在下雨。'},
+   ]},
+  {p:'を (o)', en_t:'Object Marker を', zh_t:'受詞助詞 を',
+   en_d:'を marks the direct object of a transitive verb — the thing receiving the action. Although written を, it\'s pronounced "o" in modern Japanese.',
+   zh_d:'を 標記及物動詞的直接受詞——動作的接受者。雖然寫作 を，現代日語讀作「o」。',
+   ex:[
+     {jp:'ご飯を食べます。', rom:'Gohan o tabemasu.', en:'I eat rice/meal.', zh:'我吃飯。'},
+     {jp:'本を読みます。', rom:'Hon o yomimasu.', en:'I read a book.', zh:'我讀書。'},
+     {jp:'水を飲みました。', rom:'Mizu o nomimashita.', en:'I drank water.', zh:'我喝了水。'},
+   ]},
+  {p:'に (ni)', en_t:'Particle に — direction / time / target', zh_t:'助詞 に——方向／時間／對象',
+   en_d:'に has several uses: (1) direction toward a place, (2) specific time, (3) the indirect object/target of an action, (4) the location where something exists with います/あります.',
+   zh_d:'に 有多種用法：(1) 朝某地點的方向、(2) 具體時間、(3) 動作的對象、(4) 與 います/あります 一起表示存在的地點。',
+   ex:[
+     {jp:'学校に行きます。', rom:'Gakkō ni ikimasu.', en:'I go to school.', zh:'我去學校。'},
+     {jp:'7時に起きます。', rom:'Shichi-ji ni okimasu.', en:'I wake up at 7 o\'clock.', zh:'我七點起床。'},
+     {jp:'友達に手紙を書きます。', rom:'Tomodachi ni tegami o kakimasu.', en:'I write a letter to my friend.', zh:'我給朋友寫信。'},
+   ]},
+  {p:'で (de)', en_t:'Particle で — location of action / means', zh_t:'助詞 で——動作地點／方法',
+   en_d:'で marks the location where an action takes place (different from に, which marks existence). It also marks the means/tool used for an action.',
+   zh_d:'で 標記動作發生的地點（與標記存在地點的 に 不同），也標記動作使用的工具或方式。',
+   ex:[
+     {jp:'図書館で勉強します。', rom:'Toshokan de benkyō shimasu.', en:'I study at the library.', zh:'我在圖書館讀書。'},
+     {jp:'電車で行きます。', rom:'Densha de ikimasu.', en:'I go by train.', zh:'我搭電車去。'},
+     {jp:'箸でご飯を食べます。', rom:'Hashi de gohan o tabemasu.', en:'I eat rice with chopsticks.', zh:'我用筷子吃飯。'},
+   ]},
+  {p:'の (no)', en_t:'Particle の — possessive / modifier', zh_t:'助詞 の——所有／修飾',
+   en_d:'の connects two nouns. A の B means "B of A" — used for possession, type, or noun modification. This is one of the most common particles.',
+   zh_d:'の 連接兩個名詞。A の B = 「A 的 B」——用於所有、類別、或名詞修飾。是最常用的助詞之一。',
+   ex:[
+     {jp:'私の本です。', rom:'Watashi no hon desu.', en:'It\'s my book.', zh:'是我的書。'},
+     {jp:'日本の食べ物が好きです。', rom:'Nihon no tabemono ga suki desu.', en:'I like Japanese food.', zh:'我喜歡日本食物。'},
+     {jp:'木のテーブル。', rom:'Ki no tēburu.', en:'A wooden table (table of wood).', zh:'木製的桌子。'},
+   ]},
+  {p:'も (mo)', en_t:'Particle も — also / too', zh_t:'助詞 も——也、連',
+   en_d:'も replaces は/が/を to mean "also, too, even". It tells the listener that what follows applies to this item just like another mentioned earlier.',
+   zh_d:'も 取代 は/が/を，表示「也、連、甚至」。表示這個項目和之前提到的一樣適用。',
+   ex:[
+     {jp:'私も学生です。', rom:'Watashi mo gakusei desu.', en:'I am also a student.', zh:'我也是學生。'},
+     {jp:'コーヒーも飲みます。', rom:'Kōhī mo nomimasu.', en:'I also drink coffee.', zh:'我也喝咖啡。'},
+   ]},
+  {p:'と (to)', en_t:'Particle と — and / with', zh_t:'助詞 と——和／跟',
+   en_d:'と connects nouns exhaustively (unlike や, which implies more). It also means "with" when describing doing things together.',
+   zh_d:'と 完整地連接名詞（不像 や 暗示還有其他）。也表示「跟某人一起」做某事。',
+   ex:[
+     {jp:'パンと牛乳を買いました。', rom:'Pan to gyūnyū o kaimashita.', en:'I bought bread and milk.', zh:'我買了麵包和牛奶。'},
+     {jp:'友達と映画を見ます。', rom:'Tomodachi to eiga o mimasu.', en:'I watch a movie with my friend.', zh:'我和朋友看電影。'},
+   ]},
+  {p:'です/だ', en_t:'Copula — is / am / are', zh_t:'連繫動詞——是',
+   en_d:'です is the polite copula (similar to "is/am/are"). だ is its plain/casual form. Past polite: でした. Polite negative: ではありません (or じゃありません).',
+   zh_d:'です 是禮貌形連繫動詞（類似中文的「是」）。だ 是常體/口語形。過去禮貌形：でした。禮貌否定：ではありません（或 じゃありません）。',
+   ex:[
+     {jp:'私は日本人です。', rom:'Watashi wa nihonjin desu.', en:'I am Japanese.', zh:'我是日本人。'},
+     {jp:'昨日は休みでした。', rom:'Kinō wa yasumi deshita.', en:'Yesterday was a day off.', zh:'昨天是休假。'},
+     {jp:'これは私のじゃありません。', rom:'Kore wa watashi no ja arimasen.', en:'This isn\'t mine.', zh:'這不是我的。'},
+   ]},
+  {p:'～ます', en_t:'Polite verb form ます', zh_t:'禮貌動詞形 ます',
+   en_d:'The ます form makes verbs polite. Conjugations: ます (present/future) → ません (negative) → ました (past) → ませんでした (past negative). Always used in formal situations.',
+   zh_d:'ます形 使動詞變為禮貌形。變化：ます（現在/未來）→ ません（否定）→ ました（過去）→ ませんでした（過去否定）。正式場合一定使用。',
+   ex:[
+     {jp:'毎日働きます。', rom:'Mainichi hatarakimasu.', en:'I work every day.', zh:'我每天工作。'},
+     {jp:'お酒を飲みません。', rom:'O-sake o nomimasen.', en:'I don\'t drink alcohol.', zh:'我不喝酒。'},
+     {jp:'昨日寿司を食べました。', rom:'Kinō sushi o tabemashita.', en:'I ate sushi yesterday.', zh:'我昨天吃了壽司。'},
+   ]},
+  {p:'い-Adj', en_t:'い-Adjectives', zh_t:'い形容詞',
+   en_d:'Adjectives ending in い. They conjugate by changing the い: 大きい (big) → 大きくない (not big) → 大きかった (was big) → 大きくなかった. Used before nouns directly: 大きい犬.',
+   zh_d:'以 い 結尾的形容詞。變化方式是改變末尾的 い：大きい（大的）→ 大きくない（不大）→ 大きかった（曾經很大）→ 大きくなかった。直接放在名詞前：大きい犬（大狗）。',
+   ex:[
+     {jp:'寿司は美味しいです。', rom:'Sushi wa oishii desu.', en:'Sushi is delicious.', zh:'壽司很好吃。'},
+     {jp:'昨日は寒くなかったです。', rom:'Kinō wa samuku nakatta desu.', en:'Yesterday wasn\'t cold.', zh:'昨天不冷。'},
+   ]},
+  {p:'な-Adj', en_t:'な-Adjectives', zh_t:'な形容詞',
+   en_d:'Adjectives that need な before a noun. Conjugated with です like a noun: 静か (quiet) → 静かじゃない → 静かでした → 静かじゃなかった. Before nouns: 静かな部屋 (quiet room).',
+   zh_d:'修飾名詞時要加 な 的形容詞。像名詞一樣用 です 變化：静か（安靜）→ 静かじゃない → 静かでした → 静かじゃなかった。修飾名詞時：静かな部屋（安靜的房間）。',
+   ex:[
+     {jp:'この公園は静かです。', rom:'Kono kōen wa shizuka desu.', en:'This park is quiet.', zh:'這個公園很安靜。'},
+     {jp:'綺麗な花ですね。', rom:'Kirei na hana desu ne.', en:'What a pretty flower!', zh:'好漂亮的花啊！'},
+   ]},
+  {p:'か', en_t:'Question marker か', zh_t:'疑問助詞 か',
+   en_d:'か added to the end of a sentence makes it a question. No need for inverted word order like in English. Just add か at the end.',
+   zh_d:'句尾加 か 就變成疑問句。不像英語需要倒裝語序，直接在句尾加 か 即可。',
+   ex:[
+     {jp:'学生ですか。', rom:'Gakusei desu ka?', en:'Are you a student?', zh:'你是學生嗎？'},
+     {jp:'コーヒーを飲みますか。', rom:'Kōhī o nomimasu ka?', en:'Do you drink coffee?', zh:'你喝咖啡嗎？'},
+   ]},
+  {p:'～ている', en_t:'～ている — ongoing action / state', zh_t:'～ている——進行中／狀態',
+   en_d:'Te-form + いる (or います) expresses an ongoing action ("is doing") or a continuing state ("has been done and remains"). Context determines which meaning applies.',
+   zh_d:'動詞て形 + いる（或 います）表示動作正在進行（「正在做」）或持續的狀態（「已經做了並維持」）。要看上下文判斷。',
+   ex:[
+     {jp:'今、本を読んでいます。', rom:'Ima, hon o yonde imasu.', en:'I\'m reading a book now.', zh:'我現在正在讀書。'},
+     {jp:'結婚しています。', rom:'Kekkon shite imasu.', en:'I\'m married.', zh:'我結婚了。（已婚狀態）'},
+   ]},
+  {p:'～たい', en_t:'～たい — want to do', zh_t:'～たい——想做',
+   en_d:'Attach たい to the ます-stem to say "want to ~". Behaves like an い-adjective: たい → たくない → たかった → たくなかった.',
+   zh_d:'動詞ます形去 ます 加 たい，表示「想做~」。詞尾像 い 形容詞變化：たい → たくない → たかった → たくなかった。',
+   ex:[
+     {jp:'日本に行きたいです。', rom:'Nihon ni ikitai desu.', en:'I want to go to Japan.', zh:'我想去日本。'},
+     {jp:'今日は何も食べたくない。', rom:'Kyō wa nani mo tabetakunai.', en:'I don\'t want to eat anything today.', zh:'我今天什麼都不想吃。'},
+   ]},
+  {p:'～てください', en_t:'～てください — please do', zh_t:'～てください——請做',
+   en_d:'Te-form + ください = "please do ~". Polite request form. To ask not to do something, use ～ないでください.',
+   zh_d:'動詞て形 + ください = 「請做~」。禮貌的請求形式。請求「不要做」時用 ～ないでください。',
+   ex:[
+     {jp:'ここに名前を書いてください。', rom:'Koko ni namae o kaite kudasai.', en:'Please write your name here.', zh:'請在這裡寫名字。'},
+     {jp:'もう一度言ってください。', rom:'Mō ichi-do itte kudasai.', en:'Please say it again.', zh:'請再說一次。'},
+   ]},
+  {p:'～ましょう', en_t:'～ましょう — let\'s / shall we', zh_t:'～ましょう——一起做吧',
+   en_d:'Replace ます with ましょう to say "let\'s do ~". Add か to make it a suggestion ("shall we ~?").',
+   zh_d:'把 ます 換成 ましょう = 「我們一起做~吧」。加 か 變成提議：「我們~好嗎？」',
+   ex:[
+     {jp:'一緒に行きましょう。', rom:'Issho ni ikimashō.', en:'Let\'s go together.', zh:'我們一起去吧。'},
+     {jp:'お茶を飲みましょうか。', rom:'O-cha o nomimashō ka?', en:'Shall we drink some tea?', zh:'我們喝杯茶好嗎？'},
+   ]},
+];
+
+const GRAMMAR_FUNC = [
+  {p:'から', en_t:'から — because / from', zh_t:'から——因為／從',
+   en_d:'Two main uses: (1) after a verb/adjective sentence: "because/since". (2) after a noun (place/time): "from". Always placed AFTER the reason clause.',
+   zh_d:'兩種主要用法：(1) 接在動詞/形容詞句後：「因為」。(2) 接在名詞（地點/時間）後：「從」。永遠放在原因句之後。',
+   ex:[
+     {jp:'寒いから、コートを着ます。', rom:'Samui kara, kōto o kimasu.', en:'Because it\'s cold, I\'ll wear a coat.', zh:'因為冷，所以穿外套。'},
+     {jp:'日本から来ました。', rom:'Nihon kara kimashita.', en:'I came from Japan.', zh:'我從日本來。'},
+   ]},
+  {p:'ので', en_t:'ので — because (softer)', zh_t:'ので——因為（較委婉）',
+   en_d:'Similar to から but softer, more polite, and suggests a more objective reason. Often preferred when making excuses or in formal situations.',
+   zh_d:'類似 から 但語氣較柔軟、客氣，給出較客觀的理由。在表達歉意或正式場合常用。',
+   ex:[
+     {jp:'頭が痛いので、休みます。', rom:'Atama ga itai node, yasumimasu.', en:'I\'ll rest because I have a headache.', zh:'因為頭痛所以我要休息。'},
+   ]},
+  {p:'が / けど', en_t:'が / けど — but, although', zh_t:'が / けど——但是、雖然',
+   en_d:'Both mean "but/although". が is slightly more formal, けど is conversational. They connect two contrasting clauses.',
+   zh_d:'都表示「但是、雖然」。が 較正式，けど 是口語。連接兩個對比的句子。',
+   ex:[
+     {jp:'寿司は好きですが、刺身は嫌いです。', rom:'Sushi wa suki desu ga, sashimi wa kirai desu.', en:'I like sushi, but I dislike sashimi.', zh:'我喜歡壽司，但討厭生魚片。'},
+     {jp:'高いけど、買いました。', rom:'Takai kedo, kaimashita.', en:'It was expensive, but I bought it.', zh:'雖然貴，但我買了。'},
+   ]},
+  {p:'でも', en_t:'でも — but / however', zh_t:'でも——但是、可是',
+   en_d:'Used at the START of a sentence to mean "but, however". Different from が/けど which connect within a sentence.',
+   zh_d:'用在句首，表示「但是、可是」。與 が/けど 連接句中不同。',
+   ex:[
+     {jp:'雨です。でも、出かけます。', rom:'Ame desu. Demo, dekakemasu.', en:'It\'s raining. But I\'ll go out.', zh:'下雨。但我還是要出門。'},
+   ]},
+  {p:'だから', en_t:'だから / ですから — so / therefore', zh_t:'だから / ですから——所以',
+   en_d:'Used at the start of a sentence: "so, therefore, that\'s why". ですから is more polite.',
+   zh_d:'用在句首：「所以、因此」。ですから 較禮貌。',
+   ex:[
+     {jp:'明日テストです。だから、勉強します。', rom:'Ashita tesuto desu. Dakara, benkyō shimasu.', en:'There\'s a test tomorrow. So I\'ll study.', zh:'明天有考試。所以我要讀書。'},
+   ]},
+  {p:'そして', en_t:'そして / それから — and then / after that', zh_t:'そして / それから——然後',
+   en_d:'そして = "and (then)" — connects sentences smoothly. それから = "after that" — emphasizes sequence.',
+   zh_d:'そして = 「然後」——順暢地連接句子。それから = 「之後」——強調順序。',
+   ex:[
+     {jp:'朝ごはんを食べました。そして、学校に行きました。', rom:'Asagohan o tabemashita. Soshite, gakkō ni ikimashita.', en:'I had breakfast. Then I went to school.', zh:'我吃了早餐，然後去學校。'},
+   ]},
+  {p:'もし～たら', en_t:'もし～たら — if ~', zh_t:'もし～たら——如果',
+   en_d:'もし... + verb-たら expresses "if". Verb-たら is the conditional form. もし is optional but signals "if" intention.',
+   zh_d:'もし... + 動詞 たら 形 表示「如果」。たら 是條件形。もし 可省略，但表達「如果」的意圖。',
+   ex:[
+     {jp:'もし雨が降ったら、行きません。', rom:'Moshi ame ga futtara, ikimasen.', en:'If it rains, I won\'t go.', zh:'如果下雨，我就不去。'},
+   ]},
+  {p:'～とき', en_t:'～とき — when, at the time of', zh_t:'～とき——的時候',
+   en_d:'Noun の とき or verb-plain とき = "when ~". Describes the time when something happens.',
+   zh_d:'名詞 + の とき 或 動詞常體 + とき = 「~的時候」。描述某事發生的時間。',
+   ex:[
+     {jp:'子供のとき、よく公園に行きました。', rom:'Kodomo no toki, yoku kōen ni ikimashita.', en:'When I was a child, I often went to the park.', zh:'我小時候常去公園。'},
+     {jp:'寝るとき、電気を消します。', rom:'Neru toki, denki o keshimasu.', en:'When I sleep, I turn off the lights.', zh:'睡覺的時候我會關燈。'},
+   ]},
+  {p:'～まえに', en_t:'～まえに — before ~', zh_t:'～まえに——之前',
+   en_d:'Verb-dictionary form + まえに = "before doing ~". Noun + のまえに = "before ~".',
+   zh_d:'動詞辭書形 + まえに = 「在做~之前」。名詞 + のまえに = 「在~之前」。',
+   ex:[
+     {jp:'寝るまえに、本を読みます。', rom:'Neru mae ni, hon o yomimasu.', en:'Before I sleep, I read a book.', zh:'我睡前讀書。'},
+     {jp:'食事のまえに手を洗います。', rom:'Shokuji no mae ni te o araimasu.', en:'Before meals, I wash my hands.', zh:'用餐前洗手。'},
+   ]},
+  {p:'～あとで', en_t:'～あとで / ～てから — after ~', zh_t:'～あとで / ～てから——之後',
+   en_d:'Verb-た form + あとで = "after doing ~". Verb-て form + から = "after doing ~" (more emphasis on sequence).',
+   zh_d:'動詞た形 + あとで = 「做~之後」。動詞て形 + から = 「做~之後」（更強調順序）。',
+   ex:[
+     {jp:'映画を見たあとで、ご飯を食べました。', rom:'Eiga o mita ato de, gohan o tabemashita.', en:'After watching the movie, I had a meal.', zh:'看完電影後吃了飯。'},
+     {jp:'宿題をしてから、遊びます。', rom:'Shukudai o shite kara, asobimasu.', en:'After doing my homework, I\'ll play.', zh:'做完作業後我就去玩。'},
+   ]},
+  {p:'～ながら', en_t:'～ながら — while doing ~', zh_t:'～ながら——一邊~一邊',
+   en_d:'Verb ます-stem + ながら = "while doing ~ (and ~ at the same time)". The main action is in the second clause.',
+   zh_d:'動詞ます形去ます + ながら = 「一邊~一邊做」。主要動作在後一個子句。',
+   ex:[
+     {jp:'音楽を聞きながら、勉強します。', rom:'Ongaku o kiki nagara, benkyō shimasu.', en:'I study while listening to music.', zh:'我一邊聽音樂一邊讀書。'},
+   ]},
+  {p:'まだ', en_t:'まだ — still / not yet', zh_t:'まだ——還／還沒',
+   en_d:'With positive verb: "still doing". With negative verb (or ません/ない): "not yet". Often used with です-no answer like まだです.',
+   zh_d:'與肯定動詞連用：「還在做」。與否定動詞連用（或 ません/ない）：「還沒」。常用回答：まだです（還沒）。',
+   ex:[
+     {jp:'まだ食べています。', rom:'Mada tabete imasu.', en:'I\'m still eating.', zh:'我還在吃。'},
+     {jp:'宿題はまだ終わっていません。', rom:'Shukudai wa mada owatte imasen.', en:'I haven\'t finished my homework yet.', zh:'我還沒寫完作業。'},
+   ]},
+  {p:'もう', en_t:'もう — already / no longer', zh_t:'もう——已經／不再',
+   en_d:'With positive verb: "already". With negative verb: "not anymore, no longer". The opposite of まだ.',
+   zh_d:'與肯定動詞連用：「已經」。與否定動詞連用：「不再、不再有」。與 まだ 相反。',
+   ex:[
+     {jp:'もう食べました。', rom:'Mō tabemashita.', en:'I already ate.', zh:'我已經吃過了。'},
+     {jp:'もう寒くないです。', rom:'Mō samuku nai desu.', en:'It\'s no longer cold.', zh:'已經不冷了。'},
+   ]},
+  {p:'と思います', en_t:'～と思います — I think that ~', zh_t:'～と思います——我認為',
+   en_d:'After a plain-form sentence, ～と思います = "I think that ~". Used to soften opinions or speculation.',
+   zh_d:'接在常體句後，～と思います = 「我認為~」。用來婉轉表達意見或推測。',
+   ex:[
+     {jp:'明日は晴れると思います。', rom:'Ashita wa hareru to omoimasu.', en:'I think it will be sunny tomorrow.', zh:'我認為明天會放晴。'},
+   ]},
+  {p:'つもり', en_t:'～つもりです — intend to', zh_t:'～つもりです——打算',
+   en_d:'Verb-dictionary form + つもりです = "I intend to ~ / I\'m planning to ~". Negative: つもりはありません.',
+   zh_d:'動詞辭書形 + つもりです = 「我打算~ / 我計劃~」。否定形：つもりはありません。',
+   ex:[
+     {jp:'来年、日本に行くつもりです。', rom:'Rainen, Nihon ni iku tsumori desu.', en:'I intend to go to Japan next year.', zh:'我打算明年去日本。'},
+   ]},
+];
+
+// ══════════════════════════════════════════════════════════════
+// ─── N5 PASSAGES ──────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+const PASSAGES = [
+  {
+    en_t:'Self Introduction', zh_t:'自我介紹',
+    en_sub:'A simple introduction — name, nationality, occupation', zh_sub:'簡單的介紹——名字、國籍、職業',
+    sentences:[
+      {jp:'はじめまして。', rom:'Hajimemashite.', en:'Nice to meet you (for the first time).', zh:'初次見面。'},
+      {jp:'私はマイクです。', rom:'Watashi wa Maiku desu.', en:'I am Mike.', zh:'我是Mike。'},
+      {jp:'アメリカ人です。', rom:'Amerikajin desu.', en:'I am American.', zh:'我是美國人。'},
+      {jp:'二十二歳の学生です。', rom:'Nijūni-sai no gakusei desu.', en:'I am a 22-year-old student.', zh:'我是22歲的學生。'},
+      {jp:'日本語を勉強しています。', rom:'Nihongo o benkyō shite imasu.', en:'I am studying Japanese.', zh:'我正在學日語。'},
+      {jp:'よろしくお願いします。', rom:'Yoroshiku onegai shimasu.', en:'Please treat me well / Nice to meet you.', zh:'請多多指教。'},
+    ]
+  },
+  {
+    en_t:'My Daily Routine', zh_t:'我的一天',
+    en_sub:'A description of typical daily activities', zh_sub:'描述每天的活動',
+    sentences:[
+      {jp:'私は毎日六時に起きます。', rom:'Watashi wa mainichi roku-ji ni okimasu.', en:'I wake up every day at 6 o\'clock.', zh:'我每天六點起床。'},
+      {jp:'朝ごはんを食べてから、学校に行きます。', rom:'Asagohan o tabete kara, gakkō ni ikimasu.', en:'After eating breakfast, I go to school.', zh:'吃完早餐後，我去學校。'},
+      {jp:'学校で日本語と数学を勉強します。', rom:'Gakkō de Nihongo to sūgaku o benkyō shimasu.', en:'At school, I study Japanese and math.', zh:'在學校我學日語和數學。'},
+      {jp:'午後五時に家に帰ります。', rom:'Gogo go-ji ni ie ni kaerimasu.', en:'I return home at 5 PM.', zh:'我下午五點回家。'},
+      {jp:'夜は本を読んだり、テレビを見たりします。', rom:'Yoru wa hon o yondari, terebi o mitari shimasu.', en:'At night, I do things like read books and watch TV.', zh:'晚上我會做讀書、看電視之類的事。'},
+    ]
+  },
+  {
+    en_t:'My Weekend', zh_t:'我的週末',
+    en_sub:'Plans for a fun weekend', zh_sub:'愉快週末的計劃',
+    sentences:[
+      {jp:'今日は土曜日です。', rom:'Kyō wa doyōbi desu.', en:'Today is Saturday.', zh:'今天是星期六。'},
+      {jp:'天気がとてもいいです。', rom:'Tenki ga totemo ii desu.', en:'The weather is very nice.', zh:'天氣非常好。'},
+      {jp:'友達と一緒に映画を見に行きます。', rom:'Tomodachi to issho ni eiga o mi ni ikimasu.', en:'I\'m going to watch a movie with my friend.', zh:'我要跟朋友一起去看電影。'},
+      {jp:'それから、レストランで晩ごはんを食べます。', rom:'Sore kara, resutoran de bangohan o tabemasu.', en:'After that, we\'ll have dinner at a restaurant.', zh:'然後在餐廳吃晚餐。'},
+      {jp:'日本のラーメンが大好きです。', rom:'Nihon no rāmen ga daisuki desu.', en:'I love Japanese ramen.', zh:'我非常喜歡日本拉麵。'},
+    ]
+  },
+  {
+    en_t:'My Family', zh_t:'我的家人',
+    en_sub:'Introducing the people in your family', zh_sub:'介紹家庭成員',
+    sentences:[
+      {jp:'私の家族は四人です。', rom:'Watashi no kazoku wa yo-nin desu.', en:'My family has four people.', zh:'我的家有四個人。'},
+      {jp:'父と母と妹がいます。', rom:'Chichi to haha to imōto ga imasu.', en:'There\'s my father, mother, and younger sister.', zh:'有爸爸、媽媽和妹妹。'},
+      {jp:'父は会社員です。', rom:'Chichi wa kaishain desu.', en:'My father is a company worker.', zh:'我爸爸是上班族。'},
+      {jp:'母は先生です。', rom:'Haha wa sensei desu.', en:'My mother is a teacher.', zh:'我媽媽是老師。'},
+      {jp:'妹は高校生です。', rom:'Imōto wa kōkōsei desu.', en:'My younger sister is a high school student.', zh:'我妹妹是高中生。'},
+      {jp:'みんな元気です。', rom:'Minna genki desu.', en:'Everyone is well/healthy.', zh:'大家都很好。'},
+    ]
+  },
+  {
+    en_t:'Today\'s Weather', zh_t:'今天的天氣',
+    en_sub:'Talking about weather and plans', zh_sub:'談論天氣和計劃',
+    sentences:[
+      {jp:'今日は晴れです。', rom:'Kyō wa hare desu.', en:'Today is sunny.', zh:'今天是晴天。'},
+      {jp:'あまり暑くないです。', rom:'Amari atsuku nai desu.', en:'It\'s not too hot.', zh:'不太熱。'},
+      {jp:'とても気持ちがいいです。', rom:'Totemo kimochi ga ii desu.', en:'It feels very nice.', zh:'感覺非常舒服。'},
+      {jp:'明日は雨が降るかもしれません。', rom:'Ashita wa ame ga furu kamoshiremasen.', en:'It might rain tomorrow.', zh:'明天可能會下雨。'},
+      {jp:'だから、傘を持っていきます。', rom:'Dakara, kasa o motte ikimasu.', en:'So I\'ll bring an umbrella.', zh:'所以我會帶傘出門。'},
+    ]
+  },
+  {
+    en_t:'Shopping Trip', zh_t:'購物之旅',
+    en_sub:'A simple past-tense story about buying something', zh_sub:'簡單的過去式購物故事',
+    sentences:[
+      {jp:'昨日、デパートに行きました。', rom:'Kinō, depāto ni ikimashita.', en:'Yesterday, I went to a department store.', zh:'昨天我去了百貨公司。'},
+      {jp:'新しいかばんを買いました。', rom:'Atarashii kaban o kaimashita.', en:'I bought a new bag.', zh:'我買了新包包。'},
+      {jp:'少し高かったですが、とても綺麗です。', rom:'Sukoshi takakatta desu ga, totemo kirei desu.', en:'It was a bit expensive, but it\'s very pretty.', zh:'有點貴，但很漂亮。'},
+      {jp:'明日、学校に持っていくつもりです。', rom:'Ashita, gakkō ni motte iku tsumori desu.', en:'I intend to bring it to school tomorrow.', zh:'我打算明天帶去學校。'},
+    ]
+  },
+];
+
+// ══════════════════════════════════════════════════════════════
+// ─── STATE ────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+let learned = {};
+try { learned = JSON.parse(localStorage.getItem('kana_learned') || '{}'); } catch(e){}
+let currentLang = localStorage.getItem('kana_lang') || 'en';
+let currentTheme = localStorage.getItem('kana_theme') || 'dark';
+let currentPage = 'hiragana';
+let currentScript = 'hiragana';
+let selectedChar = null;
+let currentVocabCat = 0;
+let currentGrammarTab = 'struct';
+let quizMode = 'kana-to-rom', qCorrect = 0, qWrong = 0, qStreak = 0;
+let qCurrent = null, qAnswered = false;
+let fcScript = 'hiragana', fcDeck = [], fcIndex = 0, fcFlipped = false;
+
+// ══════════════════════════════════════════════════════════════
+// ─── HELPERS ──────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+function t(key) { return T[currentLang][key] || T.en[key] || key; }
+
+function applyI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[currentLang][key]) {
+      el.innerHTML = T[currentLang][key];
+    }
+  });
+  document.documentElement.lang = currentLang === 'zh' ? 'zh-TW' : 'en';
+  document.body.setAttribute('data-lang', currentLang);
+}
+
+// Web Speech API for Japanese audio
+let jaVoice = null;
+function loadVoices() {
+  if (!('speechSynthesis' in window)) return;
+  const voices = speechSynthesis.getVoices();
+  jaVoice = voices.find(v => v.lang && (v.lang === 'ja-JP' || v.lang.startsWith('ja'))) || null;
+}
+if ('speechSynthesis' in window) {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function speak(text, e) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  if (!('speechSynthesis' in window)) {
+    alert(currentLang === 'zh' ? '此瀏覽器不支援語音合成。' : 'Speech synthesis not supported in this browser.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'ja-JP';
+  u.rate = 0.85;
+  if (jaVoice) u.voice = jaVoice;
+  speechSynthesis.speak(u);
+}
+
+// Split hiragana into morae (small kana ゃゅょ etc combine with preceding)
+function splitMorae(hira) {
+  const combineWithPrev = 'ぁぃぅぇぉゃゅょゎァィゥェォャュョヮ';
+  const result = [];
+  for (let i = 0; i < hira.length; i++) {
+    const ch = hira[i];
+    if (combineWithPrev.includes(ch) && result.length > 0) {
+      result[result.length - 1] += ch;
+    } else {
+      result.push(ch);
+    }
+  }
+  return result;
+}
+
+// Get pitch pattern array (h/l) for a mora-count and accent type
+function getPitchPattern(moraCount, accentType) {
+  const arr = [];
+  for (let i = 0; i < moraCount; i++) {
+    if (accentType === 0) arr.push(i === 0 ? 'l' : 'h');
+    else if (accentType === 1) arr.push(i === 0 ? 'h' : 'l');
+    else {
+      if (i === 0) arr.push('l');
+      else if (i < accentType) arr.push('h');
+      else arr.push('l');
+    }
+  }
+  return arr;
+}
+
+function renderPitchViz(hira, accentType) {
+  const morae = splitMorae(
+Claude couldn't finish this response. Try again in a moment.
