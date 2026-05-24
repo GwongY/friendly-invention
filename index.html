@@ -246,6 +246,7 @@ button { font-family: inherit; }
 .quiz-prompt-label { font-size: 11px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
 .quiz-char { font-family: var(--serif); font-size: 100px; line-height: 1; color: var(--text); margin-bottom: 0.5rem; display: block; }
 .quiz-char.romaji-mode { font-family: var(--sans); font-size: 52px; font-weight: 300; }
+.quiz-char.vocab-mode { font-family: var(--serif); font-size: 34px; line-height: 1.3; }
 .choices-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
 .choice-btn { padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg2); cursor: pointer; color: var(--text); font-size: 15px; transition: all 0.15s; }
 .choice-btn.jp-choice { font-family: var(--serif); font-size: 28px; }
@@ -262,6 +263,155 @@ button { font-family: inherit; }
 .chart-cell.learned { background: var(--red-light); }
 .chart-cell .cc { font-family: var(--serif); font-size: 22px; color: var(--text); }
 .chart-cell .cr { font-size: 10px; color: var(--text3); }
+/* Verb conjugation page */
+.jlpt-level-tabs { display: flex; gap: 4px; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.jlpt-tab { padding: 10px 16px; font-size: 13px; font-weight: 500; background: transparent; border: none; cursor: pointer; color: var(--text2); border-bottom: 2px solid transparent; }
+.jlpt-tab.active { color: var(--text); border-bottom-color: var(--red); }
+.verb-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+.verb-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 4px; color: var(--text); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.verb-jp-name { color: var(--red); font-family: var(--serif); font-size: 18px; }
+.verb-desc { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.verb-rule-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 12px; }
+.verb-rule-card { background: var(--bg3); border-radius: var(--radius); padding: 12px 14px; }
+.verb-rule-title { font-size: 11px; color: var(--red); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 6px; text-transform: uppercase; }
+.verb-rule-formula { font-family: var(--serif); font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.verb-rule-ex { font-size: 12px; color: var(--text2); font-family: var(--serif); }
+.verb-rule-ex-tr { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.verb-example-sentence { background: var(--red-light); border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+.verb-example-jp { font-family: var(--serif); font-size: 16px; color: var(--text); display: flex; align-items: center; gap: 10px; }
+.verb-example-trans { font-size: 12px; color: var(--text2); margin-top: 4px; }
+.verb-card-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+.verb-jp { color: var(--red); font-family: var(--serif); font-size: 18px; }
+.verb-name { font-size: 15px; font-weight: 500; }
+.verb-rule { background: var(--bg3); border-radius: var(--radius); padding: 12px 14px; }
+.verb-rule-group { font-size: 11px; color: var(--red); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 6px; text-transform: uppercase; }
+.verb-rule-trans { font-size: 11px; color: var(--text3); margin-top: 4px; }
+.ves-label { font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+.ves-jp { font-family: var(--serif); font-size: 16px; color: var(--text); display: flex; align-items: center; gap: 10px; }
+.ves-trans { font-size: 12px; color: var(--text2); margin-top: 4px; }
+.adj-note { background: var(--yellow-bg); border: 1px solid rgba(210,153,34,0.3); border-radius: var(--radius); padding: 10px 14px; font-size: 12px; color: var(--yellow); margin-top: 12px; line-height: 1.6; }
+/* Loop player */
+.loop-player { display: grid; gap: 12px; }
+.loop-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.loop-now { background: var(--bg); border: 1px solid var(--border2); border-radius: var(--radius); padding: 14px 16px; text-align: center; min-height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.loop-now-word { font-family: var(--serif); font-size: 26px; color: var(--text); }
+.loop-now-mean { font-size: 13px; color: var(--text2); }
+.loop-now.idle { color: var(--text3); }
+.form-compare-note { font-size: 12px; color: var(--text3); line-height: 1.6; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+.sov-zh { font-family: 'Noto Sans TC', var(--serif); }
+
+/* Grammar intro card */
+.grammar-intro-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; }
+.grammar-intro-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 10px; color: var(--text); }
+.grammar-intro-card p { font-size: 13px; color: var(--text2); line-height: 1.75; margin-bottom: 10px; }
+.grammar-intro-card .form-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.form-compare-card { background: var(--bg3); border-radius: var(--radius); padding: 12px 14px; }
+.form-compare-card .fc-label { font-size: 11px; color: var(--red); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 6px; text-transform: uppercase; }
+.form-compare-card .fc-jp { font-family: var(--serif); font-size: 17px; color: var(--text); margin-bottom: 4px; }
+.form-compare-card .fc-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+.grammar-translation { font-size: 13px; color: var(--text2); margin-top: 5px; }
+
+/* Listening, JLPT, About */
+.resource-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; }
+.resource-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 10px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.resource-card p { font-size: 13px; color: var(--text2); line-height: 1.8; margin-bottom: 12px; }
+.resource-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--red); color: #fff; border-radius: var(--radius); font-size: 13px; font-weight: 500; text-decoration: none; transition: all 0.15s; margin-top: 6px; }
+.resource-link:hover { background: #d04841; transform: translateY(-1px); }
+.resource-link.secondary { background: var(--bg3); color: var(--text); border: 1px solid var(--border2); }
+.resource-link.secondary:hover { background: var(--bg4); }
+.resource-tip { background: var(--yellow-bg); border: 1px solid rgba(210,153,34,0.3); border-radius: var(--radius); padding: 12px 16px; font-size: 13px; color: var(--yellow); margin-top: 12px; line-height: 1.6; }
+.shadowing-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 14px; }
+.shadow-step { background: var(--bg3); border-radius: var(--radius); padding: 14px; }
+.shadow-step-num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--red); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+.shadow-step-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; color: var(--text); }
+.shadow-step-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+.hku-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+.hku-card { background: var(--bg3); border-radius: var(--radius); padding: 16px; text-align: center; }
+.hku-card.featured { background: var(--red-light); border: 1px solid rgba(229,83,75,0.3); }
+.hku-level { font-size: 14px; font-weight: 600; color: var(--red); margin-bottom: 4px; }
+.hku-score { font-family: var(--serif); font-size: 32px; color: var(--text); line-height: 1; margin: 6px 0; }
+.hku-label { font-size: 11px; color: var(--text3); }
+.about-quote { border-left: 3px solid var(--red); padding: 8px 16px; font-style: italic; color: var(--text2); margin: 16px 0; font-size: 13px; line-height: 1.8; }
+.feature-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-top: 14px; }
+.feature-item { background: var(--bg3); border-radius: var(--radius); padding: 14px; }
+.feature-icon { font-size: 22px; margin-bottom: 6px; }
+.feature-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+.feature-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+/* Study tools */
+.topbar-stat {
+  min-width: 54px; height: 34px; padding: 0 10px; border: 1px solid var(--border2); border-radius: var(--radius);
+  background: var(--bg2); color: var(--text); display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-size: 12px; font-weight: 600;
+}
+.vocab-toolbar, .tool-panel {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1rem; margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.tool-input {
+  flex: 1 1 220px; min-height: 36px; border: 1px solid var(--border2); border-radius: var(--radius); background: var(--bg);
+  color: var(--text); padding: 8px 11px; font-family: inherit; font-size: 13px;
+}
+.tool-toggle { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text2); cursor: pointer; user-select: none; }
+.tool-toggle input { accent-color: var(--red); }
+.tool-pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border2); border-radius: 999px; padding: 6px 10px; color: var(--text2); background: var(--bg3); font-size: 12px; }
+.tool-btn { padding: 8px 12px; border: 1px solid var(--border2); border-radius: var(--radius); background: var(--bg3); color: var(--text2); cursor: pointer; font-size: 12px; transition: all 0.15s; }
+.tool-btn:hover { background: var(--bg4); color: var(--text); }
+.tool-btn.primary { background: var(--red); border-color: var(--red); color: #fff; }
+.tool-btn.good { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.tool-btn.warn { background: rgba(229,83,75,0.1); border-color: var(--red); color: var(--red); }
+.vocab-card.learned { border-color: rgba(63,185,80,0.35); background: var(--green-bg); }
+.vocab-card.due { border-color: rgba(210,153,34,0.35); }
+.srs-actions { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+.srs-meta { font-size: 11px; color: var(--text3); margin-top: 7px; }
+.empty-state { grid-column: 1 / -1; color: var(--text3); font-size: 13px; padding: 1rem; text-align: center; border: 1px dashed var(--border2); border-radius: var(--radius); }
+.grammar-progress { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 1rem; }
+.grammar-progress-top { display: flex; justify-content: space-between; gap: 12px; color: var(--text2); font-size: 12px; margin-bottom: 8px; }
+.contrast-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 10px; margin-top: 14px; }
+.contrast-card { background: var(--bg3); border-radius: var(--radius); padding: 13px; }
+.contrast-card h4 { font-size: 12px; color: var(--red); margin-bottom: 8px; font-weight: 600; }
+.contrast-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; padding: 6px 0; border-top: 1px solid var(--border); }
+.contrast-row:first-of-type { border-top: none; }
+.contrast-jp { font-family: var(--serif); color: var(--text); font-size: 14px; }
+.contrast-note { color: var(--text3); font-size: 11px; line-height: 1.5; margin-top: 7px; }
+.learn-row { display: flex; justify-content: flex-end; margin-top: 12px; }
+.quiz-tool { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; width: 100%; }
+.quiz-prompt-box { background: var(--bg3); border-radius: var(--radius); padding: 13px 14px; }
+.quiz-prompt-main { font-family: var(--serif); font-size: 20px; color: var(--text); }
+.quiz-prompt-sub { color: var(--text2); font-size: 12px; margin-top: 4px; }
+.answer-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.answer-row .tool-input { flex-basis: 260px; }
+.quiz-result { min-height: 24px; color: var(--text2); font-size: 13px; }
+.adjective-section { margin-top: 2rem; }
+.phrase-cats { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.phrases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.phrase-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.phrase-jp { font-family: var(--serif); font-size: 19px; color: var(--text); display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+.phrase-rom { color: var(--text3); font-size: 11px; margin-top: 5px; letter-spacing: .04em; }
+.phrase-meaning { color: var(--text2); font-size: 13px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+.kanji-trace-layout { display: grid; grid-template-columns: 320px 1fr; gap: 16px; align-items: start; }
+.kanji-trace-stage { position: relative; width: 300px; height: 300px; background: var(--bg); border: 1px solid var(--border2); border-radius: var(--radius); overflow: hidden; }
+.stroke-svg, .trace-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stroke-svg svg { width: 100%; height: 100%; display: block; }
+.stroke-svg line, .stroke-svg path { stroke: var(--text3); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; fill: none; opacity: .6; }
+.stroke-svg text { fill: var(--red); font-size: 8px; font-family: var(--sans); font-weight: 600; opacity: .9; }
+.trace-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--text3); font-size: 12px; text-align: center; padding: 1rem; }
+.trace-canvas { cursor: crosshair; touch-action: none; }
+.kanji-choice-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+.trace-info-panel { background: var(--bg3); border-radius: var(--radius); padding: 14px; }
+.recorder-panel { background: var(--bg3); border-radius: var(--radius); padding: 14px; margin-top: 14px; }
+.recorder-controls { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+.audio-playback { width: 100%; margin-top: 8px; display: none; }
+@media (max-width: 820px) {
+  .kanji-trace-layout { grid-template-columns: 1fr; }
+  .kanji-trace-stage { width: min(300px, 100%); height: min(300px, 88vw); }
+}
+
+@media (max-width: 820px) {
+  .verb-rule-grid { grid-template-columns: 1fr; }
+  .hku-grid { grid-template-columns: 1fr; }
+  .grammar-intro-card .form-compare { grid-template-columns: 1fr; }
+}
+
 .hamburger { display: none; position: fixed; top: 12px; left: 12px; z-index: 200; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 18px; color: var(--text); line-height: 1; }
 .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 49; }
 @media (max-width: 820px) {
@@ -298,21 +448,28 @@ button { font-family: inherit; }
       <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
     </div>
     <nav class="nav">
-      <div class="nav-section-title" data-i18n="nav_learn">Learn</div>
+      <div class="nav-section-title" data-i18n="nav_section_basics">Basics</div>
       <div class="nav-item active" onclick="goTo('hiragana')"><span class="icon">あ</span><span data-i18n="nav_hiragana">Hiragana</span><span class="nav-badge" id="badge-hira">0/46</span></div>
       <div class="nav-item" onclick="goTo('katakana')"><span class="icon">ア</span><span data-i18n="nav_katakana">Katakana</span><span class="nav-badge" id="badge-kata">0/46</span></div>
       <div class="nav-item" onclick="goTo('dakuten')"><span class="icon">が</span><span data-i18n="nav_dakuten">Dakuten ゛゜</span></div>
       <div class="nav-item" onclick="goTo('combos')"><span class="icon">きゃ</span><span data-i18n="nav_combos">Combos きゃ</span></div>
       <div class="nav-item" onclick="goTo('pitch')"><span class="icon">♪</span><span data-i18n="nav_pitch">Pitch Accent</span></div>
       <div class="nav-item" onclick="goTo('kanji')"><span class="icon">漢</span><span data-i18n="nav_kanji">Kanji Intro</span></div>
-      <div class="nav-section-title">JLPT N5</div>
+      <div class="nav-item" onclick="goTo('chart')"><span class="icon">表</span><span data-i18n="nav_chart">Full Chart</span></div>
+      <div class="nav-section-title" data-i18n="nav_section_n5core">N5 Core</div>
       <div class="nav-item" onclick="goTo('vocab')"><span class="icon">本</span><span data-i18n="nav_vocab">Vocabulary</span></div>
       <div class="nav-item" onclick="goTo('grammar')"><span class="icon">文</span><span data-i18n="nav_grammar">Grammar</span></div>
+      <div class="nav-item" onclick="goTo('verbs')"><span class="icon">活</span><span data-i18n="nav_verbs">Verb Conjugation</span></div>
+      <div class="nav-item" onclick="goTo('adjectives')"><span class="icon">形</span><span data-i18n="nav_adjectives">Adjective Conjugation</span></div>
       <div class="nav-item" onclick="goTo('passages')"><span class="icon">読</span><span data-i18n="nav_passages">Passages</span></div>
-      <div class="nav-section-title" data-i18n="nav_practice">Practice</div>
+      <div class="nav-section-title" data-i18n="nav_section_skills">Skills & Tests</div>
+      <div class="nav-item" onclick="goTo('listening')"><span class="icon">聴</span><span data-i18n="nav_listening">Listening</span></div>
+      <div class="nav-item" onclick="goTo('phrases')"><span class="icon">会</span><span data-i18n="nav_phrases">Common Phrases</span></div>
       <div class="nav-item" onclick="goTo('flashcards')"><span class="icon">卡</span><span data-i18n="nav_flashcards">Flashcards</span></div>
       <div class="nav-item" onclick="goTo('quiz')"><span class="icon">問</span><span data-i18n="nav_quiz">Quiz</span></div>
-      <div class="nav-item" onclick="goTo('chart')"><span class="icon">表</span><span data-i18n="nav_chart">Full Chart</span></div>
+      <div class="nav-item" onclick="goTo('jlpt')"><span class="icon">試</span><span data-i18n="nav_jlpt">JLPT Tests</span></div>
+      <div class="nav-section-title" data-i18n="nav_section_more">More</div>
+      <div class="nav-item" onclick="goTo('about')"><span class="icon">★</span><span data-i18n="nav_about">About Me</span></div>
     </nav>
     <div class="sidebar-footer" data-i18n="footer_made">Made with care for Japanese learners</div>
   </aside>
@@ -324,6 +481,7 @@ button { font-family: inherit; }
         <div class="topbar-sub" id="page-sub">Learn the 46 basic hiragana characters</div>
       </div>
       <div class="topbar-controls">
+        <div class="topbar-stat" id="streak-pill" title="Daily streak">🔥 <span id="daily-streak">0</span></div>
         <div class="script-toggle" id="script-toggle">
           <button class="script-btn active" onclick="setScript('hiragana')" data-i18n="hiragana_btn">Hiragana ひ</button>
           <button class="script-btn" onclick="setScript('katakana')" data-i18n="katakana_btn">Katakana カ</button>
@@ -380,6 +538,11 @@ button { font-family: inherit; }
     <div class="page" id="page-vocab">
       <div class="section-head"><h2 data-i18n="vocab_h">JLPT N5 Vocabulary</h2><span class="sub" data-i18n="vocab_sub">Essential words with pitch accent</span></div>
       <div class="tip-box" id="vocab-tip"></div>
+      <div class="vocab-toolbar">
+        <input class="tool-input" id="vocab-search" type="search" placeholder="Search vocabulary / 搜尋單字" oninput="setVocabSearch(this.value)">
+        <label class="tool-toggle"><input id="vocab-unlearned-only" type="checkbox" onchange="setVocabUnlearned(this.checked)"> <span>Show only unlearned</span></label>
+        <span class="tool-pill" id="vocab-due-count">Due today: 0</span>
+      </div>
       <div class="vocab-cats" id="vocab-cats"></div>
       <div class="vocab-grid" id="vocab-grid"></div>
     </div>
@@ -403,7 +566,13 @@ button { font-family: inherit; }
     <div class="page" id="page-flashcards">
       <div class="flashcard-container">
         <div class="section-head"><h2 data-i18n="fc_h">Flashcard Practice</h2></div>
-        <div class="quiz-mode-switch">
+        <div class="quiz-mode-switch" id="fc-level-switch">
+          <button class="mode-btn active" onclick="setFcLevel('kana',this)">五十音</button>
+          <button class="mode-btn" onclick="setFcLevel('N5',this)">N5</button>
+          <button class="mode-btn" onclick="setFcLevel('N4',this)">N4</button>
+          <button class="mode-btn" onclick="setFcLevel('N3',this)">N3</button>
+        </div>
+        <div class="quiz-mode-switch" id="fc-script-switch">
           <button class="mode-btn active" onclick="setFcScript('hiragana',this)" data-i18n="hiragana_btn">Hiragana ひ</button>
           <button class="mode-btn" onclick="setFcScript('katakana',this)" data-i18n="katakana_btn">Katakana カ</button>
           <button class="mode-btn" onclick="setFcScript('both',this)" data-i18n="both_btn">Both</button>
@@ -425,10 +594,22 @@ button { font-family: inherit; }
 
     <div class="page" id="page-quiz">
       <div class="quiz-container">
-        <div class="quiz-mode-switch">
+        <div class="quiz-mode-switch" id="quiz-level-switch">
+          <button class="mode-btn active" onclick="setQuizLevel('kana',this)">五十音</button>
+          <button class="mode-btn" onclick="setQuizLevel('N5',this)">N5</button>
+          <button class="mode-btn" onclick="setQuizLevel('N4',this)">N4</button>
+          <button class="mode-btn" onclick="setQuizLevel('N3',this)">N3</button>
+        </div>
+        <div class="quiz-mode-switch" id="quiz-kana-modes">
           <button class="mode-btn active" onclick="setQuizMode('kana-to-rom',this)" data-i18n="qm_k2r">Kana to Romaji</button>
           <button class="mode-btn" onclick="setQuizMode('rom-to-kana',this)" data-i18n="qm_r2k">Romaji to Kana</button>
           <button class="mode-btn" onclick="setQuizMode('both-scripts',this)" data-i18n="qm_mixed">Mixed</button>
+        </div>
+        <div class="quiz-mode-switch" id="quiz-vocab-modes" style="display:none">
+          <button class="mode-btn active" onclick="setVocabQuizMode('m2w',this)" data-i18n="qm_m2w">Meaning → Word</button>
+          <button class="mode-btn" onclick="setVocabQuizMode('w2m',this)" data-i18n="qm_w2m">Word → Meaning</button>
+          <button class="mode-btn" onclick="setVocabQuizMode('k2r',this)" data-i18n="qm_k2r2">Kanji → Reading</button>
+          <button class="mode-btn" onclick="setVocabQuizMode('fill',this)" data-i18n="qm_fill">Fill the Blank</button>
         </div>
         <div class="quiz-header">
           <div class="quiz-stat"><div class="quiz-stat-num green" id="qs-correct">0</div><div class="quiz-stat-label" data-i18n="quiz_correct">Correct</div></div>
@@ -445,6 +626,49 @@ button { font-family: inherit; }
       </div>
     </div>
 
+    <div class="page" id="page-verbs">
+      <div class="section-head"><h2 data-i18n="verbs_h">Verb Conjugation 動詞變型</h2><span class="sub" data-i18n="verbs_sub">JLPT N5 → N3 conjugation forms</span></div>
+      <div class="tip-box" id="verbs-tip"></div>
+      <div class="jlpt-level-tabs" id="verb-tabs">
+        <button class="jlpt-tab active" onclick="setVerbLevel('N5',this)">N5</button>
+        <button class="jlpt-tab" onclick="setVerbLevel('N4',this)">N4</button>
+        <button class="jlpt-tab" onclick="setVerbLevel('N3',this)">N3</button>
+      </div>
+      <div id="verb-quiz-content"></div>
+      <div id="verbs-content"></div>
+    </div>
+
+    <div class="page" id="page-adjectives">
+      <div class="section-head"><h2 data-i18n="adj_h">Adjective Conjugation 形容詞變化</h2><span class="sub" data-i18n="adj_sub">JLPT N5 → N3 adjective forms</span></div>
+      <div class="tip-box" id="adj-tip"></div>
+      <div class="jlpt-level-tabs" id="adj-tabs">
+        <button class="jlpt-tab active" onclick="setAdjLevel('N5',this)">N5</button>
+        <button class="jlpt-tab" onclick="setAdjLevel('N4',this)">N4</button>
+        <button class="jlpt-tab" onclick="setAdjLevel('N3',this)">N3</button>
+      </div>
+      <div id="adjectives-page-content"></div>
+    </div>
+
+    <div class="page" id="page-listening">
+      <div class="section-head"><h2 data-i18n="listen_h">Listening 聴解</h2><span class="sub" data-i18n="listen_sub">Train your ears with native content</span></div>
+      <div id="listening-content"></div>
+    </div>
+
+    <div class="page" id="page-phrases">
+      <div class="section-head"><h2 data-i18n="phrases_h">Common Phrases 場面會話</h2><span class="sub" data-i18n="phrases_sub">Greetings, restaurant, travel, and shopping</span></div>
+      <div id="phrases-content"></div>
+    </div>
+
+    <div class="page" id="page-jlpt">
+      <div class="section-head"><h2 data-i18n="jlpt_h">JLPT Tests 日本語能力試験</h2><span class="sub" data-i18n="jlpt_sub">Official sample papers and test info</span></div>
+      <div id="jlpt-content"></div>
+    </div>
+
+    <div class="page" id="page-about">
+      <div class="section-head"><h2 data-i18n="about_h">About Me / About This Site</h2><span class="sub" data-i18n="about_sub">Why I built this</span></div>
+      <div id="about-content"></div>
+    </div>
+
     <div class="page" id="page-chart">
       <div class="section-head"><h2 data-i18n="chart_h">Complete Reference Chart</h2><span class="sub" data-i18n="chart_sub">All 92 kana at a glance</span></div>
       <div style="overflow-x:auto"><table class="chart-table" id="chart-table"></table></div>
@@ -459,6 +683,12 @@ const T = {
     nav_hiragana:'Hiragana', nav_katakana:'Katakana', nav_dakuten:'Dakuten ゛゜', nav_combos:'Combos きゃ',
     nav_pitch:'Pitch Accent', nav_kanji:'Kanji Intro', nav_vocab:'Vocabulary', nav_grammar:'Grammar',
     nav_passages:'Passages', nav_practice:'Practice', nav_flashcards:'Flashcards', nav_quiz:'Quiz', nav_chart:'Full Chart',
+    nav_section_skills:'Skills & Tests', nav_section_more:'More', nav_section_basics:'Basics', nav_section_n5core:'N5 Core',
+    nav_adjectives:'Adjective Conjugation',
+    adj_h:'Adjective Conjugation 形容詞變化', adj_sub:'JLPT N5 → N3 adjective forms',
+    adj_tip:'Japanese has two adjective types: <strong>い-adjectives (イA)</strong> conjugate by changing their final い, and <strong>な-adjectives (ナA)</strong> behave like nouns and take な before a noun. Each form below shows the rule for both.',
+    qm_m2w:'Meaning → Word', qm_w2m:'Word → Meaning', qm_k2r2:'Kanji → Reading', qm_fill:'Fill the Blank',
+    nav_verbs:'Verb Conjugation', nav_listening:'Listening', nav_phrases:'Common Phrases', nav_jlpt:'JLPT Tests', nav_about:'About Me',
     footer_made:'Made with care for Japanese learners', hiragana_btn:'Hiragana ひ', katakana_btn:'Katakana カ', both_btn:'Both',
     chip_46:'46 characters', chip_curved:'Curved, flowing strokes', chip_native:'Used for native Japanese words',
     chip_angular:'Angular, sharp strokes', chip_loan:'Loanwords and foreign names',
@@ -468,6 +698,12 @@ const T = {
     combos_h:'Combination Kana', combos_sub:'33 compound sounds', combos_tip:'Combine an I-row kana with small や, ゆ, or よ to create sounds like きゃ, きゅ, きょ.',
     vocab_h:'JLPT N5 Vocabulary', vocab_sub:'Essential words with pitch accent', vocab_tip:'Pitch accent is not tested on JLPT N5, but noticing it early helps your pronunciation sound more natural.',
     grammar_h:'JLPT N5 Grammar', grammar_sub:'Sentence structure and functional vocab', grammar_tab_struct:'Sentence Structure', grammar_tab_func:'Functional Vocab',
+    verbs_h:'Verb Conjugation 動詞變型', verbs_sub:'JLPT N5 → N3 conjugation forms',
+    verbs_tip:'Japanese verbs split into 3 groups: <strong>Group 1 (五段/Godan)</strong> end in any -u sound except る (or are る-verbs that follow Godan rules), <strong>Group 2 (一段/Ichidan)</strong> end in いる/える, and <strong>Group 3 (Irregular)</strong> are する and 来る. Each form follows predictable rules per group.',
+    listen_h:'Listening 聴解', listen_sub:'Train your ears with native content',
+    phrases_h:'Common Phrases 場面會話', phrases_sub:'Greetings, restaurant, travel, and shopping',
+    jlpt_h:'JLPT Tests 日本語能力試験', jlpt_sub:'Official sample papers and test info',
+    about_h:'About Me / About This Site', about_sub:'Why I built this',
     passages_h:'N5 Reading Passages', passages_sub:'Click any sentence to reveal its translation', passages_tip:'Read the Japanese first, then click each sentence to check your understanding.',
     fc_h:'Flashcard Practice', fc_tap:'tap to reveal', fc_again:'Again', fc_good:'Got it',
     qm_k2r:'Kana to Romaji', qm_r2k:'Romaji to Kana', qm_mixed:'Mixed', quiz_correct:'Correct', quiz_wrong:'Wrong', quiz_acc:'Accuracy', quiz_next:'Next',
@@ -480,6 +716,12 @@ const T = {
     nav_hiragana:'平假名', nav_katakana:'片假名', nav_dakuten:'濁音 ゛゜', nav_combos:'拗音 きゃ',
     nav_pitch:'音調標記', nav_kanji:'漢字入門', nav_vocab:'單字', nav_grammar:'文法',
     nav_passages:'閱讀', nav_practice:'練習', nav_flashcards:'單字卡', nav_quiz:'測驗', nav_chart:'完整表',
+    nav_section_skills:'技能與考試', nav_section_more:'更多', nav_section_basics:'基礎', nav_section_n5core:'N5 核心',
+    nav_adjectives:'形容詞變型',
+    adj_h:'形容詞變化 Adjective Conjugation', adj_sub:'JLPT N5 → N3 形容詞變化',
+    adj_tip:'日語形容詞分兩類：<strong>い形容詞（イA）</strong>透過改變字尾的 い 來變化；<strong>な形容詞（ナA）</strong>像名詞一樣變化，修飾名詞時加 な。下面每個形式都列出兩類的規則。',
+    qm_m2w:'意思 → 單字', qm_w2m:'單字 → 意思', qm_k2r2:'漢字 → 讀音', qm_fill:'填空',
+    nav_verbs:'動詞變型', nav_listening:'聴解 聽力', nav_phrases:'場面會話', nav_jlpt:'JLPT 考試', nav_about:'關於我',
     footer_made:'為日語學習者用心打造', hiragana_btn:'平假名 ひ', katakana_btn:'片假名 カ', both_btn:'全部',
     chip_46:'46個字符', chip_curved:'圓潤、流暢的筆畫', chip_native:'用於日語固有詞',
     chip_angular:'稜角、銳利的筆畫', chip_loan:'外來語與外國名字',
@@ -489,6 +731,12 @@ const T = {
     combos_h:'拗音', combos_sub:'33個複合音', combos_tip:'把I段假名與小寫 や、ゆ、よ 結合，形成 きゃ、きゅ、きょ 這類聲音。',
     vocab_h:'JLPT N5 單字', vocab_sub:'必備單字與音調標記', vocab_tip:'音調不在JLPT N5考試範圍內，但及早留意能讓發音更自然。',
     grammar_h:'JLPT N5 文法', grammar_sub:'句型結構與功能性詞彙', grammar_tab_struct:'句型結構', grammar_tab_func:'功能性詞彙',
+    verbs_h:'動詞變型 Verb Conjugation', verbs_sub:'JLPT N5 → N3 動詞變化形式',
+    verbs_tip:'日語動詞分為三組：<strong>第一類動詞（五段／Godan）</strong>以非「る」結尾的う段音結尾，或部分依循五段規則的「る」動詞；<strong>第二類動詞（一段／Ichidan）</strong>以いる／える結尾；<strong>第三類動詞（不規則）</strong>只有「する」和「来る」。每一形式都有固定的變化規則。',
+    listen_h:'聴解 聽力訓練', listen_sub:'用母語人士的內容訓練耳朵',
+    phrases_h:'場面會話 Common Phrases', phrases_sub:'問候、餐廳、旅行與購物常用句',
+    jlpt_h:'JLPT 日本語能力試験', jlpt_sub:'官方模擬試題與考試資訊',
+    about_h:'關於我 / 關於這個網站', about_sub:'我為什麼做這個',
     passages_h:'N5 閱讀練習', passages_sub:'點擊任何句子顯示翻譯', passages_tip:'先讀日文，再點擊句子確認理解。',
     fc_h:'單字卡練習', fc_tap:'點擊翻面', fc_again:'再來', fc_good:'答對',
     qm_k2r:'假名到羅馬字', qm_r2k:'羅馬字到假名', qm_mixed:'混合', quiz_correct:'答對', quiz_wrong:'答錯', quiz_acc:'正確率', quiz_next:'下一題',
@@ -1135,120 +1383,96 @@ const VOCAB_SOURCE = String.raw`
 `;
 
 const GRAMMAR_STRUCT_SOURCE = String.raw`
-# 名詞述語文
-～は～です	N1 + は + N2 + です	肯定判斷	私(わたし)は学生(がくせい)です。
-～は～ではありません	N1 + は + N2 + ではありません	否定判斷	先生(せんせい)ではありません。
-～は～でした	N1 + は + N2 + でした	過去肯定	昨日(きのう)は日曜日(にちようび)でした。
-～は～ではありませんでした	N1 + は + N2 + ではありませんでした	過去否定	休(やす)みではありませんでした。
-～は～だ (普通形)	N1 + は + N2 + だ	斷定	彼(かれ)は日本人(にほんじん)だ。
-～は～ではない	N1 + は + N2 + ではない	否定普通	日本人ではない。
-～は～だった	N1 + は + N2 + だった	過去普通	先生だった。
-～は～ではなかった	N1 + は + N2 + ではなかった	過去否定普通	先生ではなかった。
-～は～で、～です	N1 + は + N2 + で、N3 + です	並列中頓	田中(たなか)さんは日本人(にほんじん)で、会社員(かいしゃいん)です。
-# 存在文
-～に～がある／いる	場所 + に + N + が + ある（物）／いる（人動物）	存在	机(つくえ)の上(うえ)に本(ほん)があります。
-～は～にある／いる	N + は + 場所 + にある／いる	位置	図書館(としょかん)は駅(えき)の前(まえ)にあります。
-# 動詞述語文（ます形・普通形）
-Vます／Vません	Vます形 + ます／ません	禮貌肯定/否定	毎日(まいにち)勉強(べんきょう)します。
-Vました／Vませんでした	Vます形 + ました／ませんでした	禮貌過去	昨日(きのう)映画(えいが)を見(み)ました。
-V辞書形 (普通形)	V辞書形	普通肯定非過去	毎日勉強する。
-Vない形	Vない形	普通否定	勉強しない。
-Vた形	Vた形	普通過去	映画を見た。
-Vなかった形	Vなかった形	普通過去否定	見なかった。
-# 形容詞述語文
-イAいです	イA辞書形 + です	イ形容詞肯定	天気(てんき)がいいです。
-イAくないです	イA語幹 + くない + です	イ形容詞否定	寒(さむ)くないです。
-イAかったです	イA語幹 + かった + です	過去肯定	楽(たの)しかったです。
-イAくなかったです	イA語幹 + くなかった + です	過去否定	暑(あつ)くなかったです。
-ナAです	ナA語幹 + です	ナ形容詞肯定	静(しず)かです。
-ナAではありません	ナA語幹 + ではありません	ナ形容詞否定	有名(ゆうめい)ではありません。
-ナAでした	ナA語幹 + でした	ナ形容詞過去	便利(べんり)でした。
-ナAではありませんでした	ナA語幹 + ではありませんでした	ナ形容詞過去否定	不便(ふべん)ではありませんでした。
-# 動詞の基本活用接続パターン
-ます形	語尾-u → -i + ます (書く→書きます)	禮貌體	
-ない形	-u → -a + ない (書く→書かない)	否定	
-て形	く→いて、ぐ→いで、す→して、う/つ/る→って、む/ぶ/ぬ→んで	接續	
-た形	て形と同様、て→た、で→だ	過去	
-辞書形	原形	普通體、名詞修飾	
-可能形	-u → -e + る (書ける)	能力	
-意向形	-u → -o + う (書こう)	勸誘	
-# 主な複合文型
-～ている	Vて形 + いる	進行中／狀態	今(いま)勉強(べんきょう)しています。
-～てください	Vて形 + ください	請～	待(ま)ってください。
-～ないでください	Vない形 + でください	請不要～	写真(しゃしん)を撮(と)らないでください。
-～てから	Vて形 + から	～之後	食(た)べてから出(で)かけます。
-～たことがある	Vた形 + ことがある	曾經～過	日本(にほん)に行(い)ったことがあります。
-～たり～たりする	Vた形 + り + Vた形 + り + する	又～又～	読(よ)んだり書(か)いたりします。
-～ながら	Vます形 + ながら	一邊～一邊～	音楽(おんがく)を聞(き)きながら勉強(べんきょう)します。
-～たい	Vます形 + たい	想要～（第一人稱）	日本(にほん)に行(い)きたいです。
-～たがっている	Vます形 + たがっている	想要～（第三人稱）	子供(こども)は遊(あそ)びたがっています。
-～つもり	V辞書形 / Vない形 + つもり	打算～	来年(らいねん)留学(りゅうがく)するつもりです。
-～前(まえ)に	V辞書形 + 前(まえ)に	～之前	寝(ね)る前(まえ)に本(ほん)を読(よ)みます。
-～ことができる	V辞書形 + ことができる	能夠～	日本語(にほんご)を話(はな)すことができます。
-～と思う	普通形 + と思う	我覺得～	明日(あした)雨(あめ)が降(ふ)ると思(おも)います。
-～と言う	普通形 + と言う	說～／叫做～	彼(かれ)は来(く)ると言(い)いました。
-～でしょう／だろう	普通形 + でしょう／だろう	推量	明日(あした)は晴(は)れるでしょう。
-～かもしれない	普通形 + かもしれない	也許～	雨(あめ)かも。
-～になる／くなる	N + になる／イAく + なる	變成～	暖(あたた)かくなりました。
-～にする／くする	N + にする／イAく + する	使變成	部屋(へや)をきれいにします。
-～なければならない	Vない形 + なければならない	必須～	宿題(しゅくだい)をしなければなりません。
-～なくてもいい	Vない形 + なくてもいい	不必～	日曜日(にちようび)は働(はたら)かなくてもいいです。
-～てはいけない	Vて形 + はいけない	不可以～	ここでタバコを吸(す)ってはいけません。
-～てもいい	Vて形 + もいい	可以～	写真(しゃしん)を撮(と)ってもいいですか。
-～たほうがいい	Vた形 + ほうがいい	最好～	早(はや)く寝(ね)たほうがいいです。
-～ないほうがいい	Vない形 + ほうがいい	最好不要～	お酒(さけ)を飲(の)まないほうがいい。
-～でしょう／ましょう	Vます形 + ましょう	勸誘／推量	一緒(いっしょ)に行(い)きましょう。
-～ませんか	Vます形 + ませんか	勸誘	一緒(いっしょ)に食(た)べませんか。
-～かどうか	普通形 + かどうか	是否～	来(く)るかどうか分(わ)かりません。
-～のほうが～より	N1 + のほうが + N2 + より + 形容詞	比較	夏(なつ)のほうが冬(ふゆ)より好(す)きです。
-～で～が一番～	範囲 + で + N + が一番 + 形容詞	最～	果物(くだもの)の中(なか)でいちごが一番(いちばん)好(す)きです。
+# 名詞述語文 | Noun Predicate Sentences
+～は～です	N1 + は + N2 + です	肯定判斷	Polite affirmative ("A is B")	私(わたし)は学生(がくせい)です。	I am a student.
+～は～ではありません	N1 + は + N2 + ではありません	否定判斷	Polite negative ("A is not B"). In casual speech "ではありません" becomes "じゃない".	先生(せんせい)ではありません。	(I) am not a teacher.
+～は～でした	N1 + は + N2 + でした	過去肯定	Polite past affirmative ("A was B")	昨日(きのう)は日曜日(にちようび)でした。	Yesterday was Sunday.
+～は～ではありませんでした	N1 + は + N2 + ではありませんでした	過去否定	Polite past negative ("A was not B")	休(やす)みではありませんでした。	(It) was not a holiday.
+～は～で、～です	N1 + は + N2 + で、N3 + です	並列中頓	Combine two noun statements ("A is B and C"). "で" is the て-form of だ.	田中(たなか)さんは日本人(にほんじん)で、会社員(かいしゃいん)です。	Mr. Tanaka is Japanese, and is an office worker.
+# 存在文 | Existence Sentences
+～に～がある／いる	場所 + に + N + が + ある／いる	存在	"There is/are ~" — states that something exists at a place. (For the いる vs ある distinction, see the card at the top of this page.)	机(つくえ)の上(うえ)に本(ほん)があります。	There is a book on the desk.
+～は～にある／いる	N + は + 場所 + にある／いる	位置	"~ is located at ~". Used when the topic (the thing being located) is already known.	図書館(としょかん)は駅(えき)の前(まえ)にあります。	The library is in front of the station.
+# 動詞述語文 | Verb Predicate Sentences
+Vます／Vません	Vます形 + ます／ません	禮貌肯定／否定	Polite non-past affirmative / negative. (See the Verb Conjugation page for how to form ます形.)	毎日(まいにち)勉強(べんきょう)します。	(I) study every day.
+Vました／Vませんでした	Vます形 + ました／ませんでした	禮貌過去	Polite past affirmative / negative.	昨日(きのう)映画(えいが)を見(み)ました。	(I) watched a movie yesterday.
+# 形容詞述語文 | Adjective Predicate Sentences
+# 主な複合文型 | Common Compound Patterns
+～ている	Vて形 + いる	進行中／狀態	Ongoing action ("is doing") or resulting state ("has done and still is").	今(いま)勉強(べんきょう)しています。	(I) am studying now.
+～てください	Vて形 + ください	請～	Polite request ("Please do ~").	待(ま)ってください。	Please wait.
+～ないでください	Vない形 + でください	請不要～	"Please do not ~".	写真(しゃしん)を撮(と)らないでください。	Please do not take photos.
+～てから	Vて形 + から	～之後	"After doing ~".	食(た)べてから出(で)かけます。	(I)'ll go out after eating.
+～たことがある	Vた形 + ことがある	曾經～過	"Have had the experience of ~".	日本(にほん)に行(い)ったことがあります。	I have been to Japan before.
+～たり～たりする	Vた形 + り + Vた形 + り + する	又～又～	List sample actions ("do things like ~ and ~").	読(よ)んだり書(か)いたりします。	(I) do things like reading and writing.
+～ながら	Vます形 + ながら	一邊～一邊～	Two actions at once by the same subject ("while doing ~").	音楽(おんがく)を聞(き)きながら勉強(べんきょう)します。	(I) study while listening to music.
+～たい	Vます形 + たい	想要～（第一人稱）	"I want to ~". Used for the speaker's own desires.	日本(にほん)に行(い)きたいです。	I want to go to Japan.
+～たがっている	Vます形 + たがっている	想要～（第三人稱）	"Someone else wants to ~" — used in third person.	子供(こども)は遊(あそ)びたがっています。	The child wants to play.
+～つもり	V辞書形／Vない形 + つもり	打算～	"Intend to ~".	来年(らいねん)留学(りゅうがく)するつもりです。	(I) intend to study abroad next year.
+～前(まえ)に	V辞書形 + 前(まえ)に	～之前	"Before doing ~".	寝(ね)る前(まえ)に本(ほん)を読(よ)みます。	(I) read books before going to bed.
+～ことができる	V辞書形 + ことができる	能夠～	"Be able to ~". (Equivalent to the potential form.)	日本語(にほんご)を話(はな)すことができます。	(I) can speak Japanese.
+～と思う	普通形 + と思う	我覺得～	"I think that ~". The clause before と is in plain form.	明日(あした)雨(あめ)が降(ふ)ると思(おも)います。	I think it will rain tomorrow.
+～と言う	普通形 + と言う	說～／叫做～	"Said that ~" or "is called ~".	彼(かれ)は来(く)ると言(い)いました。	He said he would come.
+～でしょう／だろう	普通形 + でしょう／だろう	推量	Conjecture ("probably ~"). でしょう is polite, だろう is plain.	明日(あした)は晴(は)れるでしょう。	It will probably be sunny tomorrow.
+～かもしれない	普通形 + かもしれない	也許～	"Might / maybe ~". Less certain than でしょう.	雨(あめ)かもしれません。	It might rain.
+～になる／くなる	N + になる／イAく + なる	變成～	Change of state ("becomes ~"). For な-adj and nouns use になる; for い-adj drop い, add くなる.	暖(あたた)かくなりました。	(It) has become warm.
+～にする／くする	N + にする／イAく + する	使變成	"Make / decide ~". Active counterpart of ～になる.	部屋(へや)をきれいにします。	(I)'ll make the room clean.
+～なければならない	Vない形 + なければならない	必須～	"Must do ~" (drop ない, add なければならない). Casual: ～なきゃ.	宿題(しゅくだい)をしなければなりません。	(I) have to do my homework.
+～なくてもいい	Vない形 + なくてもいい	不必～	"Do not have to ~".	日曜日(にちようび)は働(はたら)かなくてもいいです。	(You) do not have to work on Sundays.
+～てはいけない	Vて形 + はいけない	不可以～	"Must not ~" (prohibition).	ここでタバコを吸(す)ってはいけません。	You must not smoke here.
+～てもいい	Vて形 + もいい	可以～	"May / it is OK to ~". Asks or grants permission.	写真(しゃしん)を撮(と)ってもいいですか。	May I take a photo?
+～たほうがいい	Vた形 + ほうがいい	最好～	"You had better ~" (advice).	早(はや)く寝(ね)たほうがいいです。	You had better sleep early.
+～ないほうがいい	Vない形 + ほうがいい	最好不要～	"You had better not ~".	お酒(さけ)を飲(の)まないほうがいい。	You had better not drink alcohol.
+～ましょう	Vます形 + ましょう	勸誘／提議	"Let's ~" — polite invitation.	一緒(いっしょ)に行(い)きましょう。	Let's go together.
+～ませんか	Vます形 + ませんか	勸誘	"Would you like to ~?" — softer than ましょう.	一緒(いっしょ)に食(た)べませんか。	Would you like to eat together?
+～かどうか	普通形 + かどうか	是否～	"Whether or not ~".	来(く)るかどうか分(わ)かりません。	(I) do not know whether (he) will come.
+～のほうが～より	N1 + のほうが + N2 + より + 形容詞	比較	Comparison: "A is more ~ than B".	夏(なつ)のほうが冬(ふゆ)より好(す)きです。	(I) like summer more than winter.
+～で～が一番～	範囲 + で + N + が一番 + 形容詞	最～	"Among ~, ~ is the most ~".	果物(くだもの)の中(なか)でいちごが一番(いちばん)好(す)きです。	Among fruits, strawberries are my favorite.
 `;
 
 const GRAMMAR_FUNC_SOURCE = String.raw`
-# 格助詞
-は	N + は	主題	私(わたし)は学生(がくせい)です。
-が	N + が	主語／対象（好き等）	雨(あめ)が降(ふ)る。
-を	N + を	目的語／経過場所	本(ほん)を読(よ)む。公園(こうえん)を散歩(さんぽ)する。
-に	N + に	時間・存在場所・着点・対象	7時(じ)に起(お)きる。学校(がっこう)に行(い)く。
-へ	N + へ	方向（に近い）	日本(にほん)へ行(い)く。
-で	N + で	場所・手段・原因	図書館(としょかん)で勉強(べんきょう)する。バスで行(い)く。
-と	N + と	共同相手・並列・引用	友達(ともだち)と遊(あそ)ぶ。
-や	N + や + N	部分列挙	本(ほん)やノートを買(か)う。
-から	N + から	起点（時間・場所）	9時(じ)から。駅(えき)から歩(ある)く。
-まで	N + まで	終点	5時(じ)まで。
-の	N + の + N	所有・所属・内容	私(わたし)の本(ほん)。
-# 副助詞・とりたて助詞
-も	N + も	也	私(わたし)も行(い)きます。
-しか～ない	N + しか + Vない	限定（僅有）	100円(えん)しかありません。
-だけ	N + だけ	限定（只有）	水(みず)だけ飲(の)みました。
-ずつ	N + ずつ	每～各～	一人(ひとり)ずつください。
-など	N + など	示例	パンなどを食(た)べる。
-か	N + か + N	選擇	コーヒーか紅茶(こうちゃ)。
-# 終助詞・間投助詞
-か	普通形／丁寧形 + か	疑問	日本人(にほんじん)ですか。
-ね	文 + ね	確認・共感	いい天気(てんき)ですね。
-よ	文 + よ	告知・強調	時間(じかん)ですよ。
-わ	文 + わ	感嘆（女性的）	きれいだわ。
-かな	普通形 + かな	自問・軽い疑問	明日(あした)晴(は)れるかな。
-# 接続詞
-そして	文頭	累加	朝(あさ)ご飯(はん)を食(た)べました。そして学校(がっこう)へ行(い)きました。
-でも	文頭	逆接（口語）	高(たか)いです。でも買(か)います。
-しかし	文頭	逆接（やや硬い）	しかし、問題(もんだい)がある。
-それから	文頭	添加	買(か)い物(もの)をしました。それから映画(えいが)を見(み)ました。
-それに	文頭	累加	安(やす)いし、それに美味(おい)しい。
-それで	文頭	原因・理由	電車(でんしゃ)が遅(おく)れました。それで遅刻(ちこく)しました。
-ところで	文頭	話題転換	ところで、明日(あした)の予定(よてい)は？
-# 副詞
-あまり～ない	副詞	不太～	あまり好(す)きじゃない。
-全然(ぜんぜん)～ない	副詞	完全不～	全然(ぜんぜん)わかりません。
-よく	副詞	經常／很好地	よく映画(えいが)を見(み)ます。
-ときどき	副詞	有時	ときどき雨(あめ)が降(ふ)る。
-いつも	副詞	總是	いつも7時(じ)に起(お)きる。
-もう	副詞	已經	もう食(た)べました。
-まだ	副詞	尚未	まだ食(た)べていません。
-すぐ	副詞	馬上	すぐ来(き)ます。
-ちょっと	副詞	稍微	ちょっと待(ま)って。
-たくさん	副詞	很多	人(ひと)がたくさんいます。
+# 格助詞 | Case Particles
+は	N + は	主題	Topic marker ("as for ~"). Marks what the sentence is about.	私(わたし)は学生(がくせい)です。	I am a student.
+が	N + が	主語／対象	Subject marker; also marks the object of feeling verbs like 好き / 分かる.	雨(あめ)が降(ふ)る。	It rains. / The rain falls.
+を	N + を	目的語／経過場所	Direct-object marker; also marks the path traversed with motion verbs.	本(ほん)を読(よ)む。	(I) read a book.
+に	N + に	時間・場所・對象	Marks a specific time, a location of existence, a destination, or an indirect object.	7時(じ)に起(お)きる。	(I) get up at 7 o'clock.
+へ	N + へ	方向	Marks direction (often interchangeable with に for movement).	日本(にほん)へ行(い)く。	(I) go to Japan.
+で	N + で	場所／手段／原因	Place where an action happens, the means used, or the cause.	図書館(としょかん)で勉強(べんきょう)する。	(I) study at the library.
+と	N + と	共動／引用	"Together with ~"; also marks quoted content.	友達(ともだち)と遊(あそ)ぶ。	(I) play with friends.
+や	N + や + N	部分列舉	"~ and ~ (among others)" — non-exhaustive list.	本(ほん)やノートを買(か)う。	(I) buy books, notebooks, and so on.
+から	N + から	起點	Starting point in time or place ("from ~").	駅(えき)から歩(ある)く。	(I) walk from the station.
+まで	N + まで	終點	Ending point ("until / up to ~").	5時(じ)まで。	Until 5 o'clock.
+の	N + の + N	所有／所屬	Connects nouns: possession, attribute, or membership.	私(わたし)の本(ほん)。	My book.
+# 副助詞 | Adverbial / Focus Particles
+も	N + も	也	"Also / too / even".	私(わたし)も行(い)きます。	I will go too.
+しか～ない	N + しか + Vない	限定（僅有）	"Only ~" (always paired with a negative verb).	100円(えん)しかありません。	(I) have only 100 yen.
+だけ	N + だけ	限定（只有）	"Only ~" — neutral, can be used with affirmative verbs.	水(みず)だけ飲(の)みました。	(I) drank only water.
+ずつ	N + ずつ	每～各～	"~ each" — equal distribution.	一人(ひとり)ずつください。	One for each person, please.
+など	N + など	示例	"~ and so on" — gives an example.	パンなどを食(た)べる。	(I) eat bread and other things.
+か	N + か + N	選擇	"~ or ~" between nouns.	コーヒーか紅茶(こうちゃ)。	Coffee or tea.
+# 終助詞 | Sentence-Ending Particles
+か	普通形／丁寧形 + か	疑問	Turns a statement into a question.	日本人(にほんじん)ですか。	Are (you) Japanese?
+ね	文 + ね	確認／共感	Seeks agreement or shares feeling ("right?").	いい天気(てんき)ですね。	Nice weather, isn't it?
+よ	文 + よ	告知／強調	Tells the listener something new, or emphasizes.	時間(じかん)ですよ。	It's time, you know.
+わ	文 + わ	感嘆	Soft assertion / emphasis (mostly feminine in modern speech).	きれいだわ。	(It's) beautiful!
+かな	普通形 + かな	自問	"I wonder ~" — soft, to oneself.	明日(あした)晴(は)れるかな。	I wonder if it will be sunny tomorrow.
+# 接続詞 | Conjunctions
+そして	文頭	累加	"And then" — adds the next event.	朝(あさ)ご飯(はん)を食(た)べました。そして学校(がっこう)へ行(い)きました。	I ate breakfast. Then I went to school.
+でも	文頭	逆接	"But ~" — casual contrast.	高(たか)いです。でも買(か)います。	It's expensive. But (I)'ll buy it.
+しかし	文頭	逆接（書面）	"However ~" — more formal than でも.	しかし、問題(もんだい)がある。	However, there is a problem.
+それから	文頭	添加	"After that ~".	買(か)い物(もの)をしました。それから映画(えいが)を見(み)ました。	(I) shopped. After that, (I) watched a movie.
+それに	文頭	累加	"Furthermore / moreover ~".	安(やす)いし、それに美味(おい)しい。	It's cheap, and on top of that, delicious.
+それで	文頭	因果	"And so / that's why ~".	電車(でんしゃ)が遅(おく)れました。それで遅刻(ちこく)しました。	The train was late. That's why I was late.
+ところで	文頭	話題轉換	"By the way ~".	ところで、明日(あした)の予定(よてい)は？	By the way, what's the plan for tomorrow?
+# 副詞 | Adverbs
+あまり～ない	副詞	不太～	"Not very ~" — paired with negative.	あまり好(す)きじゃない。	(I) do not like (it) very much.
+全然(ぜんぜん)～ない	副詞	完全不～	"Not at all ~" — paired with negative.	全然(ぜんぜん)わかりません。	(I) do not understand at all.
+よく	副詞	經常／很好地	"Often" or "well".	よく映画(えいが)を見(み)ます。	(I) often watch movies.
+ときどき	副詞	有時	"Sometimes".	ときどき雨(あめ)が降(ふ)る。	(It) sometimes rains.
+いつも	副詞	總是	"Always".	いつも7時(じ)に起(お)きる。	(I) always get up at 7.
+もう	副詞	已經	"Already".	もう食(た)べました。	(I) have already eaten.
+まだ	副詞	尚未／還	"Still" / "not yet" (with negative).	まだ食(た)べていません。	(I) have not eaten yet.
+すぐ	副詞	馬上	"Right away / soon".	すぐ来(き)ます。	(I)'ll come right away.
+ちょっと	副詞	稍微	"A little / a moment".	ちょっと待(ま)って。	Wait a moment.
+たくさん	副詞	很多	"A lot / many".	人(ひと)がたくさんいます。	There are many people.
 `;
 
 const PASSAGES = [
@@ -1288,27 +1512,868 @@ function parseVocabSource(source) {
   return categories;
 }
 
+function grammarExampleZh(example, meaningZh) {
+  const key = String(example || '').replace(/([一-龯々ヶ]+)\(([^)]+)\)/g, '$1');
+  const map = {
+    '私は学生です。':'我是學生。','先生ではありません。':'不是老師。','昨日は日曜日でした。':'昨天是星期日。','休みではありませんでした。':'不是休假。','彼は日本人だ。':'他是日本人。','日本人ではない。':'不是日本人。','先生だった。':'以前是老師。','先生ではなかった。':'以前不是老師。','田中さんは日本人で、会社員です。':'田中先生是日本人，也是公司職員。','机の上に本があります。':'桌上有一本書。','図書館は駅の前にあります。':'圖書館在車站前面。','毎日勉強します。':'每天學習。','昨日映画を見ました。':'昨天看了電影。','毎日勉強する。':'每天學習。','勉強しない。':'不學習。','映画を見た。':'看了電影。','見なかった。':'沒有看。','今勉強しています。':'現在正在學習。','待ってください。':'請等一下。','写真を撮らないでください。':'請不要拍照。','食べてから出かけます。':'吃完後再出門。','日本に行ったことがあります。':'曾經去過日本。','読んだり書いたりします。':'會做讀書、寫字之類的事。','音楽を聞きながら勉強します。':'一邊聽音樂一邊學習。','日本に行きたいです。':'想去日本。','子供は遊びたがっています。':'小孩想玩。','来年留学するつもりです。':'打算明年留學。','寝る前に本を読みます。':'睡前讀書。','日本語を話すことができます。':'會說日語。','明日雨が降ると思います。':'我覺得明天會下雨。','彼は来ると言いました。':'他說他會來。','明日は晴れるでしょう。':'明天大概會放晴。','雨かもしれません。':'可能會下雨。','暖かくなりました。':'變暖了。','部屋をきれいにします。':'把房間弄乾淨。','宿題をしなければなりません。':'必須做作業。','日曜日は働かなくてもいいです。':'星期日不用工作也可以。','ここでタバコを吸ってはいけません。':'不能在這裡吸菸。','写真を撮ってもいいですか。':'可以拍照嗎？','早く寝たほうがいいです。':'最好早點睡。','お酒を飲まないほうがいい。':'最好不要喝酒。','一緒に行きましょう。':'一起去吧。','一緒に食べませんか。':'要不要一起吃？','来るかどうか分かりません。':'不知道會不會來。','夏のほうが冬より好きです。':'比起冬天，我更喜歡夏天。','果物の中でいちごが一番好きです。':'水果裡我最喜歡草莓。','雨が降る。':'下雨。','本を読む。':'讀書。','7時に起きる。':'七點起床。','日本へ行く。':'去日本。','図書館で勉強する。':'在圖書館學習。','友達と遊ぶ。':'和朋友玩。','本やノートを買う。':'買書和筆記本等。','駅から歩く。':'從車站走路。','私の本。':'我的書。','私も行きます。':'我也去。','100円しかありません。':'只有一百日圓。','水だけ飲みました。':'只喝了水。','一人ずつください。':'請每人一個。','パンなどを食べる。':'吃麵包之類的東西。','日本人ですか。':'是日本人嗎？','いい天気ですね。':'天氣真好呢。','時間ですよ。':'時間到了喔。','明日晴れるかな。':'不知道明天會不會放晴。','あまり好きじゃない。':'不太喜歡。','全然わかりません。':'完全不懂。','よく映画を見ます。':'經常看電影。','ときどき雨が降る。':'有時候會下雨。','いつも7時に起きる。':'總是七點起床。','もう食べました。':'已經吃了。','まだ食べていません。':'還沒吃。','すぐ来ます。':'馬上來。','ちょっと待って。':'等一下。','人がたくさんいます。':'有很多人。'
+  };
+  return map[key] || meaningZh || '';
+}
 function parseGrammarSource(source) {
   const rows = [];
-  let section = '';
+  let sectionZh = '';
+  let sectionEn = '';
   source.split(/\n/).forEach(raw => {
     const line = raw.trim();
     if (!line) return;
     if (line.startsWith('# ')) {
-      section = line.slice(2);
+      const body = line.slice(2);
+      const parts = body.split('|').map(s => s.trim());
+      sectionZh = parts[0] || body;
+      sectionEn = parts[1] || parts[0] || body;
       return;
     }
     const parts = line.split(/\t/);
     const pattern = parts[0] || '';
     const connection = parts[1] || '';
-    const meaning = parts[2] || '';
-    const example = parts[3] || '';
-    rows.push([pattern, section, `${section}：${meaning}`, `接続: ${connection}`, `接続：${connection}<br>意味：${meaning}`, example ? [[example, '', meaning, meaning]] : []]);
+    const meaningZh = parts[2] || '';
+    const meaningEn = parts[3] || meaningZh;
+    const example = parts[4] || '';
+    const exampleTr = parts[5] || meaningEn;
+    // Output format: [pattern, title_en, title_zh, desc_en, desc_zh, examples]
+    const titleEn = `${sectionEn} — ${meaningEn}`;
+    const titleZh = `${sectionZh}：${meaningZh}`;
+    const descEn = `<strong>Formation:</strong> ${connection}<br><strong>Meaning:</strong> ${meaningEn}`;
+    const descZh = `<strong>接続：</strong>${connection}<br><strong>意味：</strong>${meaningZh}`;
+    const examples = example ? [[example, '', exampleTr, grammarExampleZh(example, meaningZh)]] : [];
+    rows.push([pattern, titleEn, titleZh, descEn, descZh, examples]);
   });
   return rows;
 }
 
+// =========================================================
+// VERB CONJUGATION DATA (動詞變型)
+// =========================================================
+const VERB_CONJUGATIONS = {
+  N5: [
+    {
+      jp: '辞書形', name_en: 'Dictionary Form (Plain Non-Past)', name_zh: '辭書形（普通非過去）',
+      desc_en: 'The base form listed in dictionaries. It is the plain non-past affirmative form, used in casual speech and before many grammar patterns. Learn this as the hub form: 食べる can become 食べます, 食べない, 食べた, 食べられる, and more.',
+      desc_zh: '字典中列出的基本形，也是普通體的非過去肯定形。可用於親近關係的口語，也接在許多文法句型前。請把它當成核心形：食べる 可以變成 食べます、食べない、食べた、食べられる 等。',
+      rules: [
+        { group_en: 'Group 1 (Godan/五段)', group_zh: '第一類（五段動詞）', formula: 'Ends in a う-row sound: う・く・ぐ・す・つ・ぬ・ぶ・む・る', ex_jp: '書(か)く　飲(の)む　話(はな)す　帰(かえ)る', ex_en: 'write; drink; speak; return', ex_zh: '寫；喝；說；回去' },
+        { group_en: 'Group 2 (Ichidan/一段)', group_zh: '第二類（一段動詞）', formula: 'Usually ends in いる / える, and drops る before many endings', ex_jp: '食(た)べる　見(み)る　起(お)きる', ex_en: 'eat; see; wake up', ex_zh: '吃；看；起床' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'Only する and 来(く)る, plus する-compounds', ex_jp: 'する　来(く)る　勉強(べんきょう)する', ex_en: 'do; come; study', ex_zh: '做；來；學習' }
+      ],
+      example: { jp: '休(やす)みの日(ひ)は本(ほん)を読(よ)む。', en: 'On days off, I read books.', zh: '休假日我會讀書。' }
+    },{
+      jp: 'ます形', name_en: 'ます Form (Polite Non-Past)', name_zh: 'ます形（禮貌形）',
+      desc_en: 'Turns a verb into polite non-past tense. This is the form you should default to when speaking to anyone you do not know well. Negative is ません, past is ました, past negative is ませんでした.',
+      desc_zh: '把動詞變成禮貌的現在／未來式。對長輩、陌生人、客人說話時必用。否定為ません，過去為ました，過去否定為ませんでした。',
+      rules: [
+        { group_en: 'Group 1 (Godan/五段)', group_zh: '第一類（五段動詞）', formula: 'Change final う-row sound to its い-row sound, then add ます', ex_jp: '書(か)く → 書きます　飲(の)む → 飲みます　話(はな)す → 話します', ex_en: 'write (polite); drink (polite); speak (polite)', ex_zh: '寫（禮貌）；喝（禮貌）；說（禮貌）' },
+        { group_en: 'Group 2 (Ichidan/一段)', group_zh: '第二類（一段動詞）', formula: 'Drop the final る, then add ます', ex_jp: '食(た)べる → 食べます　見(み)る → 見ます', ex_en: 'eat (polite); see (polite)', ex_zh: '吃（禮貌）；看（禮貌）' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → します　来(く)る → 来(き)ます', ex_jp: '勉強(べんきょう)する → 勉強します　来(く)る → 来(き)ます', ex_en: 'study (polite); come (polite)', ex_zh: '學習（禮貌）；來（禮貌）' }
+      ],
+      example: { jp: '毎日(まいにち)日本語(にほんご)を勉強(べんきょう)します。', en: 'I study Japanese every day.', zh: '我每天學習日語。' }
+    },
+    {
+      jp: 'ない形', name_en: 'ない Form (Plain Negative)', name_zh: 'ない形（普通否定）',
+      desc_en: 'The plain (casual) negative form: "do not ~". Many other grammar patterns attach to this form (e.g. ～ないでください, ～なければならない).',
+      desc_zh: '普通體的否定形：「不～」。許多文法句型也直接接在ない形上（例如～ないでください、～なければならない）。',
+      rules: [
+        { group_en: 'Group 1 (Godan)', group_zh: '第一類（五段動詞）', formula: 'Change final う-row to あ-row, then add ない. Exception: う ending → わ (買う → 買わない).', ex_jp: '書(か)く → 書かない　飲(の)む → 飲まない　買(か)う → 買わない', ex_en: 'do not write; do not drink; do not buy', ex_zh: '不寫；不喝；不買' },
+        { group_en: 'Group 2 (Ichidan)', group_zh: '第二類（一段動詞）', formula: 'Drop る, add ない', ex_jp: '食べる → 食べない　見る → 見ない', ex_en: 'do not eat; do not see', ex_zh: '不吃；不看' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → しない　来る → こない', ex_jp: '勉強する → 勉強しない　来(く)る → 来(こ)ない', ex_en: 'do not study; do not come', ex_zh: '不學習；不來' }
+      ],
+      example: { jp: '今日(きょう)は学校(がっこう)へ行(い)かない。', en: 'I will not go to school today.', zh: '我今天不去學校。' }
+    },
+    {
+      jp: 'て形', name_en: 'て Form (Te-Form / Connecting)', name_zh: 'て形（接續形）',
+      desc_en: 'A pure connector — it has no tense by itself. Used to chain actions ("do A, then B"), make polite requests (～てください), describe ongoing states (～ている), and many more patterns. The most-used form in Japanese.',
+      desc_zh: 'て形本身沒有時態，是萬用的「連接器」。可串聯動作（做A後做B）、請求（～てください）、表進行（～ている）等。日語裡使用頻率最高的形式。',
+      rules: [
+        { group_en: 'Group 1 — by ending', group_zh: '第一類（依字尾分類）', formula: 'く → いて　ぐ → いで　す → して　う・つ・る → って　む・ぶ・ぬ → んで　Special: 行(い)く → 行って', ex_jp: '書く → 書いて　泳(およ)ぐ → 泳いで　話す → 話して　待(ま)つ → 待って　飲む → 飲んで', ex_en: 'write &; swim &; speak &; wait &; drink &', ex_zh: '寫並…；游泳並…；說並…；等並…；喝並…' },
+        { group_en: 'Group 2 (Ichidan)', group_zh: '第二類（一段動詞）', formula: 'Drop る, add て', ex_jp: '食べる → 食べて　見る → 見て', ex_en: 'eat &; see &', ex_zh: '吃並…；看並…' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → して　来る → きて', ex_jp: '勉強する → 勉強して　来る → きて', ex_en: 'study &; come &', ex_zh: '學習並…；來並…' }
+      ],
+      example: { jp: '朝(あさ)起(お)きて、顔(かお)を洗(あら)って、ご飯(はん)を食(た)べます。', en: 'I wake up in the morning, wash my face, and eat.', zh: '我早上起床，洗臉，然後吃飯。' }
+    },
+    {
+      jp: 'た形', name_en: 'た Form (Plain Past)', name_zh: 'た形（普通過去）',
+      desc_en: 'Plain past tense ("did ~"). Conjugation is identical to the て-form rules — just replace て with た and で with だ.',
+      desc_zh: '普通體的過去式（「～了」）。變化規則和て形完全一樣，只要把て改成た、で改成だ。',
+      rules: [
+        { group_en: 'Group 1 — by ending', group_zh: '第一類（依字尾分類）', formula: 'く → いた　ぐ → いだ　す → した　う・つ・る → った　む・ぶ・ぬ → んだ　Special: 行く → 行った', ex_jp: '書く → 書いた　泳ぐ → 泳いだ　話す → 話した　待つ → 待った　飲む → 飲んだ', ex_en: 'wrote; swam; spoke; waited; drank', ex_zh: '寫了；游泳了；說了；等了；喝了' },
+        { group_en: 'Group 2 (Ichidan)', group_zh: '第二類（一段動詞）', formula: 'Drop る, add た', ex_jp: '食べる → 食べた　見る → 見た', ex_en: 'ate; saw', ex_zh: '吃了；看了' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → した　来る → きた', ex_jp: '勉強する → 勉強した　来る → きた', ex_en: 'studied; came', ex_zh: '學習了；來了' }
+      ],
+      example: { jp: '昨日(きのう)友達(ともだち)に会(あ)った。', en: 'I met a friend yesterday.', zh: '昨天我見了朋友。' }
+    }
+  ],
+  N4: [
+    {
+      jp: '意向形', name_en: 'Volitional Form (Let\'s ~)', name_zh: '意向形（推量／勸誘）',
+      desc_en: 'Casual "let\'s ~" or expresses one\'s intention. The polite equivalent is ～ましょう. Also used with ～と思う ("I think I\'ll ~").',
+      desc_zh: '普通形的「來～吧」或表達自己的意志。對應的禮貌形是～ましょう。常配合と思う使用（「我打算～」）。',
+      rules: [
+        { group_en: 'Group 1 (Godan)', group_zh: '第一類（五段動詞）', formula: 'Change final う-row to お-row, then add う', ex_jp: '書く → 書こう　飲む → 飲もう　行く → 行こう', ex_en: 'let\'s write; let\'s drink; let\'s go', ex_zh: '寫吧；喝吧；走吧' },
+        { group_en: 'Group 2 (Ichidan)', group_zh: '第二類（一段動詞）', formula: 'Drop る, add よう', ex_jp: '食べる → 食べよう　見る → 見よう', ex_en: 'let\'s eat; let\'s see', ex_zh: '吃吧；看吧' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → しよう　来る → こよう', ex_jp: '勉強する → 勉強しよう　来る → こよう', ex_en: 'let\'s study; let\'s come', ex_zh: '學習吧；來吧' }
+      ],
+      example: { jp: '一緒(いっしょ)に映画(えいが)を見(み)よう。', en: 'Let\'s watch a movie together.', zh: '我們一起看電影吧。' }
+    },
+    {
+      jp: '可能形', name_en: 'Potential Form (Can ~)', name_zh: '可能形（能夠～）',
+      desc_en: 'Expresses ability ("can ~"). The object particle を often becomes が with potential verbs. All resulting verbs behave as Group 2 (ichidan).',
+      desc_zh: '表示能力（「能夠／可以～」）。可能動詞前的「を」常變成「が」。所有可能形動詞都依照第二類（一段）規則變化。',
+      rules: [
+        { group_en: 'Group 1 (Godan)', group_zh: '第一類（五段動詞）', formula: 'Change final う-row to え-row, then add る', ex_jp: '書く → 書ける　飲む → 飲める　話す → 話せる', ex_en: 'can write; can drink; can speak', ex_zh: '能寫；能喝；能說' },
+        { group_en: 'Group 2 (Ichidan)', group_zh: '第二類（一段動詞）', formula: 'Drop る, add られる. (Casual speech often drops the ら: 食べれる)', ex_jp: '食べる → 食べられる　見る → 見られる', ex_en: 'can eat; can see', ex_zh: '能吃；能看' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → できる　来る → こられる', ex_jp: '勉強する → 勉強できる　来る → こられる', ex_en: 'can study; can come', ex_zh: '能學習；能來' }
+      ],
+      example: { jp: '私(わたし)は日本語(にほんご)が話(はな)せます。', en: 'I can speak Japanese.', zh: '我會說日語。' }
+    },
+    {
+      jp: '條件形 ば', name_en: 'Conditional ば Form (If ~)', name_zh: '條件形ば（如果～）',
+      desc_en: 'A conditional "if/when ~". Often used for general truths and natural consequences. Compare with ～たら (more flexible, more common in speech) and ～と (automatic/natural results).',
+      desc_zh: '條件句「如果～」「一～就～」。常用於一般道理或自然結果。對比～たら（口語常用、彈性大）和～と（必然結果）。',
+      rules: [
+        { group_en: 'Group 1 (Godan)', group_zh: '第一類（五段動詞）', formula: 'Change final う-row to え-row, then add ば', ex_jp: '書く → 書けば　飲む → 飲めば　行く → 行けば', ex_en: 'if (one) writes; if (one) drinks; if (one) goes', ex_zh: '如果寫；如果喝；如果去' },
+        { group_en: 'Group 2 (Ichidan)', group_zh: '第二類（一段動詞）', formula: 'Drop る, add れば', ex_jp: '食べる → 食べれば　見る → 見れば', ex_en: 'if (one) eats; if (one) sees', ex_zh: '如果吃；如果看' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → すれば　来る → くれば', ex_jp: '勉強する → 勉強すれば　来る → くれば', ex_en: 'if (one) studies; if (one) comes', ex_zh: '如果學習；如果來' }
+      ],
+      example: { jp: '毎日(まいにち)練習(れんしゅう)すれば、上手(じょうず)になります。', en: 'If you practice every day, you will become skilled.', zh: '每天練習的話就會變厲害。' }
+    },
+    {
+      jp: '命令形', name_en: 'Imperative Form (Do it!)', name_zh: '命令形（命令！）',
+      desc_en: 'A direct, forceful command. Used by men in casual speech, between very close friends, in sports, in emergencies (火事だ！逃げろ！), or in signs/warnings. Sounds rude in most everyday situations — prefer ～てください.',
+      desc_zh: '直接、強硬的命令語氣。常見於男性朋友間、體育場合、緊急情況（火事だ！逃げろ！「失火了！快逃！」）、標語警示。日常使用聽起來很粗魯，請優先用～てください。',
+      rules: [
+        { group_en: 'Group 1 (Godan)', group_zh: '第一類（五段動詞）', formula: 'Change final う-row to え-row', ex_jp: '書く → 書け　飲む → 飲め　走(はし)る → 走れ', ex_en: 'Write!; Drink!; Run!', ex_zh: '寫！；喝！；跑！' },
+        { group_en: 'Group 2 (Ichidan)', group_zh: '第二類（一段動詞）', formula: 'Drop る, add ろ', ex_jp: '食べる → 食べろ　見る → 見ろ', ex_en: 'Eat!; Look!', ex_zh: '吃！；看！' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → しろ　来る → こい', ex_jp: '勉強する → 勉強しろ　来る → こい', ex_en: 'Study!; Come!', ex_zh: '學習！；過來！' }
+      ],
+      example: { jp: '早(はや)く起(お)きろ！', en: 'Get up early!', zh: '快點起床！' }
+    }
+  ],
+  N3: [
+    {
+      jp: '受身形', name_en: 'Passive Form (Be ~ed)', name_zh: '受身形（被動）',
+      desc_en: 'Shows that the subject receives an action. Often carries a "suffering" nuance in Japanese — even when the action is neutral in English ("It rained on me" → 雨に降られた). All passive verbs conjugate as Group 2.',
+      desc_zh: '主語接受動作。日語的被動常帶「困擾／受害」的語感（「我被下了雨」雨に降られた）。所有被動動詞都按第二類（一段）變化。',
+      rules: [
+        { group_en: 'Group 1 (Godan)', group_zh: '第一類（五段動詞）', formula: 'Change final う-row to あ-row, then add れる. (う → わ)', ex_jp: '書く → 書かれる　言(い)う → 言われる　叱(しか)る → 叱られる', ex_en: 'be written; be told; be scolded', ex_zh: '被寫；被說；被罵' },
+        { group_en: 'Group 2 (Ichidan)', group_zh: '第二類（一段動詞）', formula: 'Drop る, add られる', ex_jp: '食べる → 食べられる　見る → 見られる', ex_en: 'be eaten; be seen', ex_zh: '被吃；被看' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → される　来る → こられる', ex_jp: '注意(ちゅうい)する → 注意される　来る → こられる', ex_en: 'be warned; be (negatively) come-to', ex_zh: '被提醒；被來訪（困擾）' }
+      ],
+      example: { jp: '弟(おとうと)にケーキを食(た)べられた。', en: 'My cake was eaten by my younger brother. (And I am unhappy about it.)', zh: '蛋糕被弟弟吃掉了。（含困擾語氣）' }
+    },
+    {
+      jp: '使役形', name_en: 'Causative Form (Make/Let ~)', name_zh: '使役形（讓／使）',
+      desc_en: 'Expresses making or letting someone do something. に marks the person made to act for intransitive verbs; を is used with most transitive verbs.',
+      desc_zh: '讓某人做某事，可能是「強迫」也可能是「允許」。促使者用に標示（自動詞）或を（他動詞）。',
+      rules: [
+        { group_en: 'Group 1 (Godan)', group_zh: '第一類（五段動詞）', formula: 'Change final う-row to あ-row, then add せる. (う → わ)', ex_jp: '書く → 書かせる　飲む → 飲ませる　行く → 行かせる', ex_en: 'make (sb) write; make (sb) drink; make (sb) go', ex_zh: '叫（誰）寫；叫（誰）喝；叫（誰）去' },
+        { group_en: 'Group 2 (Ichidan)', group_zh: '第二類（一段動詞）', formula: 'Drop る, add させる', ex_jp: '食べる → 食べさせる　見る → 見させる', ex_en: 'make (sb) eat; make (sb) see', ex_zh: '叫（誰）吃；叫（誰）看' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → させる　来る → こさせる', ex_jp: '勉強する → 勉強させる　来る → こさせる', ex_en: 'make (sb) study; make (sb) come', ex_zh: '叫（誰）學習；叫（誰）來' }
+      ],
+      example: { jp: '先生(せんせい)は学生(がくせい)に漢字(かんじ)を書(か)かせた。', en: 'The teacher made the students write kanji.', zh: '老師讓學生寫漢字。' }
+    },
+    {
+      jp: '使役受身形', name_en: 'Causative-Passive Form (Be made to ~)', name_zh: '使役受身形（被迫～）',
+      desc_en: 'Combines causative + passive: "I was forced/made to do ~". Almost always implies the subject did not want to do it. Built from the causative + られる.',
+      desc_zh: '使役 + 受身：「我被迫去做～」。幾乎都帶「不情願」的語感。由使役形再加られる構成。',
+      rules: [
+        { group_en: 'Group 1 (Godan)', group_zh: '第一類（五段動詞）', formula: 'う-row → あ-row + せられる. Often contracted to ~される (except for す-ending verbs).', ex_jp: '書く → 書かせられる／書かされる　飲む → 飲まされる', ex_en: 'be made to write; be made to drink', ex_zh: '被迫寫；被迫喝' },
+        { group_en: 'Group 2 (Ichidan)', group_zh: '第二類（一段動詞）', formula: 'Drop る, add させられる', ex_jp: '食べる → 食べさせられる　見る → 見させられる', ex_en: 'be made to eat; be made to see', ex_zh: '被迫吃；被迫看' },
+        { group_en: 'Group 3 (Irregular)', group_zh: '第三類（不規則）', formula: 'する → させられる　来る → こさせられる', ex_jp: '勉強する → 勉強させられる　来る → こさせられる', ex_en: 'be made to study; be made to come', ex_zh: '被迫學習；被迫來' }
+      ],
+      example: { jp: '子供(こども)の時(とき)、毎日(まいにち)ピアノを練習(れんしゅう)させられた。', en: 'When I was a child, I was made to practice piano every day.', zh: '小時候我每天被迫練鋼琴。' }
+    }
+  ]
+};
+
+// Adjective conjugation, split by JLPT level. Each rule's `formula` begins with the
+// group label イA / ナA; adjGroupLabel()/adjRuleBody() split it with an anchored regex
+// so the leading label is shown as a chip while any い inside the rule is preserved.
+const ADJECTIVE_CONJUGATIONS = {
+  N5: [
+    {
+      jp:'〜かった', name_en:'い Past Tense', name_zh:'い形容詞過去式',
+      desc_en:'い-adjectives carry past tense themselves: drop the final い and add かった (plain) or かったです (polite). な-adjectives and nouns instead use だった / でした. Exception: いい → よかった.',
+      desc_zh:'い形容詞自己表示過去：去掉字尾的 い，加 かった（普通）或 かったです（禮貌）。な形容詞與名詞則用 だった／でした。例外：いい → よかった。',
+      rules:[
+        {formula:'イA drop い → かった（です）',ex_jp:'寒(さむ)い → 寒かった',ex_en:'was cold',ex_zh:'以前很冷'},
+        {formula:'ナA + だった（でした）',ex_jp:'静(しず)か → 静かだった',ex_en:'was quiet',ex_zh:'以前很安靜'}],
+      example:{jp:'昨日(きのう)はとても寒(さむ)かったです。',en:'It was very cold yesterday.',zh:'昨天非常冷。'}
+    },
+    {
+      jp:'〜くない', name_en:'い Negative', name_zh:'い形容詞否定',
+      desc_en:'Negate an い-adjective by dropping い and adding くない (plain) or くないです / くありません (polite). Never add だ to an い-adjective. な-adjectives use ではない / じゃない.',
+      desc_zh:'い形容詞否定：去 い，加 くない（普通）或 くないです／くありません（禮貌）。い形容詞後面絕不加 だ。な形容詞用 ではない／じゃない。',
+      rules:[
+        {formula:'イA drop い → くない（です）',ex_jp:'高(たか)い → 高くない',ex_en:'is not expensive',ex_zh:'不貴'},
+        {formula:'ナA + ではない／じゃない',ex_jp:'静(しず)か → 静かじゃない',ex_en:'is not quiet',ex_zh:'不安靜'}],
+      example:{jp:'この店(みせ)は高(たか)くないです。',en:'This shop is not expensive.',zh:'這家店不貴。'}
+    },
+    {
+      jp:'〜くて', name_en:'い て-Form (Connecting)', name_zh:'い形容詞て形（連接）',
+      desc_en:'The て-form links clauses ("A and B", or gives a reason). For い-adjectives drop い and add くて; for な-adjectives and nouns use で. Exception: いい → よくて.',
+      desc_zh:'て形用來連接句子（「又…又…」或表原因）。い形容詞去 い 加 くて；な形容詞與名詞用 で。例外：いい → よくて。',
+      rules:[
+        {formula:'イA drop い → くて',ex_jp:'安(やす)い → 安くて',ex_en:'cheap, and...',ex_zh:'便宜，而且…'},
+        {formula:'ナA + で',ex_jp:'静(しず)か → 静かで',ex_en:'quiet, and...',ex_zh:'安靜，而且…'}],
+      example:{jp:'この店(みせ)は安(やす)くておいしいです。',en:'This shop is cheap and tasty.',zh:'這家店又便宜又好吃。'}
+    },
+    {
+      jp:'〜な', name_en:'な-Adjective Attributive', name_zh:'な形容詞連體（修飾名詞）',
+      desc_en:'When a な-adjective directly modifies a noun, it takes な between them. い-adjectives need no particle — they attach to the noun directly.',
+      desc_zh:'な形容詞直接修飾名詞時，中間要加 な。い形容詞不需要任何接續，直接接名詞。',
+      rules:[
+        {formula:'ナA + な + Noun',ex_jp:'静(しず)か → 静かな部屋(へや)',ex_en:'a quiet room',ex_zh:'安靜的房間'},
+        {formula:'イA + Noun（directly）',ex_jp:'高(たか)い → 高い本(ほん)',ex_en:'an expensive book',ex_zh:'昂貴的書'}],
+      example:{jp:'静(しず)かな部屋(へや)が好(す)きです。',en:'I like quiet rooms.',zh:'我喜歡安靜的房間。'}
+    }
+  ],
+  N4: [
+    {
+      jp:'〜ければ', name_en:'い Conditional (ば)', name_zh:'い形容詞條件形（ば）',
+      desc_en:'A conditional "if ~". For い-adjectives drop い and add ければ; な-adjectives and nouns use なら. Exception: いい → よければ.',
+      desc_zh:'條件句「如果～」。い形容詞去 い 加 ければ；な形容詞與名詞用 なら。例外：いい → よければ。',
+      rules:[
+        {formula:'イA drop い → ければ',ex_jp:'安(やす)い → 安ければ',ex_en:'if (it is) cheap',ex_zh:'如果便宜'},
+        {formula:'ナA + なら',ex_jp:'静(しず)か → 静かなら',ex_en:'if (it is) quiet',ex_zh:'如果安靜'}],
+      example:{jp:'安(やす)ければ買(か)います。',en:'If it is cheap, I will buy it.',zh:'便宜的話我就買。'}
+    },
+    {
+      jp:'〜く', name_en:'い Adverbial', name_zh:'い形容詞副詞用法',
+      desc_en:'Turn an adjective into an adverb ("~ly"). い-adjectives drop い and add く; な-adjectives add に.',
+      desc_zh:'把形容詞變成副詞（「～地」）。い形容詞去 い 加 く；な形容詞加 に。',
+      rules:[
+        {formula:'イA drop い → く',ex_jp:'早(はや)い → 早く',ex_en:'early / quickly',ex_zh:'快地／早地'},
+        {formula:'ナA + に',ex_jp:'静(しず)か → 静かに',ex_en:'quietly',ex_zh:'安靜地'}],
+      example:{jp:'もっと早(はや)く起(お)きます。',en:'I will get up earlier.',zh:'我會更早起床。'}
+    },
+    {
+      jp:'〜さ', name_en:'Nominalization (さ)', name_zh:'名詞化（さ）',
+      desc_en:'Turns an adjective into a noun expressing a measurable degree or amount (height, length, convenience). い-adjectives drop い and add さ; な-adjectives add さ.',
+      desc_zh:'把形容詞變成名詞，表達可量度的程度或數值（高度、長度、便利度）。い形容詞去 い 加 さ；な形容詞加 さ。',
+      rules:[
+        {formula:'イA drop い → さ',ex_jp:'高(たか)い → 高さ',ex_en:'height',ex_zh:'高度'},
+        {formula:'ナA + さ',ex_jp:'便利(べんり) → 便利さ',ex_en:'convenience',ex_zh:'便利程度'}],
+      example:{jp:'富士山(ふじさん)の高(たか)さは3776メートルです。',en:"Mt. Fuji's height is 3776 metres.",zh:'富士山的高度是3776公尺。'}
+    },
+    {
+      jp:'〜そう', name_en:'Appearance ("looks ~")', name_zh:'樣態（看起來～）',
+      desc_en:'Expresses how something looks based on appearance. い-adjectives drop い and add そう; な-adjectives add そう. Exceptions: いい → よさそう, ない → なさそう.',
+      desc_zh:'根據外觀推測「看起來～」。い形容詞去 い 加 そう；な形容詞加 そう。例外：いい → よさそう，ない → なさそう。',
+      rules:[
+        {formula:'イA drop い → そう',ex_jp:'おいしい → おいしそう',ex_en:'looks tasty',ex_zh:'看起來好吃'},
+        {formula:'ナA + そう',ex_jp:'元気(げんき) → 元気そう',ex_en:'looks well/energetic',ex_zh:'看起來很有精神'}],
+      example:{jp:'このケーキはおいしそうです。',en:'This cake looks delicious.',zh:'這個蛋糕看起來很好吃。'}
+    }
+  ],
+  N3: [
+    {
+      jp:'〜がる', name_en:'Showing Feelings (がる)', name_zh:'表現情緒（がる）',
+      desc_en:'Attached to emotion adjectives to describe someone else\'s outward feelings (third person). It turns the adjective into a Group-1 verb. 欲しい → 欲しがる ("shows signs of wanting").',
+      desc_zh:'接在情感形容詞後，描述「別人」表現出來的情緒（第三人稱）。會把形容詞變成第一類動詞。欲しい → 欲しがる（表現出想要）。',
+      rules:[
+        {formula:'イA drop い → がる',ex_jp:'寒(さむ)い → 寒がる',ex_en:'acts/looks cold',ex_zh:'（看起來）覺得冷'},
+        {formula:'ナA + がる',ex_jp:'残念(ざんねん) → 残念がる',ex_en:'shows regret',ex_zh:'表現出遺憾'}],
+      example:{jp:'子供(こども)が寒(さむ)がっています。',en:'The child looks/acts cold.',zh:'小孩好像覺得冷。'}
+    },
+    {
+      jp:'〜げ', name_en:'Appearance Suffix (げ)', name_zh:'樣態後綴（げ）',
+      desc_en:'A softer, more literary "looking ~ / seeming ~". It makes a な-adjective-like word from feeling adjectives. More subjective and emotive than 〜そう.',
+      desc_zh:'較文雅、柔和的「看起來～／顯得～」。會把情感形容詞變成類似な形容詞的詞。比 〜そう 更主觀、更帶情感。',
+      rules:[
+        {formula:'イA drop い → げ',ex_jp:'寂(さび)しい → 寂しげ',ex_en:'looking lonely',ex_zh:'顯得寂寞'},
+        {formula:'ナA + げ',ex_jp:'不安(ふあん) → 不安げ',ex_en:'looking uneasy',ex_zh:'顯得不安'}],
+      example:{jp:'彼(かれ)は寂(さび)しげな顔(かお)をしていた。',en:'He had a lonely look on his face.',zh:'他露出寂寞的神情。'}
+    },
+    {
+      jp:'〜め', name_en:'"-ish / on the ~ side" (め)', name_zh:'偏向（め）',
+      desc_en:'A suffix meaning "slightly ~ / on the ~ side". Mostly attaches to い-adjectives of degree. 多い → 多め, 大きい → 大きめ, 少ない → 少なめ.',
+      desc_zh:'後綴，意為「稍微～／偏～」。多接在表程度的い形容詞後。多い → 多め，大きい → 大きめ，少ない → 少なめ。',
+      rules:[
+        {formula:'イA drop い → め',ex_jp:'多(おお)い → 多め',ex_en:'a bit more / on the larger side',ex_zh:'偏多一點'},
+        {formula:'イA drop い → め',ex_jp:'大(おお)きい → 大きめ',ex_en:'a bit bigger',ex_zh:'偏大一點'}],
+      example:{jp:'ご飯(はん)を多(おお)めにください。',en:'A bit more rice, please.',zh:'飯請給我多一點。'}
+    }
+  ]
+};
+
+const VERB_QUIZ_ITEMS = [
+  {base:'書く',reading:'かく',meaning:'write',zh:'寫',answers:{'辞書形':'書く','ます形':'書きます','ない形':'書かない','て形':'書いて','た形':'書いた'}},
+  {base:'飲む',reading:'のむ',meaning:'drink',zh:'喝',answers:{'辞書形':'飲む','ます形':'飲みます','ない形':'飲まない','て形':'飲んで','た形':'飲んだ'}},
+  {base:'話す',reading:'はなす',meaning:'speak',zh:'說話',answers:{'辞書形':'話す','ます形':'話します','ない形':'話さない','て形':'話して','た形':'話した'}},
+  {base:'行く',reading:'いく',meaning:'go',zh:'去',answers:{'辞書形':'行く','ます形':'行きます','ない形':'行かない','て形':'行って','た形':'行った'}},
+  {base:'食べる',reading:'たべる',meaning:'eat',zh:'吃',answers:{'辞書形':'食べる','ます形':'食べます','ない形':'食べない','て形':'食べて','た形':'食べた'}},
+  {base:'見る',reading:'みる',meaning:'see',zh:'看',answers:{'辞書形':'見る','ます形':'見ます','ない形':'見ない','て形':'見て','た形':'見た'}},
+  {base:'する',reading:'する',meaning:'do',zh:'做',answers:{'辞書形':'する','ます形':'します','ない形':'しない','て形':'して','た形':'した'}},
+  {base:'来る',reading:'くる',meaning:'come',zh:'來',answers:{'辞書形':'来る','ます形':'来ます|きます','ない形':'来ない|こない','て形':'来て|きて','た形':'来た|きた'}}
+];
+const VERB_QUIZ_FORMS = ['辞書形','ます形','ない形','て形','た形'];
+
+const COMMON_PHRASES = [
+  {cat_en:'Greetings', cat_zh:'問候', items:[['おはようございます','ohayou gozaimasu','Good morning','早安'],['こんにちは','konnichiwa','Hello / good afternoon','你好／午安'],['こんばんは','konbanwa','Good evening','晚上好'],['はじめまして','hajimemashite','Nice to meet you','初次見面'],['よろしくお願いします','yoroshiku onegai shimasu','Please treat me well','請多關照'],['お疲れさまです','otsukaresama desu','Thanks for your hard work','辛苦了']]},
+  {cat_en:'Restaurant', cat_zh:'餐廳', items:[['メニューをください','menyuu o kudasai','Menu, please','請給我菜單'],['おすすめは何ですか','osusume wa nan desu ka','What do you recommend?','有什麼推薦？'],['これをください','kore o kudasai','This one, please','請給我這個'],['お水をお願いします','omizu o onegai shimasu','Water, please','請給我水'],['お会計をお願いします','okaikei o onegai shimasu','The bill, please','請結帳'],['とてもおいしいです','totemo oishii desu','It is very delicious','非常好吃']]},
+  {cat_en:'Travel', cat_zh:'旅行', items:[['駅はどこですか','eki wa doko desu ka','Where is the station?','車站在哪裡？'],['ここに行きたいです','koko ni ikitai desu','I want to go here','我想去這裡'],['いくらですか','ikura desu ka','How much is it?','多少錢？'],['写真を撮ってもいいですか','shashin o totte mo ii desu ka','May I take a photo?','可以拍照嗎？'],['助けてください','tasukete kudasai','Please help me','請幫幫我'],['もう一度言ってください','mou ichido itte kudasai','Please say that again','請再說一次']]},
+  {cat_en:'Shopping', cat_zh:'購物', items:[['見てもいいですか','mite mo ii desu ka','May I look at it?','可以看一下嗎？'],['試着してもいいですか','shichaku shite mo ii desu ka','May I try it on?','可以試穿嗎？'],['もっと安いものはありますか','motto yasui mono wa arimasu ka','Do you have something cheaper?','有更便宜的嗎？'],['カードは使えますか','kaado wa tsukaemasu ka','Can I use a card?','可以刷卡嗎？'],['袋はいりません','fukuro wa irimasen','I do not need a bag','不需要袋子'],['これにします','kore ni shimasu','I will take this','我要這個']]}
+];
+
+// Stroke-order diagrams are fetched on demand from KanjiVG (see drawKanjiGuide).
+// We only keep meanings here; the SVG itself comes from the CDN per character.
+const KANJI_TRACE_DATA = {
+  '日': {meaning_en:'sun, day', meaning_zh:'太陽、日'},
+  '本': {meaning_en:'book, origin', meaning_zh:'書、本源'},
+  '人': {meaning_en:'person', meaning_zh:'人'},
+  '山': {meaning_en:'mountain', meaning_zh:'山'},
+  '水': {meaning_en:'water', meaning_zh:'水'},
+  '木': {meaning_en:'tree, wood', meaning_zh:'樹、木'},
+  '火': {meaning_en:'fire', meaning_zh:'火'},
+  '大': {meaning_en:'big', meaning_zh:'大'},
+  '学': {meaning_en:'study, learning', meaning_zh:'學習'},
+  '語': {meaning_en:'language, word', meaning_zh:'語言'}
+};
+const KANJIVG_BASE = 'https://cdn.jsdelivr.net/gh/KanjiVG/kanjivg/kanji/';
+const kanjiSvgCache = {};
+function kanjiCodeHex(ch) { return ch.codePointAt(0).toString(16).padStart(5, '0'); }
+let currentVerbLevel = 'N5';
+let currentAdjLevel = 'N5';
+
+function renderVerbQuiz() {
+  if (!verbQuizCurrent) nextVerbQuiz();
+  const isZh = currentLang === 'zh';
+  const q = verbQuizCurrent;
+  document.getElementById('verb-quiz-content').innerHTML = `
+    <div class="tool-panel">
+      <div class="quiz-tool">
+        <div class="quiz-prompt-box">
+          <div class="quiz-prompt-main">${q.item.base}（${q.item.reading}） → ${q.form}</div>
+          <div class="quiz-prompt-sub">${isZh ? q.item.zh : q.item.meaning} · ${isZh ? '輸入正確變化形' : 'Type the correct conjugation'}</div>
+        </div>
+        <div class="answer-row"><input class="tool-input" id="verb-quiz-answer" autocomplete="off" placeholder="${isZh ? '例如：食べます' : 'e.g. 食べます'}" onkeydown="if(event.key==='Enter')checkVerbQuiz()"><button class="tool-btn primary" onclick="checkVerbQuiz()">${isZh ? '檢查' : 'Check'}</button><button class="tool-btn" onclick="nextVerbQuiz()">${isZh ? '下一題' : 'Next'}</button></div>
+        <div class="quiz-result" id="verb-quiz-result"></div>
+      </div>
+    </div>`;
+}
+function nextVerbQuiz() {
+  const item = VERB_QUIZ_ITEMS[Math.floor(Math.random() * VERB_QUIZ_ITEMS.length)];
+  const form = VERB_QUIZ_FORMS[Math.floor(Math.random() * VERB_QUIZ_FORMS.length)];
+  verbQuizCurrent = {item, form};
+  const box = document.getElementById('verb-quiz-content');
+  if (box) renderVerbQuiz();
+}
+function checkVerbQuiz() {
+  const input = document.getElementById('verb-quiz-answer');
+  const result = document.getElementById('verb-quiz-result');
+  if (!input || !result || !verbQuizCurrent) return;
+  const expected = String(verbQuizCurrent.item.answers[verbQuizCurrent.form] || '').split('|');
+  const value = input.value.trim();
+  const ok = expected.includes(value);
+  result.innerHTML = ok ? `<span style="color:var(--green)">${currentLang === 'zh' ? '答對了。' : 'Correct.'}</span>` : `<span style="color:var(--red)">${currentLang === 'zh' ? '答案：' : 'Answer: '} ${escapeHtml(expected[0])}</span>`;
+}
+// Fix for the "Drop い" display bug: the group label (イA / ナA) is now stored as the
+// leading token of each formula. These two helpers split it with an anchored (^) regex,
+// so only the leading label is pulled out — an い appearing later inside the rule is kept.
+function adjGroupLabel(formula) {
+  const m = String(formula || '').match(/^\s*(イA|ナA)/);
+  return m ? m[1] : '';
+}
+function adjRuleBody(formula) {
+  return String(formula || '').replace(/^\s*(イA|ナA)\s*[:：]?\s*/, '');
+}
+function renderAdjectivesPage() {
+  const isZh = currentLang === 'zh';
+  const tipEl = document.getElementById('adj-tip');
+  if (tipEl) tipEl.innerHTML = t('adj_tip');
+  const box = document.getElementById('adjectives-page-content');
+  if (!box) return;
+  const forms = ADJECTIVE_CONJUGATIONS[currentAdjLevel] || [];
+  box.innerHTML = forms.map(f => `
+    <div class="verb-card">
+      <div class="verb-card-head"><div class="verb-jp">${escapeHtml(f.jp)}</div><div class="verb-name">${isZh ? f.name_zh : f.name_en}</div></div>
+      <div class="verb-desc">${isZh ? f.desc_zh : f.desc_en}</div>
+      <div class="verb-rule-grid">${f.rules.map(r => {
+        const label = adjGroupLabel(r.formula);
+        const body = adjRuleBody(r.formula);
+        return `<div class="verb-rule"><div class="verb-rule-group">${escapeHtml(label || (isZh ? '規則' : 'Rule'))}</div><div class="verb-rule-formula">${escapeHtml(body)}</div><div class="verb-rule-ex">${renderRubyWord(r.ex_jp)} <button class="audio-btn" onclick="speak('${jsString(stripReadings(r.ex_jp))}',event)">▶</button></div><div class="verb-rule-trans">${isZh ? r.ex_zh : r.ex_en}</div></div>`;
+      }).join('')}</div>
+      <div class="verb-example-sentence"><div class="ves-label">${isZh ? '例句' : 'Example sentence'}</div><div class="ves-jp">${renderRubyWord(f.example.jp)} <button class="audio-btn" onclick="speak('${jsString(stripReadings(f.example.jp))}',event)">▶</button></div><div class="ves-trans">${isZh ? f.example.zh : f.example.en}</div></div>
+    </div>`).join('');
+}
+function setAdjLevel(level, btn) {
+  currentAdjLevel = level;
+  document.querySelectorAll('#adj-tabs .jlpt-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderAdjectivesPage();
+}
+function renderVerbs() {
+  const isZh = currentLang === 'zh';
+  document.getElementById('verbs-tip').innerHTML = t('verbs_tip');
+  renderVerbQuiz();
+  const forms = VERB_CONJUGATIONS[currentVerbLevel] || [];
+  document.getElementById('verbs-content').innerHTML = forms.map(f => `
+    <div class="verb-card">
+      <div class="verb-card-head"><div class="verb-jp">${f.jp}</div><div class="verb-name">${isZh ? f.name_zh : f.name_en}</div></div>
+      <div class="verb-desc">${isZh ? f.desc_zh : f.desc_en}</div>
+      <div class="verb-rule-grid">${f.rules.map(r => `<div class="verb-rule"><div class="verb-rule-group">${isZh ? r.group_zh : r.group_en}</div><div class="verb-rule-formula">${r.formula}</div><div class="verb-rule-ex">${renderRubyWord(r.ex_jp)} <button class="audio-btn" onclick="speak('${jsString(stripReadings(r.ex_jp))}',event)">▶</button></div><div class="verb-rule-trans">${isZh ? r.ex_zh : r.ex_en}</div></div>`).join('')}</div>
+      <div class="verb-example-sentence"><div class="ves-label">${isZh ? '例句' : 'Example sentence'}</div><div class="ves-jp">${renderRubyWord(f.example.jp)} <button class="audio-btn" onclick="speak('${jsString(stripReadings(f.example.jp))}',event)">▶</button></div><div class="ves-trans">${isZh ? f.example.zh : f.example.en}</div></div>
+    </div>`).join('');
+}
+function setVerbLevel(level, btn) {
+  currentVerbLevel = level;
+  document.querySelectorAll('#verb-tabs .jlpt-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderVerbs();
+}
+
+function renderListening() {
+  const isZh = currentLang === 'zh';
+  document.getElementById('listening-content').innerHTML = `
+    <div class="resource-card">
+      <h3>📻 ${isZh ? 'NHK 廣播與 Podcast' : 'NHK Radio & Podcasts'}</h3>
+      <p>${isZh
+        ? 'NHK 是日本國營廣播電視台，發音標準、語速適中，是練聽力最可靠的免費資源。新聞類能練正式語，生活類能練自然口語。'
+        : 'NHK is Japan&apos;s national broadcaster — clear standard pronunciation, controlled pace, and completely free. News programs train formal Japanese; lifestyle programs train casual conversation.'}</p>
+      <ul class="feature-list">
+        <li><a href="https://www.nhk.or.jp/podcasts/" target="_blank" rel="noopener noreferrer">NHK Podcasts</a> — ${isZh ? '主要 podcast 入口，題材多元' : 'Main podcast hub, wide variety of topics'}</li>
+        <li><a href="https://www3.nhk.or.jp/news/easy/" target="_blank" rel="noopener noreferrer">NHK News Web Easy</a> — ${isZh ? '簡化新聞，附漢字注音與單字解釋，N4–N3 最適合' : 'Simplified news with furigana and vocab notes — perfect for N4–N3'}</li>
+        <li><a href="https://www.nhk.or.jp/lesson/" target="_blank" rel="noopener noreferrer">NHK World Japanese Lessons</a> — ${isZh ? '免費 48 課，附音檔與 PDF 教材' : 'Free 48-lesson course with audio and PDFs'}</li>
+      </ul>
+      <div class="tip-box" style="margin-top:14px;">${isZh
+        ? '<strong>建議：</strong>不要追求一字不漏聽懂。先聽大意，再對照逐字稿，最後不看稿再聽一次。'
+        : '<strong>Tip:</strong> Don&apos;t aim to catch every word. Listen for the gist first, then check the transcript, then listen again without the script.'}</div>
+    </div>
+
+    <div class="resource-card">
+      <h3>🎬 ${isZh ? '日劇與動漫' : 'J-Drama & Anime'}</h3>
+      <p>${isZh
+        ? '想短時間進步最快的方式就是<strong>大量輸入 + 跟讀（shadowing）</strong>。日劇、動漫、綜藝是最好用的素材，因為畫面會幫你猜意思，發音也接近現實對話。'
+        : 'The fastest way to improve quickly is <strong>massive input + shadowing</strong>. J-dramas, anime, and variety shows are ideal because the visuals scaffold meaning and the speech is close to real conversation.'}</p>
+      <ul class="feature-list">
+        <li>${isZh ? '<strong>日常題材日劇</strong>：對白自然，語速接近現實。例如校園劇、職場劇、家庭劇。' : '<strong>Slice-of-life J-dramas</strong>: natural pace, realistic dialogue. School, workplace, and family dramas are best.'}</li>
+        <li>${isZh ? '<strong>校園或日常向動漫</strong>：避免奇幻系（會塞一堆專有名詞）。可選日常向、戀愛向、運動向。' : '<strong>School / slice-of-life anime</strong>: avoid heavy fantasy (too many made-up nouns). Pick everyday, romance, or sports genres.'}</li>
+        <li>${isZh ? '<strong>綜藝節目</strong>：自帶日文字幕，搭配誇張表情，比日劇更容易跟上。' : '<strong>Variety shows</strong>: built-in Japanese subtitles plus exaggerated reactions make them easier to follow than dramas.'}</li>
+      </ul>
+      <p style="margin-top:12px;">${isZh
+        ? '<strong>字幕策略：</strong>第一次看可開中文字幕理解劇情，第二次改日文字幕對應發音，第三次關字幕純聽。'
+        : '<strong>Subtitle strategy:</strong> first watch with English/Chinese subs for plot, second watch with Japanese subs to map sound to text, third watch with no subs at all.'}</p>
+    </div>
+
+    <div class="resource-card">
+      <h3>🔁 ${isZh ? 'Shadowing 跟讀法（最有效）' : 'Shadowing — The Most Effective Drill'}</h3>
+      <p>${isZh
+        ? '想短期內大幅進步，<strong>跟讀（shadowing）</strong>是最快的方法：邊聽邊用幾乎同步的速度跟著唸出聲。它同時訓練聽力、發音、節奏、語調。'
+        : 'If you want a big jump in a short time, <strong>shadowing</strong> is the single most effective drill: listen and speak out loud at almost the same time, copying everything you hear. It trains listening, pronunciation, rhythm, and intonation simultaneously.'}</p>
+      <div class="shadowing-steps">
+        <div class="shadow-step"><div class="ss-num">1</div><div class="ss-text"><strong>${isZh ? '純聽一遍' : 'Listen once'}</strong><br>${isZh ? '只聽，不看稿，掌握大意。' : 'Just listen — no script. Get the gist.'}</div></div>
+        <div class="shadow-step"><div class="ss-num">2</div><div class="ss-text"><strong>${isZh ? '對照逐字稿' : 'Check the script'}</strong><br>${isZh ? '查不懂的字，標出重音與連音。' : 'Look up unknown words; mark pitch and linked sounds.'}</div></div>
+        <div class="shadow-step"><div class="ss-num">3</div><div class="ss-text"><strong>${isZh ? '看稿跟讀' : 'Shadow with text'}</strong><br>${isZh ? '邊看稿邊跟唸，模仿語調，不求快。' : 'Read along while shadowing — match the intonation, not the speed.'}</div></div>
+        <div class="shadow-step"><div class="ss-num">4</div><div class="ss-text"><strong>${isZh ? '盲跟讀' : 'Blind shadow'}</strong><br>${isZh ? '收起逐字稿，只靠耳朵跟。一段反覆 10 次以上。' : 'Hide the script and shadow by ear only. Repeat one short clip 10+ times.'}</div></div>
+      </div>
+      <div class="tip-box" style="margin-top:14px;">${isZh
+        ? '<strong>每天 15 分鐘的跟讀，效果遠勝 1 小時的死背單字。</strong>選一個 30 秒到 1 分鐘的短片段，做到「跟得上、不卡頓、語調像」再換新素材。'
+        : '<strong>15 minutes of shadowing daily beats an hour of flashcards.</strong> Pick a 30-second to 1-minute clip and stick with it until you can shadow it smoothly with the right intonation before moving on.'}</div>
+      <div class="recorder-panel" id="shadowing-recorder">
+        <h3>${isZh ? '錄音比較練習' : 'Record-and-Compare Drill'}</h3>
+        <p>${isZh ? '先播放原句，再錄下自己的跟讀。重播時專注比較節奏、長短音、促音與語調。' : 'Play the model sentence, record your shadowing attempt, then replay and compare rhythm, vowel length, small っ, and intonation.'}</p>
+        <div class="answer-row"><select class="tool-input" id="shadowing-select" onchange="selectedShadowText=this.value"><option>おはようございます</option><option>よろしくお願いします</option><option>もう一度言ってください</option><option>写真を撮ってもいいですか</option></select><button class="tool-btn" onclick="playShadowModel()">${isZh ? '播放原句' : 'Play model'}</button></div>
+        <div class="recorder-controls"><button class="tool-btn primary" id="record-start-btn" onclick="startShadowRecording()">${isZh ? '開始錄音' : 'Start recording'}</button><button class="tool-btn" onclick="stopShadowRecording()">${isZh ? '停止' : 'Stop'}</button></div>
+        <div class="quiz-result" id="recorder-status">${isZh ? '錄音會留在本頁面，不會上傳。' : 'Recordings stay in this page and are not uploaded.'}</div>
+        <audio class="audio-playback" id="shadow-audio" controls></audio>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <h3>🔁 ${isZh ? 'Loop Player（循環播放器）' : 'Loop Player'}</h3>
+      <p>${isZh
+        ? '選一個級別和分類，按播放，它就會不停地唸：<strong>單字 → 意思 → 單字 → 下一個</strong>。利用通勤、走路、坐車的零碎時間，把手機放進口袋被動聽，靠重複把單字聽進腦裡。'
+        : 'Pick a level and category, press play, and it loops <strong>word → meaning → word → next</strong> forever. Made for dead time — commuting, walking, or on transit. Drop your phone in your pocket and absorb vocab passively through repetition.'}</p>
+      <div class="loop-player">
+        <div class="quiz-mode-switch" id="loop-level-switch">
+          <button class="mode-btn ${loopLevel === 'kana' ? 'active' : ''}" onclick="setLoopLevel('kana',this)">五十音</button>
+          <button class="mode-btn ${loopLevel === 'N5' ? 'active' : ''}" onclick="setLoopLevel('N5',this)">N5</button>
+          <button class="mode-btn ${loopLevel === 'N4' ? 'active' : ''}" onclick="setLoopLevel('N4',this)">N4</button>
+          <button class="mode-btn ${loopLevel === 'N3' ? 'active' : ''}" onclick="setLoopLevel('N3',this)">N3</button>
+        </div>
+        <div class="loop-controls">
+          <select class="tool-input" id="loop-cat" onchange="setLoopCat(this.value)"></select>
+          <button class="tool-btn primary" id="loop-play-btn" onclick="toggleLoopPlay()">▶ ${isZh ? '播放' : 'Play'}</button>
+        </div>
+        <div class="loop-now idle" id="loop-now"><span class="loop-now-mean">${isZh ? '按播放開始循環。' : 'Press play to start the loop.'}</span></div>
+      </div>
+      <div class="resource-tip">${isZh
+        ? '提示：語音由瀏覽器合成。手機鎖屏後部分瀏覽器會暫停語音，建議播放時讓螢幕保持開啟或調暗；耳機可讓走路時更專注。'
+        : 'Note: audio is browser-synthesized. Some mobile browsers pause speech once the screen locks, so keep the screen on (or dimmed) while it plays. Headphones help you focus while walking.'}</div>
+    </div>
+  `;
+  renderLoopCats();
+}
+function loopCategoryLabels(level) {
+  const isZh = currentLang === 'zh';
+  if (level === 'kana') return [isZh ? '平假名' : 'Hiragana', isZh ? '片假名' : 'Katakana'];
+  return (VOCAB_LEVELS[level] || []).map(c => isZh ? c.cat_zh : c.cat_en);
+}
+function loopItemsFor(level, catIdx) {
+  if (level === 'kana') {
+    const key = Number(catIdx) === 1 ? 'k' : 'h';
+    return allKana().map(x => ({ word: x[key], meaning: x.r, meaningLang: 'en-US' }));
+  }
+  const cat = (VOCAB_LEVELS[level] || [])[catIdx];
+  if (!cat) return [];
+  return cat.words.filter(w => w.type !== 'subhead' && stripReadings(w.word))
+    .map(w => ({ word: stripReadings(w.word), reading: wordReading(w.word), meaning: w.meaning, meaningLang: 'zh-TW' }));
+}
+function renderLoopCats() {
+  const sel = document.getElementById('loop-cat');
+  if (!sel) return;
+  const labels = loopCategoryLabels(loopLevel);
+  if (loopCat >= labels.length) loopCat = 0;
+  sel.innerHTML = labels.map((l, i) => `<option value="${i}" ${i === loopCat ? 'selected' : ''}>${escapeHtml(l)}</option>`).join('');
+}
+function setLoopLevel(level, btn) {
+  stopLoop();
+  loopLevel = level;
+  loopCat = 0;
+  loopIndex = 0;
+  document.querySelectorAll('#loop-level-switch .mode-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderLoopCats();
+}
+function setLoopCat(value) {
+  stopLoop();
+  loopCat = Number(value) || 0;
+  loopIndex = 0;
+}
+function updateLoopNow(item) {
+  const el = document.getElementById('loop-now');
+  if (!el) return;
+  if (!item) {
+    el.classList.add('idle');
+    el.innerHTML = `<span class="loop-now-mean">${currentLang === 'zh' ? '按播放開始循環。' : 'Press play to start the loop.'}</span>`;
+    return;
+  }
+  el.classList.remove('idle');
+  const reading = item.reading ? `<span class="loop-now-mean">${escapeHtml(item.reading)}</span>` : '';
+  el.innerHTML = `<span class="loop-now-word">${escapeHtml(item.word)}</span>${reading}<span class="loop-now-mean">${escapeHtml(item.meaning)}</span>`;
+}
+function setLoopPlayBtn(playing) {
+  const btn = document.getElementById('loop-play-btn');
+  if (btn) btn.innerHTML = playing ? `⏸ ${currentLang === 'zh' ? '停止' : 'Stop'}` : `▶ ${currentLang === 'zh' ? '播放' : 'Play'}`;
+}
+function toggleLoopPlay() {
+  if (loopPlaying) { stopLoop(); return; }
+  loopItems = loopItemsFor(loopLevel, loopCat);
+  if (!loopItems.length) return;
+  loopPlaying = true;
+  loopGen++;
+  setLoopPlayBtn(true);
+  loopStep(loopGen);
+}
+function stopLoop() {
+  loopPlaying = false;
+  loopGen++; // invalidate any in-flight chain
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+  setLoopPlayBtn(false);
+  updateLoopNow(null);
+}
+function loopStep(gen) {
+  if (!loopPlaying || gen !== loopGen || !loopItems.length) return;
+  const item = loopItems[loopIndex % loopItems.length];
+  updateLoopNow(item);
+  const alive = () => loopPlaying && gen === loopGen;
+  const gap = ms => new Promise(r => setTimeout(r, ms));
+  const say = (text, lang) => new Promise(resolve => {
+    if (!alive()) return resolve();
+    let done = false;
+    const finish = () => { if (!done) { done = true; resolve(); } };
+    speak(text, null, { lang, onend: finish });
+    // Fallback in case onend never fires (some browsers): resolve after a max wait.
+    setTimeout(finish, 6000);
+  });
+  // word -> meaning -> word -> next
+  (async () => {
+    await say(item.word, 'ja-JP');
+    if (!alive()) return;
+    await gap(250);
+    await say(item.meaning, item.meaningLang || 'zh-TW');
+    if (!alive()) return;
+    await gap(250);
+    await say(item.word, 'ja-JP');
+    if (!alive()) return;
+    await gap(500);
+    if (!alive()) return;
+    loopIndex = (loopIndex + 1) % loopItems.length;
+    loopStep(gen);
+  })();
+}
+
+function renderPhrases() {
+  const isZh = currentLang === 'zh';
+  const cat = COMMON_PHRASES[currentPhraseCat] || COMMON_PHRASES[0];
+  document.getElementById('phrases-content').innerHTML = `
+    <div class="tip-box">${isZh ? '先把高頻場景句練到能自然說出口，再回頭學文法，吸收會快很多。' : 'Learn high-utility phrases until they come out naturally; grammar will become much easier to absorb afterward.'}</div>
+    <div class="phrase-cats">${COMMON_PHRASES.map((c,i)=>`<button class="vocab-cat-btn ${i===currentPhraseCat?'active':''}" onclick="setPhraseCat(${i})">${isZh ? c.cat_zh : c.cat_en}</button>`).join('')}</div>
+    <div class="phrases-grid">${cat.items.map(p => `<div class="phrase-card"><div class="phrase-jp"><span>${p[0]}</span><button class="audio-btn" onclick="speak('${jsString(p[0])}',event)">▶</button></div><div class="phrase-rom">${p[1]}</div><div class="phrase-meaning">${isZh ? p[3] : p[2]}</div></div>`).join('')}</div>`;
+}
+function setPhraseCat(i) { currentPhraseCat = i; renderPhrases(); }
+function playShadowModel() {
+  const select = document.getElementById('shadowing-select');
+  selectedShadowText = select ? select.value : selectedShadowText;
+  speak(selectedShadowText);
+}
+function pickRecorderMime() {
+  if (!window.MediaRecorder || !MediaRecorder.isTypeSupported) return '';
+  const types = ['audio/webm', 'audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg'];
+  return types.find(t => MediaRecorder.isTypeSupported(t)) || '';
+}
+function setRecordBtn(recording) {
+  const btn = document.getElementById('record-start-btn');
+  if (!btn) return;
+  btn.disabled = recording;
+  btn.textContent = recording
+    ? (currentLang === 'zh' ? '錄音中…' : 'Recording…')
+    : (currentLang === 'zh' ? '開始錄音' : 'Start recording');
+}
+async function startShadowRecording() {
+  const status = document.getElementById('recorder-status');
+  const setStatus = msg => { if (status) status.textContent = msg; };
+  if (shadowRecorder && shadowRecorder.state === 'recording') return;
+  // Microphone capture requires a secure context (https or localhost). Opening the
+  // file directly with file:// blocks getUserMedia, which is why the drill looked broken.
+  if (!window.isSecureContext || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
+    setStatus(currentLang === 'zh'
+      ? '無法錄音：瀏覽器需要在安全環境（https 或 localhost）才能存取麥克風。請透過本機伺服器開啟此頁。'
+      : 'Cannot record: the browser only allows microphone access on a secure origin (https or localhost). Serve this page from a local server to enable it.');
+    return;
+  }
+  let stream;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  } catch (err) {
+    setStatus(currentLang === 'zh'
+      ? '無法存取麥克風：' + (err && err.name === 'NotAllowedError' ? '權限被拒絕。' : '請確認已連接並允許麥克風。')
+      : 'Microphone access failed: ' + (err && err.name === 'NotAllowedError' ? 'permission denied.' : 'check that a mic is connected and allowed.'));
+    return;
+  }
+  shadowChunks = [];
+  const mime = pickRecorderMime();
+  try {
+    shadowRecorder = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+  } catch (err) {
+    stream.getTracks().forEach(tr => tr.stop());
+    setStatus(currentLang === 'zh' ? '此瀏覽器不支援錄音格式。' : 'Recording is not supported in this browser.');
+    return;
+  }
+  shadowRecorder.ondataavailable = e => { if (e.data && e.data.size) shadowChunks.push(e.data); };
+  shadowRecorder.onstop = () => {
+    stream.getTracks().forEach(tr => tr.stop());
+    setRecordBtn(false);
+    if (!shadowChunks.length) { setStatus(currentLang === 'zh' ? '沒有錄到聲音，請再試一次。' : 'No audio captured — please try again.'); return; }
+    const blob = new Blob(shadowChunks, { type: shadowChunks[0].type || mime || 'audio/webm' });
+    if (shadowAudioUrl) URL.revokeObjectURL(shadowAudioUrl);
+    shadowAudioUrl = URL.createObjectURL(blob);
+    const audio = document.getElementById('shadow-audio');
+    if (audio) { audio.src = shadowAudioUrl; audio.style.display = 'block'; }
+    setStatus(currentLang === 'zh' ? '錄好了。播放並和原句比較。' : 'Recorded. Replay it and compare with the model.');
+  };
+  shadowRecorder.start();
+  setRecordBtn(true);
+  setStatus(currentLang === 'zh' ? '錄音中…（按「停止」結束）' : 'Recording… (press Stop to finish)');
+}
+function stopShadowRecording() {
+  if (shadowRecorder && shadowRecorder.state !== 'inactive') shadowRecorder.stop();
+}
+function renderJlpt() {
+  const isZh = currentLang === 'zh';
+  document.getElementById('jlpt-content').innerHTML = `
+    <div class="resource-card">
+      <h3>📋 ${isZh ? '什麼是 JLPT？' : 'What is the JLPT?'}</h3>
+      <p>${isZh
+        ? 'JLPT（日本語能力試驗）是日本官方舉辦的日語檢定，每年 7 月與 12 月各一次。共分五級：N5（最簡單）→ N1（最難）。每場考試三個部分：<strong>言語知識（文字・語彙・文法）、讀解、聴解</strong>。'
+        : 'The JLPT (Japanese-Language Proficiency Test) is the official Japanese government exam, held twice a year (July & December). Five levels from N5 (easiest) to N1 (hardest). Each test has three parts: <strong>Language Knowledge (vocab + grammar), Reading, and Listening</strong>.'}</p>
+      <div class="hku-grid">
+        <div class="hku-cell"><div class="hku-level">N5</div><div class="hku-desc">${isZh ? '基本句子、平/片假名' : 'Basic sentences, kana'}</div></div>
+        <div class="hku-cell"><div class="hku-level">N4</div><div class="hku-desc">${isZh ? '日常基本對話' : 'Basic daily conversation'}</div></div>
+        <div class="hku-cell"><div class="hku-level">N3</div><div class="hku-desc">${isZh ? '一般日常日語' : 'Everyday Japanese'}</div></div>
+        <div class="hku-cell"><div class="hku-level">N2</div><div class="hku-desc">${isZh ? '報章、廣播' : 'News, broadcasts'}</div></div>
+        <div class="hku-cell"><div class="hku-level">N1</div><div class="hku-desc">${isZh ? '抽象、學術內容' : 'Abstract & academic'}</div></div>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <h3>📝 ${isZh ? '官方樣本試題' : 'Official Sample Papers'}</h3>
+      <p>${isZh
+        ? '官方提供全部五級的樣本題目，附音檔與答案，是免費而且最準的練習資源。請至少做完一份對應自己程度的樣題再報考。'
+        : 'The official site provides sample questions for all five levels with audio and answer keys. This is the most accurate (and free) practice you can get. Do at least one sample paper at your level before signing up.'}</p>
+      <p><a href="https://www.jlpt.jp/e/samples/sample09.html" target="_blank" rel="noopener noreferrer" class="big-link">→ ${isZh ? 'JLPT 官方樣本題目（全部五級）' : 'JLPT Official Sample Questions (all 5 levels)'}</a></p>
+    </div>
+
+    <div class="resource-card">
+      <h3>🎯 ${isZh ? '如何準備' : 'How to Prepare'}</h3>
+      <ol class="feature-list">
+        <li><strong>${isZh ? '先做樣本題目' : 'Start with the sample paper'}</strong> — ${isZh ? '了解題型，找出弱項。' : 'Learn the question format and find your weakest section.'}</li>
+        <li><strong>${isZh ? '背該級別的單字與文法' : 'Memorize the level&apos;s vocab and grammar'}</strong> — ${isZh ? '單字書或 Anki 牌組（搜 N5/N4/N3/N2/N1 deck）。' : 'Use a vocab book or an Anki deck (search "JLPT NX deck").'}</li>
+        <li><strong>${isZh ? '聴解最易丟分' : 'Listening loses the most points'}</strong> — ${isZh ? '考前一個月每天至少 30 分鐘聽力。' : 'Spend 30+ minutes daily on listening for the month before the exam.'}</li>
+        <li><strong>${isZh ? '讀解靠考古題' : 'Reading is built by past papers'}</strong> — ${isZh ? '計時做題訓練速度。' : 'Time yourself to build reading speed.'}</li>
+        <li><strong>${isZh ? '不要只刷一級' : 'Don&apos;t plateau at one level'}</strong> — ${isZh ? '考過 N3 就直接準備 N2，落差雖大但跳級可逼自己進步。' : 'Once you pass one level, jump to the next — the gap is big but it forces growth.'}</li>
+      </ol>
+      <div class="tip-box" style="margin-top:14px;">${isZh
+        ? '<strong>注意：</strong>JLPT 沒有口說與寫作。N1 合格不等於能流利說日文，記得另外練口說（見<a href="javascript:goTo(\'listening\')">聴解</a>）。'
+        : '<strong>Important:</strong> JLPT has <strong>no speaking and no writing</strong>. Passing N1 does not mean you can speak fluently — train output separately (see the <a href="javascript:goTo(\'listening\')">Listening</a> page for shadowing).'}</div>
+    </div>
+  `;
+}
+
+function renderAbout() {
+  const isZh = currentLang === 'zh';
+  document.getElementById('about-content').innerHTML = `
+    <div class="resource-card">
+      <h3>👋 ${isZh ? '關於我' : 'About Me'}</h3>
+      <p>${isZh
+        ? '你好，我是一個香港學生。我最初下定決心學日語，是因為在日本旅行時發現自己太依賴翻譯 app，連簡單交流都被卡住。那種不方便讓我不想只是「等工具幫忙」，而是想真正掌握這門語言。'
+        : 'Hi — I&apos;m a Hong Kong student. I first became serious about Japanese after travelling in Japan and feeling how limiting it was to depend on translation apps for ordinary conversations. That frustration pushed me to stop waiting for tools to speak for me and start learning the language properly.'}</p>
+      <p>${isZh
+        ? '後來我在 DSE 期間自學到 <strong>JLPT N1</strong>。我的方法不是買一堆教材，而是建立每天可持續的系統：做筆記、複習單字、聽大量日語，並把 AI 當成 24 小時 tutor，用來練對話、整理筆記、解釋長句。學校功課忙的時候很難保持穩定，但我最後仍在兩年內考到 N1。第一次不用翻譯讀懂日文新聞時，那種成就感非常深。'
+        : 'During my HKDSE years, I self-studied to <strong>JLPT N1</strong>. My method was not buying piles of textbooks; it was building a daily system: notes, vocab review, lots of input, and AI as a 24/7 tutor for conversation practice, explanations, and note summaries. Balancing that with schoolwork was not always smooth, but I eventually reached N1 within two years. I still remember how satisfying it felt to read a Japanese newspaper without translation for the first time.'}</p>
+      <p>${isZh
+        ? '我做這個網站，是想在「自學時代」幫助其他想學日語但不知從何下手的人。我相信<strong>用 AI 輔助的自學，比傳統課堂更靈活</strong>：每個人的弱點、興趣與節奏都不同，AI 可以幫你把單字、文法、聽力與輸出練習接成自己的學習路線。對我來說，日語也打開了通往日本科技與科學內容的入口，讓我能直接讀第一手資料，而不只等別人翻譯。'
+        : 'I built this site to help other learners in the self-study era. I genuinely believe <strong>AI-assisted self-learning can be more flexible than classroom learning</strong>: every learner has different weaknesses, interests, and pace, and AI can connect vocabulary, grammar, listening, and output practice into a route designed for you. For me, Japanese also became a gateway into Japan&apos;s technology and science sectors, letting me read primary sources and international perspectives directly.'}</p>
+    </div>
+
+    <div class="resource-card">
+      <h3>🎓 ${isZh ? '為什麼考 JLPT 值得（HKU 換分作參考）' : 'Why JLPT is Worth It (HKU Score Conversion)'}</h3>
+      <p>${isZh
+        ? '香港大學承認 JLPT 成績用作學分換算，這對 HK 學生來說是非常實際的動力：'
+        : 'The University of Hong Kong recognizes JLPT scores for course conversion credit — a very concrete motivation for HK students:'}</p>
+      <div class="hku-grid">
+        <div class="hku-cell"><div class="hku-level">N3</div><div class="hku-score">= 4</div><div class="hku-desc">${isZh ? 'HKU 換分' : 'HKU points'}</div></div>
+        <div class="hku-cell"><div class="hku-level">N2</div><div class="hku-score">= 7</div><div class="hku-desc">${isZh ? 'HKU 換分' : 'HKU points'}</div></div>
+        <div class="hku-cell featured"><div class="hku-level">N1</div><div class="hku-score">= 8.5</div><div class="hku-desc">${isZh ? 'HKU 換分（接近滿分）' : 'HKU points (near full)'}</div></div>
+      </div>
+      <p style="margin-top:14px;">${isZh
+        ? '此外，<strong>JLPT 成績是赴日就業的硬門檻</strong>：大部分日本企業要求 N2 以上，正職通常要 N1。不過要老實說一句：'
+        : 'Beyond academic credit, <strong>JLPT is a hard requirement for working in Japan</strong>: most Japanese companies require N2+, and full-time roles usually require N1. That said, I want to be honest:'}</p>
+      <blockquote class="about-quote">${isZh
+        ? '即使考到 N1，也不代表你能流利自如地使用日語。N1 證明你看得懂、聽得懂；但說與寫，必須額外靠口說練習、寫作練習、實際對話來補。'
+        : 'Even passing N1 does not mean you can freely use Japanese. N1 proves you can read and listen at a high level — but speaking and writing must be trained separately through conversation practice and output drills.'}</blockquote>
+    </div>
+
+    <div class="resource-card">
+      <h3>🛣️ ${isZh ? '我建議的自學路線（以 N3 為目標）' : 'My Suggested Self-Study Path (aim for N3)'}</h3>
+      <ol class="feature-list">
+        <li><strong>${isZh ? '兩週搞定假名' : 'Kana in 2 weeks'}</strong> — ${isZh ? '平假名 + 片假名（用本站「假名」與「拗音」分頁）。' : 'Hiragana + Katakana (use the Hiragana / Katakana / Combos pages on this site).'}</li>
+        <li><strong>${isZh ? '打好 N5–N4 地基' : 'Build the N5–N4 base'}</strong> — ${isZh ? '單字、文法、動詞與形容詞變型分頁全部讀過，每天 30 分鐘。這是地基，不是終點。' : 'Work through Vocabulary, Grammar, Verb and Adjective Conjugation. 30 minutes a day. This is the foundation, not the finish line.'}</li>
+        <li><strong>${isZh ? '把零碎時間變成單字時間' : 'Turn dead time into vocab time'}</strong> — ${isZh ? '通勤、走路、坐車時用本站的「循環播放器（Loop Player）」被動聽單字；靠重複把詞聽進腦裡，不必盯著螢幕。' : 'On commutes, walks, or transit, run the built-in Loop Player on the Listening page and absorb vocab passively. Repetition does the work — no screen needed.'}</li>
+        <li><strong>${isZh ? '衝 N3：大量輸入 + Shadowing' : 'Push to N3: input + shadowing'}</strong> — ${isZh ? 'NHK Easy + 一部日劇/動漫，每天聽 30 分鐘；再加每天 15 分鐘跟讀，這是進步最快的單一動作。' : 'NHK Easy + one J-drama or anime, 30 minutes of listening daily, plus 15 minutes of shadowing — the single highest-ROI activity.'}</li>
+        <li><strong>${isZh ? '用 AI 練口說與寫作' : 'Use AI for output practice'}</strong> — ${isZh ? '請 AI 出題、改作文、模擬日常對話，能補 JLPT 缺的口說與寫作。' : 'Have an AI generate prompts, correct your writing, and role-play conversations. This fills the speaking/writing gap JLPT leaves out.'}</li>
+        <li><strong>${isZh ? '報考一次 JLPT' : 'Sign up for one JLPT'}</strong> — ${isZh ? '有截止日才有動力。建議直接以 N3 為第一個目標：它是日語真正開始派上用場的最低級別，而且自學約一年就能達到。' : 'A deadline creates real motivation. Start with N3: it is the lowest level where Japanese becomes genuinely useful, and it is reachable in about a year of self-study.'}</li>
+      </ol>
+      <div class="tip-box" style="margin-top:14px;">${isZh
+        ? '<strong>最後一句：</strong>學語言最大的敵人不是難度，是中斷。每天 30 分鐘的桌前學習，再加上通勤時被動聽（循環播放器）累積的零碎時間，一年下來遠勝一週爆讀 10 小時然後三個月不碰。'
+        : '<strong>One last thing:</strong> the biggest enemy in language learning is not difficulty — it&apos;s stopping. 30 focused minutes a day, topped up with passive listening during your commute (the Loop Player), beats 10 hours one week then dropping it for three months.'}</div>
+    </div>
+  `;
+}
+
+const N4_VOCAB_SOURCE = String.raw`
+1. 動詞
+使(つか)う 使用
+急(いそ)ぐ 急忙
+運(はこ)ぶ 搬運
+集(あつ)める 收集
+決(き)める 決定
+比(くら)べる 比較
+続(つづ)ける 持續
+信(しん)じる 相信
+育(そだ)てる 養育
+遅(おく)れる 遲到
+探(さが)す 尋找
+払(はら)う 支付
+
+2. 形容詞
+簡単(かんたん) 簡單
+複雑(ふくざつ) 複雜
+親切(しんせつ) 親切
+危険(きけん) 危險
+安全(あんぜん) 安全
+厳(きび)しい 嚴格
+優(やさ)しい 溫柔
+美(うつく)しい 美麗
+細(こま)かい 細小
+深(ふか)い 深
+
+3. 名詞・生活
+約束(やくそく) 約定
+用事(ようじ) 要事
+経験(けいけん) 經驗
+機会(きかい) 機會
+理由(りゆう) 理由
+都合(つごう) 方便（時間）
+趣味(しゅみ) 興趣
+文化(ぶんか) 文化
+社会(しゃかい) 社會
+関係(かんけい) 關係
+
+4. 副詞・接続
+必(かなら)ず 一定
+例(たと)えば 例如
+特(とく)に 特別
+だいたい 大致
+もちろん 當然
+やっと 終於
+ずいぶん 相當
+なるべく 盡量
+急(きゅう)に 突然
+しばらく 暫時
+`;
+const N3_VOCAB_SOURCE = String.raw`
+1. 動詞
+含(ふく)む 包含
+加(くわ)える 加上
+預(あず)ける 寄存
+断(ことわ)る 拒絕
+諦(あきら)める 放棄
+努力(どりょく)する 努力
+解決(かいけつ)する 解決
+影響(えいきょう)する 影響
+成長(せいちょう)する 成長
+我慢(がまん)する 忍耐
+比較(ひかく)する 比較
+判断(はんだん)する 判斷
+
+2. 形容詞・副詞
+豊(ゆた)か 豐富
+確(たし)か 確實
+盛(さか)ん 興盛
+苦(にが)い 苦
+鋭(するど)い 銳利
+偉(えら)い 了不起
+実(じつ)は 其實
+案外(あんがい) 出乎意料
+相変(あいか)わらず 一如既往
+さすが 不愧是
+
+3. 名詞・抽象
+印象(いんしょう) 印象
+性格(せいかく) 性格
+表現(ひょうげん) 表達
+状況(じょうきょう) 狀況
+目的(もくてき) 目的
+結果(けっか) 結果
+原因(げんいん) 原因
+責任(せきにん) 責任
+傾向(けいこう) 傾向
+能力(のうりょく) 能力
+`;
 const N5_VOCAB = parseVocabSource(VOCAB_SOURCE);
+const N4_VOCAB = parseVocabSource(N4_VOCAB_SOURCE);
+const N3_VOCAB = parseVocabSource(N3_VOCAB_SOURCE);
+const VOCAB_LEVELS = { N5: N5_VOCAB, N4: N4_VOCAB, N3: N3_VOCAB };
 const GRAMMAR_STRUCT = parseGrammarSource(GRAMMAR_STRUCT_SOURCE);
 const GRAMMAR_FUNC = parseGrammarSource(GRAMMAR_FUNC_SOURCE);
 
@@ -1322,6 +2387,15 @@ let currentVocabCat = 0;
 let currentGrammarTab = 'struct';
 let quizMode = 'kana-to-rom', qCorrect = 0, qWrong = 0, qCurrent = null, qAnswered = false;
 let fcScript = 'hiragana', fcDeck = [], fcIndex = 0, fcFlipped = false;
+let vocabSearch = '', vocabOnlyUnlearned = false, currentPhraseCat = 0;
+let vocabSrs = {}, grammarLearned = {};
+try { vocabSrs = JSON.parse(localStorage.getItem('vocab_srs') || '{}'); } catch(e) {}
+try { grammarLearned = JSON.parse(localStorage.getItem('grammar_learned') || '{}'); } catch(e) {}
+let verbQuizCurrent = null;
+let shadowRecorder = null, shadowChunks = [], shadowAudioUrl = null, selectedShadowText = 'おはようございます';
+let traceKanji = '日', traceDrawing = false;
+let loopPlaying = false, loopLevel = 'N5', loopCat = 0, loopIndex = 0, loopItems = [], loopGen = 0;
+let fcLevel = 'kana', quizLevel = 'kana', vocabQuizMode = 'm2w';
 
 function t(key) { return T[currentLang][key] || T.en[key] || key; }
 function escapeHtml(value) {
@@ -1344,7 +2418,63 @@ function renderRubyWord(value) {
 function renderAccentBadge(accent) {
   return accent ? `<span class="pitch-num">${escapeHtml(accent)}</span>` : '';
 }
-function allKana() {
+function localDateKey(date = new Date()) {
+  const d = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+  return d.toISOString().slice(0, 10);
+}
+function dayMs(days) { return days * 24 * 60 * 60 * 1000; }
+function todayStart() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+}
+function updateDailyStreak() {
+  let data = {};
+  try { data = JSON.parse(localStorage.getItem('daily_streak') || '{}'); } catch(e) {}
+  const today = localDateKey();
+  const yesterday = localDateKey(new Date(Date.now() - dayMs(1)));
+  if (data.last !== today) {
+    data.count = data.last === yesterday ? (Number(data.count) || 0) + 1 : 1;
+    data.last = today;
+    localStorage.setItem('daily_streak', JSON.stringify(data));
+  }
+  const el = document.getElementById('daily-streak');
+  if (el) el.textContent = data.count || 1;
+}
+function vocabId(catIndex, wordIndex, word) { return `v:${catIndex}:${wordIndex}:${stripReadings(word || '').slice(0, 24)}`; }
+function saveVocabSrs() { localStorage.setItem('vocab_srs', JSON.stringify(vocabSrs)); }
+function vocabState(id) { return vocabSrs[id] || {}; }
+function vocabIsLearned(id) { return !!vocabState(id).learned; }
+function vocabIsDue(id) {
+  const st = vocabState(id);
+  return !st.due || st.due <= todayStart();
+}
+function updateVocabDueCount() {
+  const due = N5_VOCAB.reduce((sum, cat, ci) => sum + cat.words.filter((w, wi) => w.type !== 'subhead' && vocabIsDue(vocabId(ci, wi, w.word))).length, 0);
+  const el = document.getElementById('vocab-due-count');
+  if (el) el.textContent = currentLang === 'zh' ? `今日到期：${due}` : `Due today: ${due}`;
+}
+function reviewVocab(id, quality) {
+  const st = vocabSrs[id] || {interval: 0, reps: 0};
+  if (quality === 'again') {
+    st.interval = 1;
+    st.reps = 0;
+    st.learned = false;
+  } else {
+    st.reps = (st.reps || 0) + 1;
+    st.learned = true;
+    st.interval = st.reps === 1 ? 1 : st.reps === 2 ? 3 : Math.min(Math.round((st.interval || 3) * 2.2), 90);
+  }
+  st.last = todayStart();
+  st.due = todayStart() + dayMs(st.interval);
+  vocabSrs[id] = st;
+  saveVocabSrs();
+  renderVocab();
+}
+function setVocabSearch(value) { vocabSearch = value || ''; renderVocab(); }
+function setVocabUnlearned(value) { vocabOnlyUnlearned = !!value; renderVocab(); }
+function grammarId(tab, index, pattern) { return `g:${tab}:${index}:${pattern}`; }
+function saveGrammarLearned() { localStorage.setItem('grammar_learned', JSON.stringify(grammarLearned)); }
+function toggleGrammarLearned(id) { grammarLearned[id] = !grammarLearned[id]; if (!grammarLearned[id]) delete grammarLearned[id]; saveGrammarLearned(); renderGrammar(); }function allKana() {
   return ROWS.flatMap(row => row.h.map((h, i) => h ? {h, k: row.k[i], r: row.r[i]} : null)).filter(Boolean);
 }
 function saveLearned() {
@@ -1369,15 +2499,23 @@ if ('speechSynthesis' in window) {
   loadVoices();
   speechSynthesis.onvoiceschanged = loadVoices;
 }
-function speak(text, e) {
+function speak(text, e, opts) {
   if (e && e.stopPropagation) e.stopPropagation();
-  if (!('speechSynthesis' in window)) return alert(currentLang === 'zh' ? '此瀏覽器不支援語音合成。' : 'Speech synthesis is not supported in this browser.');
-  speechSynthesis.cancel();
+  opts = opts || {};
+  if (!('speechSynthesis' in window)) {
+    if (opts.onend) opts.onend();
+    else alert(currentLang === 'zh' ? '此瀏覽器不支援語音合成。' : 'Speech synthesis is not supported in this browser.');
+    return null;
+  }
+  if (!opts.queue) speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'ja-JP';
-  u.rate = 0.85;
-  if (jaVoice) u.voice = jaVoice;
+  const lang = opts.lang || 'ja-JP';
+  u.lang = lang;
+  u.rate = opts.rate != null ? opts.rate : 0.85;
+  if (lang.startsWith('ja') && jaVoice) u.voice = jaVoice;
+  if (opts.onend) { u.onend = opts.onend; u.onerror = opts.onend; }
   speechSynthesis.speak(u);
+  return u;
 }
 function splitMorae(hira) {
   const small = 'ぁぃぅぇぉゃゅょゎァィゥェォャュョヮ';
@@ -1484,6 +2622,7 @@ function setScript(script) {
 function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('kana_lang', lang);
+  if (loopPlaying) stopLoop();
   document.querySelectorAll('.lang-btn').forEach((btn, i) => btn.classList.toggle('active', (lang === 'en' && i === 0) || (lang === 'zh' && i === 1)));
   applyI18n();
   renderDynamic();
@@ -1500,6 +2639,7 @@ function toggleSidebar() {
   document.getElementById('overlay').classList.toggle('show');
 }
 function goTo(page) {
+  if (page !== 'listening' && loopPlaying) stopLoop();
   currentPage = page;
   document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
@@ -1523,6 +2663,12 @@ function updateTitle() {
     kanji:['Kanji Intro','How characters work in Japanese','漢字入門','認識日語漢字'],
     vocab:['JLPT N5 Vocabulary','Core words for beginners','JLPT N5 單字','初學者核心單字'],
     grammar:['JLPT N5 Grammar','Core sentence patterns','JLPT N5 文法','核心句型'],
+    verbs:['Verb Conjugation','JLPT N5 to N3 verb forms','動詞變型','JLPT N5 至 N3 動詞變化'],
+    adjectives:['Adjective Conjugation','JLPT N5 to N3 adjective forms','形容詞變型','JLPT N5 至 N3 形容詞變化'],
+    listening:['Listening 聴解','Train your ears with native content','聴解 聽力訓練','用母語素材練聽力'],
+    phrases:['Common Phrases','High-utility phrases by situation','場面會話','按情境整理的高頻句'],
+    jlpt:['JLPT Tests','Official sample papers and test info','JLPT 日本語能力試験','官方樣本題目與考試資訊'],
+    about:['About Me','Why I built this site','關於我','我為何做這個網站'],
     passages:['N5 Reading Passages','Short beginner readings','N5 閱讀練習','初級短文閱讀'],
     flashcards:['Flashcards','Review kana quickly','單字卡','快速複習假名'],
     quiz:['Quiz','Test kana recognition','測驗','測試假名辨識'],
@@ -1555,40 +2701,187 @@ function renderPitch() {
     </div>`;
 }
 function renderKanji() {
+  const isZh = currentLang === 'zh';
   document.getElementById('kanji-content').innerHTML = `
-    <div class="kanji-hero"><div class="kanji-hero-char">日本語</div><div class="topbar-sub">${currentLang === 'zh' ? '平假名、片假名、漢字一起構成日語書寫。' : 'Japanese writing combines hiragana, katakana, and kanji.'}</div></div>
-    <div class="kanji-card"><h3>${currentLang === 'zh' ? '漢字代表意義' : 'Kanji carry meaning'}</h3><p>${currentLang === 'zh' ? '漢字來自中文，但在日語中有自己的讀音與用法。每個漢字通常有音讀與訓讀。' : 'Kanji came from Chinese characters, but Japanese gives them its own readings and grammar. Many kanji have both Chinese-derived readings and native Japanese readings.'}</p>
-      <div class="kanji-examples">${[['日','にち / ひ','sun, day','太陽、日'],['本','ほん','book, origin','書、本源'],['人','じん / ひと','person','人'],['山','さん / やま','mountain','山'],['水','すい / みず','water','水']].map(x => `<div class="kanji-ex"><div class="kanji-ex-char">${x[0]}</div><div class="ex-rom">${x[1]}</div><div class="ex-mean">${currentLang === 'zh' ? x[3] : x[2]}</div></div>`).join('')}</div>
+    <div class="kanji-hero"><div class="kanji-hero-char">日本語</div><div class="topbar-sub">${isZh ? '漢字不是孤立符號，而是日語讀寫能力的地圖。' : 'Kanji are not isolated symbols — they are a map of Japanese literacy.'}</div></div>
+
+    <div class="kanji-card"><h3>${isZh ? '音讀與訓讀：一個字的兩種讀法' : 'On-yomi & kun-yomi: a kanji’s two kinds of reading'}</h3>
+      <p>${isZh ? '大多數漢字有兩類讀音。<strong>音讀（on-yomi）</strong>來自古代中文的發音，通常用在漢字詞（兩個以上漢字組成的詞）；<strong>訓讀（kun-yomi）</strong>是日本固有的讀法，通常用在單獨出現、或後面接送り假名的字。' : 'Most kanji carry two kinds of reading. <strong>On-yomi</strong> is borrowed from the original Chinese pronunciation and usually appears in compound words (two or more kanji together). <strong>Kun-yomi</strong> is the native Japanese reading, usually used when the kanji stands alone or takes okurigana (trailing hiragana).'}</p>
+      <div class="contrast-grid">
+        <div class="contrast-card"><h4>${isZh ? '音讀 on-yomi（漢語詞）' : 'On-yomi (in compounds)'}</h4>
+          <div class="contrast-row"><div class="contrast-jp">山(さん)</div><div>→</div><div class="contrast-jp">富士山(ふじさん)</div></div><div class="contrast-note">${isZh ? '在 富士山、火山 中讀 さん／ざん' : 'read さん / ざん in 富士山, 火山'}</div>
+          <div class="contrast-row"><div class="contrast-jp">水(すい)</div><div>→</div><div class="contrast-jp">水曜日(すいようび)</div></div><div class="contrast-note">${isZh ? '在 水曜日、水道 中讀 すい' : 'read すい in 水曜日, 水道'}</div>
+        </div>
+        <div class="contrast-card"><h4>${isZh ? '訓讀 kun-yomi（單獨／訓讀詞）' : 'Kun-yomi (alone / native words)'}</h4>
+          <div class="contrast-row"><div class="contrast-jp">山(やま)</div><div>→</div><div class="contrast-jp">山(やま)が高い</div></div><div class="contrast-note">${isZh ? '單獨出現時讀 やま' : 'read やま when standing alone'}</div>
+          <div class="contrast-row"><div class="contrast-jp">水(みず)</div><div>→</div><div class="contrast-jp">水(みず)を飲む</div></div><div class="contrast-note">${isZh ? '單獨出現時讀 みず' : 'read みず when standing alone'}</div>
+        </div>
+      </div>
     </div>
-    <div class="kanji-card"><h3>${currentLang === 'zh' ? '從常見字開始' : 'Start with common kanji'}</h3><p>${currentLang === 'zh' ? '不用一次學完全部漢字。先學高頻字，搭配單字一起記，會比單獨背字形更有效。' : 'You do not need to learn every kanji at once. Start with frequent kanji and learn them inside real words.'}</p></div>`;
+
+    <div class="kanji-card"><h3>${isZh ? '為什麼一個字會有很多讀音' : 'Why one kanji ends up with many readings'}</h3>
+      <p>${isZh ? '日本在不同朝代、從中國不同地區多次借入漢字，每次都帶進一套發音，於是同一個字累積了好幾個音讀；再加上原有的日語訓讀，讀音就更多了。好消息是：你幾乎不需要把所有讀音背下來——真正常用的通常只有一兩個，而且<strong>會自然地附著在你學過的詞上</strong>。' : 'Japan borrowed kanji from China several times over the centuries, from different regions and eras, and each wave brought its own pronunciation — so a single character collected multiple on-yomi. Add the native kun-yomi on top and the list grows. The good news: you rarely need them all. Only one or two readings are common, and they <strong>attach themselves naturally to the words you already know</strong>.'}</p>
+      <div class="kanji-examples">${[['生','せい / しょう / い・う / は','life / birth / raw','生活、学生、生きる'],['日','にち / じつ / ひ / か','sun, day','日本、毎日、三日'],['下','か / げ / した / さ','below, down','下車、地下、下'],['上','じょう / うえ / あ・のぼ','above, up','上手、上、上る']].map(x => `<div class="kanji-ex"><div class="kanji-ex-char">${x[0]}</div><div class="ex-rom">${x[1]}</div><div class="ex-mean">${isZh ? x[3] : x[2]}</div></div>`).join('')}</div>
+    </div>
+
+    <div class="kanji-card"><h3>${isZh ? '在「詞」裡學漢字，勝過死背單字' : 'Learn kanji inside real words, not by rote'}</h3>
+      <p>${isZh ? '孤立地背「字形＝意思＝一串讀音」既枯燥又容易忘，因為缺乏脈絡。把漢字放進真實單字與例句裡學，你會同時記住：該用哪個讀音、字的實際用法、以及一個能掛在記憶上的情境。學會 食(た)べる、食堂(しょくどう)、食事(しょくじ)，「食」這個字自然就活了起來。' : 'Memorizing "shape = meaning = a list of readings" in isolation is dull and forgettable because it has no context. Learning a kanji inside real words and sentences teaches you the right reading for each case, how the character actually behaves, and gives you a situation to hang the memory on. Learn 食べる, 食堂, and 食事, and the character 食 comes alive on its own.'}</p>
+      <div class="resource-tip">${isZh ? '實作法：每遇到新漢字，記至少兩個含它的常用詞，而不是抄十遍字形。本站的單字、文法、閱讀分頁就是為此設計。' : 'In practice: for every new kanji, learn at least two common words that contain it instead of copying the shape ten times. The Vocabulary, Grammar, and Passages pages here are built for exactly this.'}</div>
+    </div>
+
+    <div class="kanji-card"><h3>${isZh ? '部首：把字拆成記憶掛鉤' : 'Radicals: break characters into memory hooks'}</h3>
+      <p>${isZh ? '漢字不是一堆隨機筆畫，而是由可重複的零件（<strong>部首</strong>）組成。認得部首後，複雜的字會變成「幾個熟面孔的組合」，更好記、也更好猜意思。很多部首本身帶有意義線索。' : 'Kanji are not random strokes — they are built from reusable parts called <strong>radicals</strong>. Once you recognize radicals, complex characters become "a few familiar pieces combined," which makes them far easier to remember and often to guess at. Many radicals carry a meaning hint of their own.'}</p>
+      <div class="kanji-examples">${[['氵','みず','water radical','江、海、river/sea'],['亻','ひと','person radical','休、体、people'],['木','き','tree radical','林、森、trees'],['日','ひ','sun radical','明、時、light/time'],['火','ひ／灬','fire radical','焼、点、heat']].map(x => `<div class="kanji-ex"><div class="kanji-ex-char">${x[0]}</div><div class="ex-rom">${x[1]}</div><div class="ex-mean">${isZh ? x[3] : x[2]}</div></div>`).join('')}</div>
+      <div class="resource-tip">${isZh ? '例：氵（水部）出現在 海、river、湖 等與水有關的字。看到部首先猜意思，再記讀音。' : 'Example: 氵 (the water radical) shows up in 海, 河, 湖 — all water-related. Spot the radical, guess the meaning, then learn the reading.'}</div>
+    </div>
+
+    <div class="kanji-card"><h3>${isZh ? '常用漢字（jōyō）：實際的里程碑目標' : 'The jōyō list: a practical milestone target'}</h3>
+      <p>${isZh ? '日本政府訂定的<strong>常用漢字表</strong>共 2,136 字，是中小學到高中要學會、報章與一般出版品預設你看得懂的範圍。它不是「全部漢字」，但掌握它基本上等於具備日常讀寫能力。把它當作分段目標：N5 約需 100 字、N4 約 300、N3 約 600，慢慢往 2,136 邁進，不必一次吞下。' : 'The government-defined <strong>jōyō kanji</strong> list contains 2,136 characters — the set taught through high school and assumed by newspapers and general publications. It is not "all kanji," but mastering it is essentially functional literacy. Treat it as a staged target: roughly 100 kanji for N5, ~300 for N4, ~600 for N3, building toward 2,136 — no need to swallow it all at once.'}</p>
+    </div>
+
+    <div class="kanji-card"><h3>${isZh ? '書寫策略：先看筆順，再描，再默寫' : 'Writing strategy: watch, trace, recall'}</h3><p>${isZh ? '漢字書寫不要只靠「看起來像」。正確筆順能讓字形更穩，也能提高查字典與辨識速度。建議每個字做三步：1）看筆順方向；2）描一次；3）遮住範本默寫一次。' : 'Do not write kanji by copying the final shape alone. Stroke order stabilizes the shape and makes dictionary lookup and recognition faster. For each character: watch the order, trace once, then hide the guide and recall it.'}</p>
+      <div class="kanji-trace-layout">
+        <div>
+          <div class="kanji-choice-row">${Object.keys(KANJI_TRACE_DATA).map(k => `<button class="tool-btn ${k === traceKanji ? 'primary' : ''}" onclick="selectKanjiTrace('${k}')">${k}</button>`).join('')}</div>
+          <div class="kanji-trace-stage"><div class="stroke-svg" id="stroke-svg"></div><canvas class="trace-canvas" id="trace-canvas" width="300" height="300"></canvas></div>
+          <div class="recorder-controls"><button class="tool-btn" onclick="clearKanjiTrace()">${isZh ? '清除描寫' : 'Clear trace'}</button><button class="tool-btn" onclick="toggleStrokeGuide()">${isZh ? '顯示/隱藏筆順' : 'Show/hide guide'}</button></div>
+        </div>
+        <div class="trace-info-panel"><h3 id="trace-kanji-title"></h3><p>${isZh ? '每個字的筆順圖會在你點選時，從 KanjiVG 開源資料庫即時下載（每個約 3 KB，瀏覽器會快取，第二次即時顯示）。灰線是筆順形狀，紅色數字是書寫順序。用滑鼠或觸控筆在方格內描寫。' : 'Each character’s stroke-order diagram is fetched on demand from the open-source KanjiVG database when you select it (about 3 KB each, cached by the browser so it is instant next time). Gray strokes show the shape; red numbers show the order. Trace with a mouse or stylus inside the square.'}</p><p>${isZh ? '練習目標不是漂亮，而是穩定：筆順、比例、重心三件事先對，速度自然會來。' : 'The goal is not beauty at first; it is stability. Get stroke order, proportion, and balance right, and speed will come later.'}</p></div>
+      </div>
+    </div>
+
+    <div class="kanji-card"><h3>${isZh ? '從常見字開始' : 'Start with common kanji'}</h3><p>${isZh ? '不用一次學完全部漢字。先學高頻字，搭配單字、例句與閱讀材料一起記，會比單獨背字形更有效。' : 'You do not need to learn every kanji at once. Start with frequent kanji and attach each one to vocabulary, example sentences, and reading passages.'}</p></div>`;
+  setTimeout(() => { drawKanjiGuide(); setupTraceCanvas(); }, 0);
+}
+function selectKanjiTrace(k) { traceKanji = k; renderKanji(); }
+async function drawKanjiGuide() {
+  const host = document.getElementById('stroke-svg');
+  const title = document.getElementById('trace-kanji-title');
+  if (!host) return;
+  const ch = traceKanji;
+  const data = KANJI_TRACE_DATA[ch] || {};
+  if (title) title.textContent = `${ch} — ${currentLang === 'zh' ? (data.meaning_zh || '') : (data.meaning_en || '')}`;
+  if (kanjiSvgCache[ch]) { host.innerHTML = kanjiSvgCache[ch]; return; }
+  host.innerHTML = `<div class="trace-loading">${currentLang === 'zh' ? '載入筆順中…' : 'Loading stroke order…'}</div>`;
+  try {
+    const res = await fetch(KANJIVG_BASE + kanjiCodeHex(ch) + '.svg');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    let svg = await res.text();
+    // Drop the XML prolog, license comment and DOCTYPE (its internal subset contains
+    // ">" which breaks naive regex stripping) by slicing from the opening <svg tag.
+    const start = svg.indexOf('<svg');
+    if (start >= 0) svg = svg.slice(start);
+    kanjiSvgCache[ch] = svg;
+    if (traceKanji === ch) host.innerHTML = svg;
+  } catch (err) {
+    if (traceKanji === ch) host.innerHTML = `<div class="trace-loading">${currentLang === 'zh' ? '無法載入筆順圖（需要網路連線）。' : 'Could not load the stroke-order diagram (needs an internet connection).'}</div>`;
+  }
+}
+function clearKanjiTrace() { const c = document.getElementById('trace-canvas'); if (!c) return; c.getContext('2d').clearRect(0,0,c.width,c.height); }
+function toggleStrokeGuide() { const el = document.getElementById('stroke-svg'); if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none'; }
+function setupTraceCanvas() {
+  const canvas = document.getElementById('trace-canvas');
+  if (!canvas || canvas.dataset.ready) return;
+  canvas.dataset.ready = '1';
+  const ctx = canvas.getContext('2d');
+  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--red').trim() || '#e5534b';
+  ctx.lineWidth = 7; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  const pos = e => { const r = canvas.getBoundingClientRect(); const p = e.touches ? e.touches[0] : e; return {x:(p.clientX-r.left)*canvas.width/r.width, y:(p.clientY-r.top)*canvas.height/r.height}; };
+  const start = e => { e.preventDefault(); traceDrawing = true; const p = pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); };
+  const move = e => { if (!traceDrawing) return; e.preventDefault(); const p = pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); };
+  const end = () => { traceDrawing = false; };
+  canvas.addEventListener('mousedown', start); canvas.addEventListener('mousemove', move); window.addEventListener('mouseup', end);
+  canvas.addEventListener('touchstart', start, {passive:false}); canvas.addEventListener('touchmove', move, {passive:false}); canvas.addEventListener('touchend', end);
 }
 function renderVocab() {
   document.getElementById('vocab-tip').innerHTML = t('vocab_tip');
+  const searchEl = document.getElementById('vocab-search');
+  const onlyEl = document.getElementById('vocab-unlearned-only');
+  if (searchEl && searchEl.value !== vocabSearch) searchEl.value = vocabSearch;
+  if (onlyEl) onlyEl.checked = vocabOnlyUnlearned;
+  updateVocabDueCount();
   document.getElementById('vocab-cats').innerHTML = N5_VOCAB.map((cat, i) => `<button class="vocab-cat-btn ${i === currentVocabCat ? 'active' : ''}" onclick="setVocabCat(${i})">${currentLang === 'zh' ? cat.cat_zh : cat.cat_en}</button>`).join('');
   const cat = N5_VOCAB[currentVocabCat];
-  document.getElementById('vocab-grid').innerHTML = cat.words.map(w => `
-    ${w.type === 'subhead' ? `<div class="vocab-subhead">${escapeHtml(w.label)}</div>` : `
-      <div class="vocab-card">
-        <div class="vocab-kanji">${renderRubyWord(w.word)}</div>
-        <div class="vocab-hira">${wordReading(w.word) ? escapeHtml(wordReading(w.word)) : '&nbsp;'} <button class="audio-btn" onclick="speak('${jsString(stripReadings(w.word))}',event)">▶</button></div>
-        <div class="vocab-pitch-area">${renderAccentBadge(w.accent)}</div>
-        <div class="vocab-meaning">${escapeHtml(w.meaning)}</div>
-      </div>`}
-    `).join('');
+  const q = vocabSearch.trim().toLowerCase();
+  let visible = [];
+  cat.words.forEach((w, wi) => {
+    if (w.type === 'subhead') {
+      if (!q && !vocabOnlyUnlearned) visible.push({subhead: true, label: w.label});
+      return;
+    }
+    const id = vocabId(currentVocabCat, wi, w.word);
+    const hay = `${stripReadings(w.word)} ${wordReading(w.word)} ${w.meaning} ${w.accent}`.toLowerCase();
+    if (q && !hay.includes(q)) return;
+    if (vocabOnlyUnlearned && vocabIsLearned(id)) return;
+    visible.push({w, wi, id});
+  });
+  document.getElementById('vocab-grid').innerHTML = visible.length ? visible.map(item => {
+    if (item.subhead) return `<div class="vocab-subhead">${escapeHtml(item.label)}</div>`;
+    const w = item.w, id = item.id, st = vocabState(id), learnedNow = vocabIsLearned(id), dueNow = vocabIsDue(id);
+    const dueText = st.due ? (currentLang === 'zh' ? `下次複習：${localDateKey(new Date(st.due))}` : `Next review: ${localDateKey(new Date(st.due))}`) : (currentLang === 'zh' ? '尚未加入複習' : 'Not reviewed yet');
+    return `<div class="vocab-card ${learnedNow ? 'learned' : ''} ${dueNow ? 'due' : ''}">
+      <div class="vocab-kanji">${renderRubyWord(w.word)}</div>
+      <div class="vocab-hira">${wordReading(w.word) ? escapeHtml(wordReading(w.word)) : '&nbsp;'} <button class="audio-btn" onclick="speak('${jsString(stripReadings(w.word))}',event)">▶</button></div>
+      <div class="vocab-pitch-area">${renderAccentBadge(w.accent)} ${dueNow ? `<span class="tool-pill">${currentLang === 'zh' ? '今日到期' : 'Due'}</span>` : ''}</div>
+      <div class="vocab-meaning">${escapeHtml(w.meaning)}</div>
+      <div class="srs-actions"><button class="tool-btn warn" onclick="reviewVocab('${jsString(id)}','again')">${currentLang === 'zh' ? '再練' : 'Again'}</button><button class="tool-btn good" onclick="reviewVocab('${jsString(id)}','good')">${currentLang === 'zh' ? '記得' : 'Good'}</button></div>
+      <div class="srs-meta">${learnedNow ? (currentLang === 'zh' ? '已學會' : 'Learned') : (currentLang === 'zh' ? '未學會' : 'Unlearned')} · ${dueText}</div>
+    </div>`;
+  }).join('') : `<div class="empty-state">${currentLang === 'zh' ? '沒有符合條件的單字。' : 'No vocabulary matches this filter.'}</div>`;
 }
 function setVocabCat(i) {
   currentVocabCat = i;
   renderVocab();
 }
 function renderGrammar() {
-  document.getElementById('sov-intro-card').innerHTML = `<div class="sov-card"><h3>${currentLang === 'zh' ? '日語常見語序：主語 - 受詞 - 動詞' : 'Japanese often uses Subject - Object - Verb order'}</h3><div class="sov-grid"><div class="sov-lang"><div class="ex-rom">English</div><div>I eat sushi.</div></div><div class="sov-lang"><div class="ex-rom">日本語</div><div class="sov-sentence jp">私は寿司を食べます。</div></div></div></div>`;
+  const isZh = currentLang === 'zh';
+  const contrasts = [
+    {title_en:'Nouns: です family', title_zh:'名詞：です 系列', rows:[['学生です','学生だ','です ↔ だ'],['学生ではありません','学生ではない / じゃない','ありません ↔ ない'],['学生でした','学生だった','でした ↔ だった'],['学生ではありませんでした','学生ではなかった / じゃなかった','ありませんでした ↔ なかった']]},
+    {title_en:'Verbs: ます family', title_zh:'動詞：ます 系列', rows:[['食べます','食べる','ます ↔ 辞書形'],['食べません','食べない','ません ↔ ない'],['食べました','食べた','ました ↔ た'],['食べませんでした','食べなかった','ませんでした ↔ なかった']]},
+    {title_en:'い-Adjectives', title_zh:'い形容詞', rows:[['寒いです','寒い','です only adds politeness'],['寒くないです','寒くない','くない + optional です'],['寒かったです','寒かった','かった + optional です'],['寒くなかったです','寒くなかった','くなかった + optional です']]},
+    {title_en:'な-Adjectives', title_zh:'な形容詞', rows:[['静かです','静かだ','same as nouns'],['静かではありません','静かではない / 静かじゃない','ありません ↔ ない'],['静かでした','静かだった','でした ↔ だった'],['静かではありませんでした','静かではなかった','ありませんでした ↔ なかった']]}
+  ];
+  document.getElementById('sov-intro-card').innerHTML = `
+    <div class="sov-card">
+      <h3>${isZh ? '日語常見語序：主語 - 受詞 - 動詞' : 'Japanese often uses Subject - Object - Verb order'}</h3>
+      <div class="sov-grid"><div class="sov-lang"><div class="ex-rom">English</div><div>I eat sushi.</div></div><div class="sov-lang"><div class="ex-rom">日本語</div><div class="sov-sentence jp">私は寿司を食べます。</div></div><div class="sov-lang"><div class="ex-rom">繁體中文</div><div class="sov-zh">我吃壽司。</div></div></div>
+    </div>
+    <div class="grammar-intro-card">
+      <h3>${isZh ? '禮貌形與普通形：把它們當成同一套系統' : 'Polite vs Plain: Treat Them as One System'}</h3>
+      <p>${isZh
+        ? '不要把 です、だ、ありません、ない、ました、た、なかった 分開死背。它們是同一個「禮貌 ↔ 普通」系統在不同詞類上的對應。先看橫向關係，再學每一格的接法。'
+        : 'Do not memorize です, だ, ありません, ない, ました, た, and なかった as isolated pieces. They are one politeness/register system applied to nouns, verbs, and adjectives. Learn the relationships first, then the details.'}</p>
+      <div class="contrast-grid">${contrasts.map(c => `<div class="contrast-card"><h4>${isZh ? c.title_zh : c.title_en}</h4>${c.rows.map(r => `<div class="contrast-row"><div class="contrast-jp">${r[0]}</div><div>→</div><div class="contrast-jp">${r[1]}</div></div><div class="contrast-note">${r[2]}</div>`).join('')}</div>`).join('')}</div>
+      <p style="margin-top:14px;">${isZh
+        ? '核心規則：名詞與な形容詞用「だ／だった／ではない／ではなかった」；動詞用「辞書形／た形／ない形／なかった」；い形容詞不接だ，自己變成「寒い／寒かった／寒くない／寒くなかった」。'
+        : 'Core rule: nouns and な-adjectives use だ / だった / ではない / ではなかった; verbs use dictionary / た / ない / なかった forms; い-adjectives do not take だ and conjugate themselves: 寒い / 寒かった / 寒くない / 寒くなかった.'}</p>
+    </div>
+    <div class="grammar-intro-card">
+      <h3>${isZh ? '〜が／に いる 與 ある：有生命 vs 無生命的「存在」' : '〜が／に いる vs ある: Animate vs Inanimate Existence'}</h3>
+      <p>${isZh
+        ? '日語有兩個表示「有／存在」的動詞，差別在於主語是否有生命。先記住這條主軸，再記特例。'
+        : 'Japanese has two verbs for "there is / exists", and the choice depends on whether the subject is alive. Learn this main axis first, then the exceptions.'}</p>
+      <div class="form-compare">
+        <div class="form-compare-card"><div class="fc-label">いる</div><div class="fc-jp">〜が／に いる</div><div class="fc-desc">${isZh ? '有生命的存在：人、動物。例：猫(ねこ)がいる／妹(いもうと)がいる。' : 'Animate beings — people and animals. e.g. 猫がいる (there is a cat), 妹がいる (I have a younger sister).'}</div></div>
+        <div class="form-compare-card"><div class="fc-label">ある</div><div class="fc-jp">〜が／に ある</div><div class="fc-desc">${isZh ? '無生命的存在：物品、抽象名詞。例：本(ほん)がある／時間(じかん)がある。' : 'Inanimate things — objects and abstract nouns. e.g. 本がある (there is a book), 時間がある (there is time).'}</div></div>
+      </div>
+      <p class="form-compare-note">${isZh
+        ? '附註：植物雖然有生命，但用 ある；口語中，對被擬人化或會移動的物體（如計程車、機器人）有時會聽到 いる。但預設規則就是：有生命用 いる、無生命用 ある。'
+        : 'Footnote: plants use ある despite being alive, and colloquially いる is sometimes heard for personalised or moving objects (a taxi, a robot). But the default rule is: animate = いる, inanimate = ある.'}</p>
+    </div>`;
   document.querySelectorAll('.grammar-tab').forEach((btn, i) => btn.classList.toggle('active', (currentGrammarTab === 'struct' && i === 0) || (currentGrammarTab === 'func' && i === 1)));
   const data = currentGrammarTab === 'struct' ? GRAMMAR_STRUCT : GRAMMAR_FUNC;
-  document.getElementById('grammar-list').innerHTML = data.map((g, i) => `
-    <div class="grammar-item ${i === 0 ? 'open' : ''}">
-      <div class="grammar-header" onclick="this.parentElement.classList.toggle('open')"><div class="grammar-pattern">${escapeHtml(g[0])}</div><div class="grammar-title">${escapeHtml(currentLang === 'zh' ? g[2] : g[1])}</div><div class="grammar-toggle">⌄</div></div>
-      <div class="grammar-body"><div class="grammar-desc">${(currentLang === 'zh' ? g[4] : g[3]).split('<br>').map(escapeHtml).join('<br>')}</div>${g[5].map(ex => `<div class="grammar-ex"><div class="grammar-ex-jp">${renderRubyWord(ex[0])} <button class="audio-btn" onclick="speak('${jsString(stripReadings(ex[0]))}',event)">▶</button></div>${ex[1] ? `<div class="grammar-ex-rom">${escapeHtml(ex[1])}</div>` : ''}<div class="grammar-ex-trans">${escapeHtml(currentLang === 'zh' ? ex[3] : ex[2])}</div></div>`).join('')}</div>
-    </div>`).join('');
+  const learnedCount = data.filter((g, i) => grammarLearned[grammarId(currentGrammarTab, i, g[0])]).length;
+  const pct = data.length ? Math.round(learnedCount / data.length * 100) : 0;
+  const progress = `<div class="grammar-progress"><div class="grammar-progress-top"><span>${isZh ? '此分頁進度' : 'Tab progress'}</span><span>${learnedCount}/${data.length} · ${pct}%</span></div><div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div></div>`;
+  document.getElementById('grammar-list').innerHTML = progress + data.map((g, i) => {
+    const id = grammarId(currentGrammarTab, i, g[0]);
+    const done = !!grammarLearned[id];
+    return `<div class="grammar-item ${i === 0 ? 'open' : ''} ${done ? 'learned' : ''}">
+      <div class="grammar-header" onclick="this.parentElement.classList.toggle('open')"><div class="grammar-pattern">${escapeHtml(g[0])}</div><div class="grammar-title">${escapeHtml(isZh ? g[2] : g[1])}</div><div class="grammar-toggle">⌄</div></div>
+      <div class="grammar-body"><div class="grammar-desc">${isZh ? g[4] : g[3]}</div>${g[5].map(ex => `<div class="grammar-ex"><div class="grammar-ex-jp">${renderRubyWord(ex[0])} <button class="audio-btn" onclick="speak('${jsString(stripReadings(ex[0]))}',event)">▶</button></div>${ex[1] ? `<div class="grammar-ex-rom">${escapeHtml(ex[1])}</div>` : ''}<div class="grammar-ex-trans">${escapeHtml(isZh ? ex[3] : ex[2])}</div></div>`).join('')}<div class="learn-row"><button class="mark-btn ${done ? 'marked' : ''}" onclick="toggleGrammarLearned('${jsString(id)}')">${done ? t('learned_tag') : t('mark_learned')}</button></div></div>
+    </div>`;
+  }).join('');
 }
 function setGrammarTab(tab) {
   currentGrammarTab = tab;
@@ -1607,27 +2900,57 @@ function togglePassage(i) {
   nodes.forEach(n => n.classList.toggle('revealed', reveal));
 }
 function makeDeck(script) {
-  const deck = allKana().flatMap(x => script === 'both' ? [{char:x.h,rom:x.r,script:'hiragana'}, {char:x.k,rom:x.r,script:'katakana'}] : [{char:script === 'hiragana' ? x.h : x.k, rom:x.r, script}]);
+  const deck = allKana().flatMap(x => script === 'both' ? [{kind:'kana',char:x.h,rom:x.r,script:'hiragana'}, {kind:'kana',char:x.k,rom:x.r,script:'katakana'}] : [{kind:'kana',char:script === 'hiragana' ? x.h : x.k, rom:x.r, script}]);
   return deck.sort(() => Math.random() - 0.5);
+}
+function makeVocabDeck(level) {
+  const cats = VOCAB_LEVELS[level] || [];
+  const deck = [];
+  cats.forEach(cat => cat.words.forEach(w => {
+    if (w.type === 'subhead' || !stripReadings(w.word)) return;
+    deck.push({ kind: 'vocab', word: stripReadings(w.word), reading: wordReading(w.word), meaning: w.meaning, cat: currentLang === 'zh' ? cat.cat_zh : cat.cat_en });
+  }));
+  return deck.sort(() => Math.random() - 0.5);
+}
+function rebuildFcDeck() {
+  fcDeck = fcLevel === 'kana' ? makeDeck(fcScript) : makeVocabDeck(fcLevel);
+  fcIndex = 0;
+  fcFlipped = false;
+}
+function setFcLevel(level, btn) {
+  fcLevel = level;
+  document.querySelectorAll('#fc-level-switch .mode-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const scriptSwitch = document.getElementById('fc-script-switch');
+  if (scriptSwitch) scriptSwitch.style.display = level === 'kana' ? 'flex' : 'none';
+  rebuildFcDeck();
+  renderFc();
 }
 function setFcScript(script, btn) {
   fcScript = script;
-  document.querySelectorAll('#page-flashcards .mode-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#fc-script-switch .mode-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
-  fcDeck = makeDeck(script);
-  fcIndex = 0;
-  fcFlipped = false;
+  fcLevel = 'kana';
+  rebuildFcDeck();
   renderFc();
 }
 function renderFc() {
-  if (!fcDeck.length) fcDeck = makeDeck(fcScript);
+  if (!fcDeck.length) rebuildFcDeck();
+  if (!fcDeck.length) return;
   const card = fcDeck[fcIndex % fcDeck.length];
-  const meta = getMeta(card.char, card.rom);
   document.getElementById('flashcard').classList.toggle('flipped', fcFlipped);
-  document.getElementById('fc-front').textContent = card.char;
-  document.getElementById('fc-back-rom').textContent = card.rom;
-  document.getElementById('fc-back-word').textContent = meta.ex[0];
-  document.getElementById('fc-back-mean').textContent = currentLang === 'zh' ? meta.ex[3] : meta.ex[2];
+  if (card.kind === 'vocab') {
+    document.getElementById('fc-front').textContent = card.word;
+    document.getElementById('fc-back-rom').textContent = card.reading || card.word;
+    document.getElementById('fc-back-word').textContent = card.meaning;
+    document.getElementById('fc-back-mean').textContent = card.cat || '';
+  } else {
+    const meta = getMeta(card.char, card.rom);
+    document.getElementById('fc-front').textContent = card.char;
+    document.getElementById('fc-back-rom').textContent = card.rom;
+    document.getElementById('fc-back-word').textContent = meta.ex[0];
+    document.getElementById('fc-back-mean').textContent = currentLang === 'zh' ? meta.ex[3] : meta.ex[2];
+  }
   document.getElementById('fc-counter').textContent = currentLang === 'zh' ? `第 ${fcIndex + 1} 張，共 ${fcDeck.length}` : `Card ${fcIndex + 1} of ${fcDeck.length}`;
   document.getElementById('fc-prog').style.width = `${((fcIndex + 1) / fcDeck.length) * 100}%`;
 }
@@ -1637,7 +2960,7 @@ function flipCard() {
 }
 function fcAnswer(good) {
   const card = fcDeck[fcIndex % fcDeck.length];
-  if (good) {
+  if (good && card.kind === 'kana') {
     const learnId = `${card.script}:${card.char}`;
     learned[learnId] = true;
     saveLearned();
@@ -1649,12 +2972,28 @@ function fcAnswer(good) {
   fcFlipped = false;
   renderFc();
 }
+function setQuizLevel(level, btn) {
+  quizLevel = level;
+  document.querySelectorAll('#quiz-level-switch .mode-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('quiz-kana-modes').style.display = level === 'kana' ? 'flex' : 'none';
+  document.getElementById('quiz-vocab-modes').style.display = level === 'kana' ? 'none' : 'flex';
+  qCorrect = 0; qWrong = 0;
+  updateQuizStats();
+  nextQ();
+}
 function setQuizMode(mode, btn) {
   quizMode = mode;
-  document.querySelectorAll('#page-quiz .mode-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#quiz-kana-modes .mode-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   qCorrect = 0; qWrong = 0;
   updateQuizStats();
+  nextQ();
+}
+function setVocabQuizMode(mode, btn) {
+  vocabQuizMode = mode;
+  document.querySelectorAll('#quiz-vocab-modes .mode-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
   nextQ();
 }
 function randomItems(arr, n) {
@@ -1664,26 +3003,89 @@ function nextQ() {
   qAnswered = false;
   document.getElementById('quiz-next').style.display = 'none';
   document.getElementById('q-feedback').textContent = '';
+  if (quizLevel === 'kana') nextKanaQ();
+  else nextVocabQ();
+}
+function nextKanaQ() {
   const deck = allKana();
   const base = deck[Math.floor(Math.random() * deck.length)];
   const mode = quizMode === 'both-scripts' ? (Math.random() > 0.5 ? 'kana-to-rom' : 'rom-to-kana') : quizMode;
   const script = Math.random() > 0.5 ? 'h' : 'k';
-  qCurrent = { base, mode, script };
+  const correct = mode === 'kana-to-rom' ? base.r : base[script];
+  qCurrent = { correct };
   const qChar = document.getElementById('q-char');
-  qChar.classList.toggle('romaji-mode', mode === 'rom-to-kana');
+  qChar.className = 'quiz-char' + (mode === 'rom-to-kana' ? ' romaji-mode' : '');
   qChar.textContent = mode === 'kana-to-rom' ? base[script] : base.r;
   document.getElementById('q-label').textContent = mode === 'kana-to-rom' ? t('q_prompt_k2r') : t('q_prompt_r2k');
   const wrong = randomItems(deck.filter(x => x.r !== base.r), 3);
   const choices = randomItems([base, ...wrong], 4);
   document.getElementById('choices').innerHTML = choices.map(x => {
     const label = mode === 'kana-to-rom' ? x.r : x[script];
-    return `<button class="choice-btn ${mode === 'rom-to-kana' ? 'jp-choice' : ''}" onclick="answerQ('${label.replace(/'/g, "\\'")}')">${label}</button>`;
+    return `<button class="choice-btn ${mode === 'rom-to-kana' ? 'jp-choice' : ''}" onclick="answerQ('${label.replace(/'/g, "\\'")}')">${escapeHtml(label)}</button>`;
   }).join('');
 }
+function vocabPool(level) {
+  const cats = VOCAB_LEVELS[level] || [];
+  const pool = [];
+  cats.forEach((cat, ci) => cat.words.forEach(w => {
+    if (w.type === 'subhead' || !stripReadings(w.word)) return;
+    pool.push({ ci, word: stripReadings(w.word), reading: wordReading(w.word), meaning: w.meaning });
+  }));
+  return pool;
+}
+function pickDistractors(correctVal, sources, valueFn) {
+  const seen = new Set([correctVal]);
+  const out = [];
+  for (const w of [...sources].sort(() => Math.random() - 0.5)) {
+    const v = valueFn(w);
+    if (v && !seen.has(v)) { seen.add(v); out.push(v); if (out.length >= 3) break; }
+  }
+  return out;
+}
+function nextVocabQ() {
+  const mode = vocabQuizMode;
+  const pool = vocabPool(quizLevel);
+  const needsReading = mode === 'k2r' || mode === 'fill';
+  let candidates = needsReading ? pool.filter(w => w.reading) : pool;
+  if (!candidates.length) candidates = pool;
+  if (!candidates.length) {
+    qCurrent = { correct: null };
+    document.getElementById('q-label').textContent = currentLang === 'zh' ? '此級別暫無單字。' : 'No vocabulary at this level yet.';
+    document.getElementById('q-char').textContent = '—';
+    document.getElementById('choices').innerHTML = '';
+    return;
+  }
+  const target = candidates[Math.floor(Math.random() * candidates.length)];
+  // Distractors from the same category first, then fall back to the whole level.
+  let sameCat = pool.filter(w => w.ci === target.ci && w !== target);
+  const valueFn = (mode === 'w2m') ? (w => w.meaning) : (mode === 'k2r') ? (w => w.reading) : (w => w.word);
+  const distractorSource = needsReading ? sameCat.filter(w => w.reading) : sameCat;
+  let distractors = pickDistractors(valueFn(target), distractorSource, valueFn);
+  if (distractors.length < 3) {
+    const extra = needsReading ? pool.filter(w => w.reading && w !== target) : pool.filter(w => w !== target);
+    distractors = distractors.concat(pickDistractors(valueFn(target), extra, valueFn)).filter((v, i, a) => a.indexOf(v) === i && v !== valueFn(target)).slice(0, 3);
+  }
+  const correct = valueFn(target);
+  qCurrent = { correct };
+  const qChar = document.getElementById('q-char');
+  const isZh = currentLang === 'zh';
+  let label = '', prompt = '', jpChoices = true;
+  if (mode === 'm2w') { label = isZh ? '哪個單字符合這個意思？' : 'Which word matches this meaning?'; prompt = target.meaning; }
+  else if (mode === 'w2m') { label = isZh ? '這個單字是什麼意思？' : 'What does this word mean?'; prompt = target.word; jpChoices = false; }
+  else if (mode === 'k2r') { label = isZh ? '這個漢字怎麼讀？' : 'How is this kanji read?'; prompt = target.word; }
+  else { label = isZh ? `填空：${target.meaning}` : `Fill the blank: ${target.meaning}`; prompt = `＿＿（${target.reading}）`; }
+  qChar.className = 'quiz-char vocab-mode';
+  qChar.textContent = prompt;
+  document.getElementById('q-label').textContent = label;
+  const choices = [correct, ...distractors].sort(() => Math.random() - 0.5);
+  document.getElementById('choices').innerHTML = choices.map(c =>
+    `<button class="choice-btn ${jpChoices ? 'jp-choice' : ''}" onclick="answerQ('${jsString(c)}')">${escapeHtml(c)}</button>`
+  ).join('');
+}
 function answerQ(choice) {
-  if (qAnswered) return;
+  if (qAnswered || !qCurrent || qCurrent.correct == null) return;
   qAnswered = true;
-  const right = qCurrent.mode === 'kana-to-rom' ? qCurrent.base.r : qCurrent.base[qCurrent.script];
+  const right = qCurrent.correct;
   document.querySelectorAll('.choice-btn').forEach(btn => {
     btn.disabled = true;
     if (btn.textContent === right) btn.classList.add('correct');
@@ -1724,6 +3126,12 @@ function renderDynamic() {
   renderKanji();
   renderVocab();
   renderGrammar();
+  renderVerbs();
+  renderAdjectivesPage();
+  renderListening();
+  renderPhrases();
+  renderJlpt();
+  renderAbout();
   renderPassages();
   renderChart();
   renderFc();
@@ -1734,6 +3142,7 @@ function init() {
   document.querySelectorAll('.lang-btn').forEach((btn, i) => btn.classList.toggle('active', (currentLang === 'en' && i === 0) || (currentLang === 'zh' && i === 1)));
   applyI18n();
   renderDynamic();
+  updateDailyStreak();
   updateProgress();
   updateTitle();
   nextQ();
